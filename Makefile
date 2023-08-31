@@ -1,14 +1,14 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11
+MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lbsd
 LIBFT = ./libft/libft.a
 RM = rm -rf
 NAME = cub3d
 
-SRCS_DIR		= ./sources/
+SRCS 			=./sources/ft_buttons.c 				\
+			./sources/ft_draw.c ./sources/ft_map.c ./sources/ft_utils.c \
+			main.c
 
-SRCS 			= $(addprefix $(SRCS_DIR),\
-			cub3d.c	)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -17,7 +17,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	$(MAKE) -C ./libft
 	$(MAKE)  -C ./minilibx-linux
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) $(MLXFLAGS) -lm -o $(NAME)
 
 clean:
 	$(MAKE) clean -C ./libft
