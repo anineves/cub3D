@@ -206,13 +206,14 @@ void	ft_read_map(t_data *data, char *map_file)
 			break ;
 		map_t = ft_strjoin_free(map_t, line);
 		free(line);
-		//game->map.rows++;
+		data->player->angle += data->player->rotate_speed;//game->map.rows++;
 	}
 	close(read);
 	//ft_verific_line(map_t, game);
 	data->map.full = ft_split(map_t, '\n');
 	free(map_t);
 }
+
 
 
 int drawMap2D(t_data *data)
@@ -235,13 +236,7 @@ int drawMap2D(t_data *data)
 			   		render_rect(data, (t_rect){xo, yo, mapS, mapS, GREEN_PIXEL}, x, y);
                else 
 			   		render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL}, x, y);
-               /*else
-               { 
-                    //render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL});
-                    mlx_pixel_put(data->mlx_ptr, data->win_ptr, 8,8, 0x8B0000);
-                    printf("pixel");
-               }*/
-                    render_rect(data, (t_rect){(3*mapS),(3*mapS), mapS, mapS, 0x00008B}, x, y);
+                render_rect(data, (t_rect){(data->player->p_x),(data->player->p_y), 32, 32, 0x00008B}, x, y);
                x++;
           } 
           y++;
@@ -249,13 +244,60 @@ int drawMap2D(t_data *data)
      return (0);
 }
 
+void move_player(t_data *data, int n)
+{
+    int newx;
+    int  newy;
+    newx = data->player->p_x + data->player->speed * cos(data->player->angle) * n;
+    newy = data->player->p_y + data->player->speed * sin(data->player->angle) * n;
+    printf("entre\n");
+    if(data->map.full[data->player->p_y/mapS][newx/mapS] != 0)
+    {
+        data->player->p_x = newx;
+        printf("entre 1\n");
+    }
+    if(data->map.full[newy/mapS][data->player->p_x/mapS] != 0)
+    {
+        data->player->p_y = newy;
+        printf("entrei 2\n");
+    }
+    printf("valor x %d, \n valor y %d \n", data->player->p_x, data->player->p_y);
+}
+
+int ft_update(int keysym, t_data *data)
+{
+    (void) data;
+    if(keysym == 65361) //Left
+        data->player->angle -= data->player->rotate_speed;
+    if( keysym == 65363) //right
+        data->player->angle += data->player->rotate_speed;
+    if (keysym == 119)//w
+		move_player(data, 1);
+	if (keysym == 115 )//s
+    {
+        move_player(data, -1);
+        //data->player->p_x = 3;
+        //data->player->p_y = 3;
+    }
+	if (keysym == 97 )
+    {
+
+    }
+	if (keysym == 100)//d
+    {
+
+    }
+		
+    return(0);
+}
+
 void init_player(t_data *data)
 {
     data->player->speed = 0.1;
     data->player->angle = 0;
     data->player->rotate_speed = 0.02;
-    data->player->p_x = 3;
-    data->player->p_y = 3;
+    data->player->p_x = 2*mapS;
+    data->player->p_y = 3*mapS;
 
 }
 int	main(void)
@@ -274,8 +316,10 @@ int	main(void)
     }
     ft_read_map(&data, "1.cub");
     init_player(&data);
+    drawMap2D(&data);
+    mlx_hook(data.win_ptr, 02, (1L << 0), &ft_update, &data);
     mlx_hook(data.win_ptr, 12, (1L << 15), &drawMap2D, &data);
-    //mlx_loop_hook(data.mlx_ptr, &drawMap2D, &data);
+    mlx_loop_hook(data.mlx_ptr, &drawMap2D, &data);
     //mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &Buttons, &data);
     mlx_loop(data.mlx_ptr);
     mlx_destroy_display(data.mlx_ptr);
