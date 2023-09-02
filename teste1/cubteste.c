@@ -13,7 +13,11 @@
 #define WINDOW_WIDTH 500
 #define WINDOW_HEIGHT 500
 #define MLX_ERROR 1
-#define RED_PIXEL 0xFFFFFF
+#define RED_PIXEL 0xFFFFF1
+#define mapX  8      //map width
+#define mapY  8      //map height
+#define mapS 64
+#define GREEN_PIXEL 0x000001
 
 typedef struct s_position
 {
@@ -31,15 +35,22 @@ typedef struct s_map
 	t_position	p_exit;
 }	t_map;
 
+typedef struct s_player
+{
+    int p_x;
+    int p_y;
+    float   speed;
+    float   angle;
+    float   rotate_speed;
+}   t_player;
+
 typedef struct s_data
 {
     void	*mlx_ptr;
     void	*win_ptr;
     t_map   map;
-    t_position  pos_player;
+    t_player  *player;
 }	t_data;
-
-#define GREEN_PIXEL 0x000000
 
 typedef struct s_rect
 {
@@ -50,26 +61,6 @@ typedef struct s_rect
     int color;
 }	t_rect;
 
-#define mapX  8      //map width
-#define mapY  8      //map height
-#define mapS 64
-
-/*int map[]=           //the map array. Edit to change level but keep the outer walls
-{
- 1,1,1,1,1,1,1,1,
- 1,0,1,0,0,0,0,1,
- 1,0,1,0,0,0,0,1,
- 1,0,1,0,0,0,0,1,
- 1,0,0,0,0,0,0,1,
- 1,0,0,0,0,1,0,1,
- 1,0,0,0,0,0,2,1,
- 1,1,1,1,1,1,1,1,	
-};*/
-
-/*float degToRad(int a) 
-{ 
-    return a*PI/180.0;
-}*/
 char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*newstr;
@@ -96,51 +87,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (newstr);
 }
 
-int FixAng(int a)
-{ 
-    if(a>359)
-    { 
-        a-=360;
-    } 
-    if(a<0)
-    { 
-        a+=360;
-    } 
-    return a;
-}
-
-float px,py,pdx,pdy,pa;
-
-int Buttons(int key, t_data *data)
-{
-    (void)data;
-    if(key==97)
-    { 
-        pa+=5; 
-        //pa=FixAng(pa); 
-       // pdx=cos(degToRad(pa)); 
-        //pdy=-sin(degToRad(pa));
-    } 	
-    if(key==100)
-    { 
-        pa-=5; 
-        //pa=FixAng(pa);
-        //pdx=cos(degToRad(pa)); 
-        //pdy=-sin(degToRad(pa));
-    } 
-    if(key==119)
-    { 
-        px+=pdx*5; 
-        py+=pdy*5;
-    }
-    if(key==115)
-    { 
-        px-=pdx*5; 
-        py-=pdy*5;
-    }
-
-    return(0);
-}
 
 void draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
 {
@@ -148,7 +94,7 @@ void draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY,
     double deltaY = endY - beginY;
 
     int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-//  pixels = sqrt((10 * 10) + (0 * 0)) = sqrt(100) = 10
+    //pixels = sqrt((10 * 10) + (0 * 0)) = sqrt(100) = 10
     deltaX /= pixels; // 1
     deltaY /= pixels; // 0
 
@@ -192,6 +138,8 @@ void draw_player(t_data *data, t_rect rect)
 
 int render_rect(t_data *data, t_rect rect, int x, int y)
 {
+    (void)x;
+    (void)y;
     int	i;
     int j;
 
@@ -207,11 +155,13 @@ int render_rect(t_data *data, t_rect rect, int x, int y)
     }
     draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x + rect.width, rect.y, 0xFF8C00);
     draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x, rect.y + rect.height, 0xFF8C00);
-    if (data->map.full[x][y] == 2)
-    {
-        
+   /*if (data->map.full[x][y] == '2')
+    {  
+        data->player->p_x = x;
+        data->player->p_y = y;
+        printf("entrei");
         draw_player(data, rect);
-    }
+    }*/
     return (0);
 }
 
@@ -245,8 +195,8 @@ void	ft_read_map(t_data *data, char *map_file)
 	int		read;
 
 	read = open(map_file, O_RDONLY);
-	//if (read == -1)
-		//ft_handler_error("The map unable to open",da);
+	if (read == -1)
+		printf("The map unable to open");
 	map_t = ft_calloc(sizeof(char), 1);
 	//data->map.rows = 0;
 	while (1)
@@ -256,13 +206,14 @@ void	ft_read_map(t_data *data, char *map_file)
 			break ;
 		map_t = ft_strjoin_free(map_t, line);
 		free(line);
-		//game->map.rows++;
+		data->player->angle += data->player->rotate_speed;//game->map.rows++;
 	}
 	close(read);
 	//ft_verific_line(map_t, game);
 	data->map.full = ft_split(map_t, '\n');
 	free(map_t);
 }
+
 
 
 int drawMap2D(t_data *data)
@@ -282,22 +233,10 @@ int drawMap2D(t_data *data)
                xo = x*mapS;
                yo = y*mapS;
                if (data->map.full[x][y] == '1')
-               {
-			   		render_rect(data, (t_rect){xo, yo,
-                    mapS, mapS, GREEN_PIXEL}, x, y);
-                    //printf("printe q verde valor x %d, valor y %d, valor xo %d, valor yo %d", x , y, xo, yo);
-               }
+			   		render_rect(data, (t_rect){xo, yo, mapS, mapS, GREEN_PIXEL}, x, y);
                else 
-               {
 			   		render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL}, x, y);
-                    //printf("printe q vermelho");
-               }
-               /*else
-               { 
-                    //render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL});
-                    mlx_pixel_put(data->mlx_ptr, data->win_ptr, 8,8, 0x8B0000);
-                    printf("pixel");
-               }*/
+                render_rect(data, (t_rect){(data->player->p_x),(data->player->p_y), 32, 32, 0x00008B}, x, y);
                x++;
           } 
           y++;
@@ -305,6 +244,84 @@ int drawMap2D(t_data *data)
      return (0);
 }
 
+void move_player(t_data *data, int n)
+{
+    int newx;
+    int  newy;
+    newx = data->player->p_x + data->player->speed * cos(data->player->angle) * n;
+    newy = data->player->p_y + data->player->speed * sin(data->player->angle) * n;
+
+    //printf("entre %f\n" ,data->player->speed * sin(data->player->angle) * n);
+    //printf("entre %f\n" ,data->player->speed * cos(data->player->angle) * n);
+    if(data->map.full[newx/mapS][data->player->p_y/mapS]!= 0)
+    {
+        data->player->p_x = newx;
+        printf("entre 1\n");
+    }
+    if(data->map.full[data->player->p_x/mapS][newy/mapS] != 0)
+    {
+        data->player->p_y = newy;
+        printf("entrei 2\n");
+    }
+    printf("valor x %d, \n valor y %d \n", data->player->p_x, data->player->p_y);
+}
+
+int ft_update(int keysym, t_data *data)
+{
+    (void) data;
+    if(keysym == 65361) //Left
+        data->player->angle -= data->player->rotate_speed;
+    if( keysym == 65363) //right
+        data->player->angle += data->player->rotate_speed;
+    
+    //Esta a mover sem anglo 
+    
+    /*if (keysym == 119)//w
+		move_player(data, 1);
+	if (keysym == 115 )//s
+    {
+        move_player(data, -1);
+        //data->player->p_x = 3;
+        //data->player->p_y = 3;
+	if (keysym == 97 )
+    {
+
+    }
+	if (keysym == 100)//d
+    {
+
+    }
+       if (keysym == 119)
+    {
+        data->player->p_y += 1;
+    }*/
+    if (keysym == 115 )//s
+    {
+
+        //move_player(data, -1);
+        data->player->p_y -= 1;
+    }
+	if (keysym == 97 )
+    {
+        data->player->p_x -= 1;
+    }
+	if (keysym == 100)//d
+    {
+        data->player->p_x += 1;
+    }
+		
+    return(0);
+}
+
+void init_player(t_data *data)
+{
+    data->player->speed = 0.1;
+    data->player->angle = 0;
+    data->player->rotate_speed = 0.02;
+    data->player->p_x = 2*mapS;
+    data->player->p_y = 3*mapS;
+
+}
 int	main(void)
 {
     t_data	data;
@@ -319,15 +336,14 @@ int	main(void)
         free(data.win_ptr);
         return (MLX_ERROR);
     }
-
-    /* Setup hooks */ 
     ft_read_map(&data, "1.cub");
+    init_player(&data);
+    drawMap2D(&data);
+    mlx_hook(data.win_ptr, 02, (1L << 0), &ft_update, &data);
+    mlx_hook(data.win_ptr, 12, (1L << 15), &drawMap2D, &data);
     mlx_loop_hook(data.mlx_ptr, &drawMap2D, &data);
-    mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &Buttons, &data);
-
+    //mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &Buttons, &data);
     mlx_loop(data.mlx_ptr);
-
-    /* we will exit the loop if there's no window left, and execute this code */
     mlx_destroy_display(data.mlx_ptr);
     free(data.mlx_ptr);
 }
