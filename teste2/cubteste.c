@@ -250,13 +250,15 @@ void move_player(t_data *data, int n)
     int  newy;
     newx = data->player->p_x + data->player->speed * cos(data->player->angle) * n;
     newy = data->player->p_y + data->player->speed * sin(data->player->angle) * n;
-    printf("entre\n");
-    if(data->map.full[data->player->p_y/mapS][newx/mapS] != 0)
+
+    //printf("entre %f\n" ,data->player->speed * sin(data->player->angle) * n);
+    //printf("entre %f\n" ,data->player->speed * cos(data->player->angle) * n);
+    if(data->map.full[newx/mapS][data->player->p_y/mapS]!= 0)
     {
         data->player->p_x = newx;
         printf("entre 1\n");
     }
-    if(data->map.full[newy/mapS][data->player->p_x/mapS] != 0)
+    if(data->map.full[data->player->p_x/mapS][newy/mapS] != 0)
     {
         data->player->p_y = newy;
         printf("entrei 2\n");
