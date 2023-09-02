@@ -22,21 +22,14 @@ int	main(void)
 {
     t_data	data;
 
-    data.mlx_ptr = mlx_init();
-    if (data.mlx_ptr == NULL)
-        return (MLX_ERROR);
-    data.win_ptr = mlx_new_window(data.mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT,
-                                "my window");
-    if (data.win_ptr == NULL)
-    {
-        free(data.win_ptr);
-        return (MLX_ERROR);
-    }
+    init_data(&data);
+    init_mlx(&data);
     /* Setup hooks */ 
     ft_read_map(&data, "1.cub");
-    mlx_loop_hook(data.mlx_ptr, &drawMap2D, &data);
+    init_player_direction(&data);
     mlx_hook(data.win_ptr, KeyPress, KeyPressMask, &Buttons, &data);
 
+    mlx_loop_hook(data.mlx_ptr, &drawMap2D, &data);
     mlx_loop(data.mlx_ptr);
 
     /* we will exit the loop if there's no window left, and execute this code */

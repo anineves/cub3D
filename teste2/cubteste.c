@@ -207,7 +207,7 @@ int render_rect(t_data *data, t_rect rect, int x, int y)
     }
     draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x + rect.width, rect.y, 0xFF8C00);
     draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x, rect.y + rect.height, 0xFF8C00);
-    if (data->map.full[x,y] == 2)
+    if (data->map.full[x][y] == 2)
     {
         
         draw_player(data, rect);
@@ -281,7 +281,7 @@ int drawMap2D(t_data *data)
               
                xo = x*mapS;
                yo = y*mapS;
-               if (data->map.full[x, y] == '1')
+               if (data->map.full[x][y] == '1')
                {
 			   		render_rect(data, (t_rect){xo, yo,
                     mapS, mapS, GREEN_PIXEL}, x, y);
