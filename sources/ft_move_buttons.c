@@ -6,24 +6,11 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/02 15:41:18 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/02 18:44:00 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int FixAng(int a)
-{ 
-    if(a>359)
-    { 
-        a-=360;
-    } 
-    if(a<0)
-    { 
-        a+=360;
-    } 
-    return a;
-}
 
 int not_hit_wall(t_data *data, double x, double y)
 {
@@ -43,7 +30,7 @@ int Buttons(int key, t_data *data)
         printf("entrei no 97 %f %f\n", data->player.px, data->player.py );
         data->player.px = data->player.px + data->player.dir_x * MOVESPEED;
         data->player.py= data->player.py - data->player.dir_y * MOVESPEED;
-        printf("entrei no 97 %f %f\n", data->player.px, data->player.py );
+        printf("entrei no 97 posicao x: %f posicao y:%f dir_x:%f dir_y:%f\n", data->player.px, data->player.py, data->player.dir_x, data->player.dir_y);
         //pa=FixAng(pa); 
        // pdx=cos(degToRad(pa)); 
         //pdy=-sin(degToRad(pa));

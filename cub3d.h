@@ -45,12 +45,38 @@ typedef struct s_map
 	t_player	p_player;
 }	t_map;
 
+
+typedef struct s_ray
+{
+	double	ra;
+	double	ray_x;
+	double	ray_y;
+	double	camera_x;
+	double	dir_x;
+	double	dir_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	wall_dist;
+	double	wall_x;
+	int		side;
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+}	t_ray;
+
 typedef struct s_data
 {
     void	    *mlx_ptr;
     void	    *win_ptr;
     t_map       map;
     t_player    player;
+	t_ray		ray;
 }	t_data;
 
 typedef struct s_rect
@@ -62,10 +88,8 @@ typedef struct s_rect
     int color;
 }	t_rect;
 
-
-
 void	init_data(t_data *data);
-int	init_mlx(t_data *data);
+int		init_mlx(t_data *data);
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_read_map(t_data *data, char *map_file);
 int 	Buttons(int key, t_data *data);
@@ -75,3 +99,4 @@ void 	draw_player(t_data *data, t_rect rect);
 int 	render_rect(t_data *data, t_rect rect, int x, int y);
 int 	drawMap2D(t_data *data);
 void	init_player_direction(t_data *data);
+int 	FixAng(int a);
