@@ -3,50 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 16:14:22 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/09 14:32:11 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/05 10:19:44 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/05 10:20:10 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+#include <string.h>
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+size_t	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	tam_src;
-	size_t	tam_dst;
+	unsigned int	i;
+	char			*a;
 
-	if (size == 0)
-		return (ft_strlen(src));
-	tam_src = ft_strlen(src);
-	tam_dst = ft_strlen(dst);
-	j = tam_dst;
 	i = 0;
-	if (size < tam_dst)
-		return (tam_src + size);
-	while (src[i] && j < (size - 1))
+	a = dest;
+	if (size == 0)
+		return (0);
+	if (size <= ft_strlen(dest))
+		return (size + ft_strlen(src));
+	while (*a)
 	{
-		dst[j] = src[i];
+		a++;
 		i++;
-		j++;
 	}
-	dst[j] = '\0';
-	return (tam_dst + tam_src);
+	while (i < (size -1) && *src)
+	{
+		*a = *src;
+		a++;
+		src++;
+		i++;
+	}
+	*a = '\0';
+	return (ft_strlen(dest) + ft_strlen(src));
 }
-/* se size for menor que src retorna o tam de src + size
-/ senao concatena e retorna tam de dest mais tam de src */
-/*
-int main (void)
-{
-	char src[] = "Bom dia";
-    char dest[] = "Ca va";
-    printf("funcao %d \n", ft_strlcat(dest, src, 12));
-    printf("%s \n", dest);
-    char src2[] = "Bom dia";
-    char dest2[] = "Ca va";
-    printf("%lu \n", strlcat(dest2, src2, 12));
-    printf("%s \n", dest2);
-} */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 16:48:13 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/07 16:53:43 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/05 10:14:47 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/05 10:14:50 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,23 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*str;
+	void					*tmp;
+	unsigned char			a;
+	const unsigned char		*aux;
+	size_t					i;
 
-	str = (unsigned char *)s;
-	while (n--)
+	i = 0;
+	a = (unsigned char)c;
+	aux = s;
+	while (i < n)
 	{
-		if (*str == (unsigned char)c)
-			return (str);
-		str++;
+		if (*aux == a)
+			break ;
+		aux++;
+		i++;
 	}
-	return (NULL);
+	if (i == n)
+		return (NULL);
+	tmp = (void *)aux;
+	return (tmp);
 }
-/* Procura a primeira ocorrencia de uma caracter em n
-/ caracteres. Retorna ponteiro
-//se nao encontrar retorna NULL
-*/
-
-/* int main()
-{
-	int arr1[] = {1, 2};
-	int arr2[] = {3, 4};
-	if(ft_memchr(arr2, 4, sizeof(int) * 2) != NULL) {
-		printf("found");
-	}else{
-		printf("Didnt find");
-	}
-	return(0);
-
-} */

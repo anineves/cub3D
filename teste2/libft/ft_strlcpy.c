@@ -3,45 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 11:26:17 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/08 16:48:44 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/05 10:20:39 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/05 10:20:41 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+size_t	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
+	char			*a;
+	char			*b;
 	unsigned int	i;
-	unsigned int	f;
 
-	f = ft_strlen(src);
+	a = dest;
+	b = src;
 	i = 0;
 	if (size > 0)
 	{
-		while (src[i] != '\0' && i < size -1)
+		if (size > 1)
 		{
-			dest[i] = src[i];
-			i++;
+			while (*b != '\0' && i < (size - 1))
+			{
+				*a = *b;
+				a++;
+				b++;
+				i++;
+			}
 		}
-		dest[i] = '\0';
+		*a = '\0';
 	}
-	return (f);
+	return (ft_strlen(src));
 }
-/*
-int main()
-{
-	char dest[] = "Asjhgjh";
-	char src[] = "So iskkkto";
-	unsigned int res;
-	
-	res = ft_strlcpy(dest, src, 15);
-	printf("String: %s; Return: %d\n", dest, res);
-	char dest2[] = "Asjhgjh";
-	char src2[] = "So iskkkto";
-	res = strlcpy(dest2, src2, 15);
-	printf("String: %s; Return: %d\n", dest2, res);
-		
-} */

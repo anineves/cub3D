@@ -3,87 +3,98 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:34:11 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/08 15:35:03 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/05 10:16:48 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/05 10:16:53 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-static int	count_word(char const *s, char c)
+static size_t	nstrings(char const *s, char c)
 {
-	int	i;
-	int	word;
+	size_t	n;
 
-	i = 0;
-	word = 0;
-	while (s && s[i])
+	n = 0;
+	while (*s && *s == c)
+		s++;
+	if (*s)
+		n++;
+	while (*s)
 	{
-		if (s[i] != c)
+		if (*s == c)
 		{
-			word++;
-			while (s[i] != c && s[i] != '\0')
-				i++;
+			n++;
+			while (*s && *s == c)
+				s++;
+			continue ;
 		}
-		else
-			i++;
+		s++;
 	}
-	return (word);
+	return (n);
 }
 
-static int	size_word(char const *s, char c, int i)
+static size_t	strsize(char const *s, char c)
 {
-	int	size;
+	size_t	len;
 
-	size = 0;
-	while (s[i] != c && s[i] != '\0')
+	len = 0;
+	while (*s && *s == c)
+		s++;
+	while (*s && *s != c)
 	{
-		size++;
-		i++;
+		s++;
+		len++;
 	}
-	return (size);
+	return (len);
+}
+
+static char	*copyword(char const *s, char c, size_t len)
+{
+	char	*str;
+	char	*tmp;
+
+	if (!*s)
+		return (NULL);
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	tmp = str;
+	while (*s && *s == c)
+		s++;
+	while (*s && *s != c)
+	{
+		*tmp = *s;
+		tmp++;
+		s++;
+	}
+	*tmp = '\0';
+	return (str);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		word;
-	char	**str;
-	int		size;
-	int		j;
+	char	**arr;
+	size_t	nstr;
+	size_t	strlen;
+	size_t	i;
 
 	i = 0;
-	j = 0;
-	word = count_word(s, c);
-	str = (char **)malloc((word + 1) * sizeof(char *));
-	if (!str)
+	nstr = nstrings(s, c);
+	arr = malloc(sizeof(char *) * (nstr + 1));
+	if (!arr)
 		return (NULL);
-	while (j < word)
+	while (i < nstr)
 	{
-		while (s[i] == c)
-			i++;
-		size = size_word(s, c, i);
-		str[j] = ft_substr(s, i, size);
-		if (!str)
-			return (NULL);
-		i += size;
-		j++;
+		while (*s)
+		{
+			while (*s && *s == c)
+					s++;
+			strlen = strsize(s, c);
+			arr[i++] = copyword(s, c, strlen);
+			s = s + strlen;
+		}
 	}
-	str[j] = 0;
-	return (str);
+	arr[i] = NULL;
+	return (arr);
 }
-/*Divide um string *s consoante um caracter ou sequência de caracteres
-/e coloca cada fragmento numa nova posicao.*/
-/*
-int             main()
-{
-        char    str[] = "Ana  Neves  ff";
-        char    **split;
-        split = ft_split(str, ' ');
-        printf("%s\n", split[0]);
-        printf("%s\n", split[1]);
-        printf("%s\n", split[2]);
-        return (0);
-} */

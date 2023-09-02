@@ -3,66 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:32:44 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/09 16:13:40 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/21 11:38:07 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/21 11:38:14 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_cont(int nb)
+static size_t	ndigits(int n)
 {
-	int	cont;
+	size_t	i;
 
-	cont = 0;
-	if (nb <= 0)
+	i = 0;
+	if (n == 0)
+		return (1);
+	if (n < 0)
+		i++;
+	while (n)
 	{
-		cont++;
+		n = n / 10;
+		i++;
 	}
-	while (nb != 0)
-	{
-		cont ++;
-		nb = nb / 10;
-	}
-	return (cont);
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	size_t	cont;
-	size_t	sinal;
+	size_t	len;
+	size_t	i;
+	char	*num;
 
-	cont = ft_cont(n);
-	sinal = 1;
-	str = malloc(sizeof(char) * (cont + 1));
-	if (str == NULL)
+	i = 1;
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	if (n == 0)
+		return (ft_strdup("0"));
+	len = ndigits(n);
+	num = malloc(sizeof(char) * (len + 1));
+	if (!num)
 		return (NULL);
-	str[cont] = '\0';
-	cont--;
 	if (n < 0)
 	{
-		str[0] = '-';
-		sinal = -1;
+		num[0] = '-';
+		n *= -1;
 	}
-	else if (n == 0)
-		str[0] = '0';
-	while (n != 0)
+	num[len] = '\0';
+	while (n)
 	{
-		str[cont] = '0' + (n % 10 * sinal);
+		num[len - i++] = (n % 10) + '0';
 		n = n / 10;
-		cont--;
 	}
-	return (str);
+	return (num);
 }
-
-/* converte o inteiro em uma string terminada em nulo. Ele também 
-/pode converter números negativos*/
-
-/*
-int     main(void)
-{
-        printf("%s\n", ft_itoa(1342345));
-} */

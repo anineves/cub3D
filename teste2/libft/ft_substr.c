@@ -3,49 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:26:55 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/11 10:32:31 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/05 10:25:00 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/05 10:25:02 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	char	*substr;
+	char	*aux;
 
-	if (!s)
+	substr = (char *)malloc(len + 1);
+	if (!substr)
 		return (NULL);
-	str = (char *)malloc(sizeof(*s) * (len + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s[i])
+	while (start-- && *s)
+		s++;
+	aux = substr;
+	while (len && *s)
 	{
-		if (i >= start && j < len)
-		{
-			str[j] = s[i];
-			j++;
-		}
-		i++;
+		*aux = *s;
+		len--;
+		s++;
+		aux++;
 	}
-	str[j] = 0;
-	return (str);
+	*aux = '\0';
+	return (substr);
 }
-/*
-int             main()
-{
-        char s[] = "String para teste";
-        char *str;
-        int start = 7;
-        int length = 4;
-        printf("%s\n", s);
-        str = ft_substr(s, start, length);
-        printf("%s\n", str);
-        return (0);
-}*/

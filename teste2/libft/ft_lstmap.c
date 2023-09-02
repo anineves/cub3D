@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 10:30:06 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/11 10:31:29 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/21 11:31:48 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/21 11:31:49 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*head;
-	t_list	*tmp;
+	t_list	*newlst;
+	t_list	*newele;
 
-	if (lst == NULL || f == NULL || del == NULL)
+	if (!lst || !f)
 		return (NULL);
-	head = ft_lstnew(f(lst->content));
-	if (head == NULL)
-		return (NULL);
-	tmp = head;
-	lst = lst->next;
-	while (lst != NULL)
+	newlst = 0;
+	while (lst)
 	{
-		tmp = ft_lstnew(f(lst->content));
-		if (tmp == NULL)
+		newele = ft_lstnew(f(lst->content));
+		if (!newele)
 		{
-			ft_lstclear(&head, del);
-			return (NULL);
+			ft_lstclear(&lst, del);
+			ft_lstclear(&newele, del);
+			break ;
 		}
-		ft_lstadd_back(&head, tmp);
 		lst = lst->next;
+		ft_lstadd_back(&newlst, newele);
 	}
-	return (head);
+	return (newlst);
 }

@@ -3,41 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mimoreir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/08 15:23:49 by asousa-n          #+#    #+#             */
-/*   Updated: 2022/11/08 15:24:10 by asousa-n         ###   ########.fr       */
+/*   Created: 2022/11/05 10:17:16 by mimoreir          #+#    #+#             */
+/*   Updated: 2022/11/05 10:17:18 by mimoreir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *src)
 {
-	unsigned int	i;
-	char			*str;
+	char	*c;
+	char	*a;
+	int		size;
 
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
-	if (str == NULL)
+	size = ft_strlen(src);
+	c = malloc(size + 1);
+	if (!c)
 		return (NULL);
-	i = 0;
-	while (s[i] != '\0')
+	a = c;
+	while (*src)
 	{
-		str[i] = s[i];
-		i++;
+		*a = *src;
+		a++;
+		src++;
 	}
-	str[i] = '\0';
-	return (str);
+	*a = '\0';
+	return (c);
 }
-/*
-int main()
-{
-        char x[] = "Hello Hello";
-        char *z;
-        char a[] = "Hello Hello";
-        char *b;
-        z = strdup(x);
-        b = ft_strdup(a);
-        printf("%s \n", z);
-        printf("%s \n", b);
-} */
