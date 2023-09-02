@@ -273,14 +273,16 @@ int ft_update(int keysym, t_data *data)
         data->player->angle -= data->player->rotate_speed;
     if( keysym == 65363) //right
         data->player->angle += data->player->rotate_speed;
-    if (keysym == 119)//w
+    
+    //Esta a mover sem anglo 
+    
+    /*if (keysym == 119)//w
 		move_player(data, 1);
 	if (keysym == 115 )//s
     {
         move_player(data, -1);
         //data->player->p_x = 3;
         //data->player->p_y = 3;
-    }
 	if (keysym == 97 )
     {
 
@@ -288,6 +290,24 @@ int ft_update(int keysym, t_data *data)
 	if (keysym == 100)//d
     {
 
+    }
+       if (keysym == 119)
+    {
+        data->player->p_y += 1;
+    }*/
+    if (keysym == 115 )//s
+    {
+
+        //move_player(data, -1);
+        data->player->p_y -= 1;
+    }
+	if (keysym == 97 )
+    {
+        data->player->p_x -= 1;
+    }
+	if (keysym == 100)//d
+    {
+        data->player->p_x += 1;
     }
 		
     return(0);
