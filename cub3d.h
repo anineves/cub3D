@@ -14,22 +14,35 @@
 #define WINDOW_HEIGHT 1000
 #define MLX_ERROR 1
 #define RED_PIXEL 0xFFFFFF
-#define PI 3,14159265358979323846
+#define GREEN_PIXEL 0x000000
+#define PI 3.14159265358979323846
+#define mapX  8      //map width
+#define mapY  8      //map height
+#define mapS 32
+#define MOVESPEED 0.125
+#define rotSpeed 0.02
 
-typedef struct s_position
+typedef struct s_player
 {
-	int	x;
-	int	y;
-}	t_position;
-
+    char	dir;
+	double	px;
+	double	py;
+	double	dir_x; //direcao do player
+	double	dir_y; //direcao do player
+	double	plane_x; //camara plane vector
+	double	plane_y;
+	//int		move_x;
+	//int		move_y;
+	//int		has_moved;
+	//int		rotate;
+}	t_player;
 
 typedef struct s_map
 {
 	char		**full;
 	//int			rows;
 	//int			columns;
-	t_position	p_player;
-	t_position	p_exit;
+	t_player	p_player;
 }	t_map;
 
 typedef struct s_data
@@ -40,23 +53,6 @@ typedef struct s_data
     t_player    player;
 }	t_data;
 
-typedef struct s_player
-{
-    char	dir;
-	double	px;
-	double	py;
-	double	dir_x;
-	double	dir_y;
-	double	plane_x;
-	double	plane_y;
-	//int		move_x;
-	//int		move_y;
-	//int		has_moved;
-	//int		rotate;
-}	t_player;
-
-#define GREEN_PIXEL 0x000000
-
 typedef struct s_rect
 {
     int	x;
@@ -66,12 +62,10 @@ typedef struct s_rect
     int color;
 }	t_rect;
 
-#define mapX  8      //map width
-#define mapY  8      //map height
-#define mapS 64
+
 
 void	init_data(t_data *data);
-void	init_mlx(t_data *data);
+int	init_mlx(t_data *data);
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_read_map(t_data *data, char *map_file);
 int 	Buttons(int key, t_data *data);

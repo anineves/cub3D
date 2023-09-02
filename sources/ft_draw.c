@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/08/31 22:50:53 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/02 16:23:19 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,23 @@ void draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY,
     double deltaY = endY - beginY;
 
     int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-//  pixels = sqrt((10 * 10) + (0 * 0)) = sqrt(100) = 10
+    deltaX /= pixels; // 1
+    deltaY /= pixels; // 0
+
+    double pixelX = beginX;
+    double pixelY = beginY;
+    while (pixels)
+    {
+        mlx_pixel_put(mlx, win, pixelX, pixelY, color);
+        pixelX += deltaX;
+        pixelY += deltaY;
+        --pixels;
+    }
+}
+
+void draw_line_delta(void *mlx, void *win, double deltaX, double deltaY, int color)
+{
+    int pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
     deltaX /= pixels; // 1
     deltaY /= pixels; // 0
 
@@ -38,29 +54,17 @@ void draw_player(t_data *data, t_rect rect)
     int i;
     int j;
 
-    /*i = rect.y  + 3*(rect.height/8);
-        while (i < rect.y + 5*(rect.height/8))
-        {
-            j = rect.x + 3*(rect.width/8);
-            while (j < rect.x + 5*(rect.width/8))
-                mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0x00008B);
-            ++i;
-        }
-    */
     i = rect.y;
     while (i < rect.y + rect.height)
     {
         j = rect.x;
         while (j < rect.x + rect.width)
-            mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0x00008B);
+                mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0x00008B);
         ++i;
     }
-    draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x + rect.width, rect.y, 0xFF8C00);
-    draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x, rect.y + rect.height, 0xFF8C00);
-
 }
 
-int render_rect(t_data *data, t_rect rect, int x, int y)
+/*int render_rect(t_data *data, t_rect rect)
 {
     int	i;
     int j;
@@ -77,26 +81,30 @@ int render_rect(t_data *data, t_rect rect, int x, int y)
     }
     draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x + rect.width, rect.y, 0xFF8C00);
     draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x, rect.y + rect.height, 0xFF8C00);
-    if (data->map.full[y][x] == '2')
+    return (0);
+}*/
+
+int render_rect(t_data *data, t_rect rect, int x, int y)
+{
+    (void)x;
+    (void)y;
+    int	i;
+    int j;
+
+    if (data->win_ptr == NULL)
+        return (1);
+    i = rect.y;
+    while (i < rect.y + rect.height)
     {
-        draw_player(data, rect);
+        j = rect.x;
+        while (j < rect.x + rect.width)
+            mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, rect.color);
+        ++i;
     }
+    draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x + rect.width, rect.y, 0xFF8C00);
+    draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, rect.x, rect.y + rect.height, 0xFF8C00);
     return (0);
 }
-
-
-/*int	render(t_data *data)
-{
-    render_rect(data, (t_rect){WINDOW_WIDTH - 100, WINDOW_HEIGHT - 100,
-            100, 100, GREEN_PIXEL});
-    render_rect(data, (t_rect){0, 0, 100, 100, RED_PIXEL});
-
-    return (0);   if (key == XK_Escape)
-    {
-        mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-        data->win_ptr = NULL;
-    }
-}*/
 
 int drawMap2D(t_data *data)
 {
@@ -114,25 +122,13 @@ int drawMap2D(t_data *data)
                 xo = x*mapS;
                 yo = y*mapS;
                 if (data->map.full[y][x] == '1')
-                {
-                    render_rect(data, (t_rect){xo, yo,
-                    mapS, mapS, GREEN_PIXEL}, x, y);
-                    //printf("printe q verde valor x %d, valor y %d, valor xo %d, valor yo %d", x , y, xo, yo);
-                }
+                    render_rect(data, (t_rect){xo, yo, mapS, mapS, GREEN_PIXEL}, x, y);
                 else 
-                {
 			   		render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL}, x, y);
-                    //printf("printe q vermelho");
-                }
-                /*else
-                { 
-                    //render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL});
-                    mlx_pixel_put(data->mlx_ptr, data->win_ptr, 8,8, 0x8B0000);
-                    printf("pixel");
-                }*/
+                render_rect(data, (t_rect){(data->player.px),(data->player.py), 8, 8, 0x00008B}, x, y);
                 x++;
             } 
             y++;
-    } 
+    }
     return (0);
 }

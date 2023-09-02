@@ -5,8 +5,10 @@ LIBFT = ./libft/libft.a
 RM = rm -rf
 NAME = cub3d
 
-SRCS 			=./sources/ft_buttons.c 				\
-			./sources/ft_draw.c ./sources/ft_map.c ./sources/ft_utils.c \
+SRCS 		=./sources/ft_move_buttons.c 	./sources/ft_utils.c 					\
+			./sources/ft_draw.c 		./sources/ft_map.c 						\
+			./sources/ft_init_mlx.c		./sources/ft_init_player.c 				\
+			./sources/ft_init.c 												\
 			main.c
 
 

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init_player                                     :+:      :+:    :+:   */
+/*   ft_init_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/01 23:41:24 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/02 15:55:14 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 void	init_player_SN(t_player *player)
 {
@@ -20,6 +20,7 @@ void	init_player_SN(t_player *player)
 		player->dir_y = 1;
 		player->plane_x = -0.66;
 		player->plane_y = 0;
+		printf("entrei\n");
 	}
 	else if (player->dir == 'N')
 	{
@@ -27,6 +28,7 @@ void	init_player_SN(t_player *player)
 		player->dir_y = -1;
 		player->plane_x = 0.66;
 		player->plane_y = 0;
+		printf("entrei N\n");
 	}
 	else
 		return ;

@@ -6,14 +6,14 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:31:02 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/01 21:32:11 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/02 11:56:54 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
-void	init_mlx(t_data *data)
+int	init_mlx(t_data *data)
 {
 	data->mlx_ptr = mlx_init();
     if (data->mlx_ptr == NULL)
@@ -25,4 +25,5 @@ void	init_mlx(t_data *data)
         free(data->win_ptr);
         return (MLX_ERROR);
     }
+    return (0);
 }
