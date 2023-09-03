@@ -28,10 +28,12 @@ int	main(void)
     /* Setup hooks */ 
     ft_read_map(&data, "1.cub");
     init_player_direction(&data);
-    drawMap2D(&data);
-    mlx_hook(data.win_ptr, 02, (1L << 0), &Buttons, &data);
-    mlx_hook(data.win_ptr, 12, (1L << 15), &drawMap2D, &data);
-    mlx_loop_hook(data.mlx_ptr, &drawMap2D, &data);
+    draw_map2d(&data);
+    mlx_hook(data.win_ptr, 02, (1L << 0), &buttons, &data);
+    mlx_hook(data.win_ptr, 12, (1L << 15), &draw_map2d, &data);
+    //mlx_hook(data.win_ptr, 12, (1L << 15), &draw_rays2d, &data);
+    mlx_loop_hook(data.mlx_ptr, &draw_map2d, &data);
+    //mlx_loop_hook(data.mlx_ptr, &draw_rays2d_1, &data);
     mlx_loop(data.mlx_ptr);
 
     /* we will exit the loop if there's no window left, and execute this code */

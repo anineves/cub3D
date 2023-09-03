@@ -1,15 +1,16 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -O3
 MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lbsd
 LIBFT = ./libft/libft.a
 RM = rm -rf
 NAME = cub3d
 
-SRCS 	=./sources/ft_move_buttons.c 	./sources/ft_utils.c 					\
-			./sources/ft_draw.c 		./sources/ft_map.c 						\
-			./sources/ft_init_mlx.c		./sources/ft_init_player.c 				\
-			./sources/ft_init.c 		./sources/ft_draw_rays.c				\
-			main.c
+SRCS 	=./sources/ft_move_buttons.c 			./sources/ft_utils.c 					\
+			./sources/ft_draw.c 				./sources/ft_map.c 						\
+			./sources/ft_init_mlx.c				./sources/ft_init_player.c 				\
+			./sources/ft_init.c 				./sources/ft_draw_rays.c				\
+			./sources/ft_draw_rays_1.c													\
+			./sources/ft_move_buttons_1.c		main.c
 
 OBJS = $(SRCS:.c=.o)
 

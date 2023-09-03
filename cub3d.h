@@ -18,8 +18,8 @@
 #define PI 3.14159265358979323846
 #define mapX  8      //map width
 #define mapY  8      //map height
-#define mapS 32
-#define MOVESPEED 0.125
+#define mapS 64
+#define MOVESPEED 0.3
 #define rotSpeed 0.02
 
 typedef struct s_player
@@ -52,6 +52,7 @@ typedef struct s_ray
 	double	ray_x;
 	double	ray_y;
 	double	camera_x;
+	double	camera_y;
 	double	dir_x;
 	double	dir_y;
 	int		map_x;
@@ -92,11 +93,25 @@ void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_read_map(t_data *data, char *map_file);
-int 	Buttons(int key, t_data *data);
+
+/*Movements*/
+void    move_a(t_data *data);
+void    move_d(t_data *data);
+void    move_w(t_data *data);
+void    move_s(t_data *data);
+void    rotate_right(t_data *data);
+int 	buttons(int key, t_data *data);
 int		handle_keypress(int keysym, t_data *data);
+
+/*Draw*/
 void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
 void 	draw_player(t_data *data, t_rect rect);
+int 	draw_map2d(t_data *data);
+int 	draw_rays2d(t_data *data);
 int 	render_rect(t_data *data, t_rect rect, int x, int y);
-int 	drawMap2D(t_data *data);
+
+void draw_rays2d_1(t_data *data);
+void	init_raycasting(t_ray *ray, t_player *player);
+
 void	init_player_direction(t_data *data);
 int 	FixAng(int a);

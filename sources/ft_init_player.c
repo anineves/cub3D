@@ -6,13 +6,13 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/02 15:55:14 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/03 11:28:11 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_player_SN(t_player *player)
+void	init_player_sn(t_player *player)
 {
 	if (player->dir == 'S')
 	{
@@ -34,7 +34,7 @@ void	init_player_SN(t_player *player)
 		return ;
 }
 
-static void	init_player_EW(t_player *player)
+static void	init_player_ew(t_player *player)
 {
 	if (player->dir == 'W')
 	{
@@ -56,7 +56,6 @@ static void	init_player_EW(t_player *player)
 
 void	init_player_direction(t_data *data)
 {
-	init_player_SN(&data->player);
-	init_player_EW(&data->player);
+	init_player_sn(&data->player);
+	init_player_ew(&data->player);
 }
-
