@@ -107,6 +107,7 @@ typedef struct s_rect
 
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
+void	init_ray(t_ray *ray);
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_read_file(t_data *data, char *map_file);
 
@@ -130,7 +131,7 @@ int 	draw_rays2d(t_data *data);
 int 	render_rect(t_data *data, t_rect rect, int x, int y);
 
 void draw_rays2d_1(t_data *data);
-void	init_raycasting(t_ray *ray, t_player *player);
+void	init_raycasting(int x, t_ray *ray, t_player *player);
 
 void	init_player_direction(t_data *data);
 int 	FixAng(int a);

@@ -6,16 +6,17 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/04 18:31:30 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/04 19:11:24 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	init_raycasting(t_ray *ray, t_player *player)
+void	init_raycasting(int x, t_ray *ray, t_player *player)
 {
+	init_ray(ray);
 	ray->ra = FixAng(player->dir_x + 30);
-	ray->camera_x = 2 * (player->px/2) / (double)WINDOW_WIDTH - 1;
+	ray->camera_x = 2 * x / (double)WINDOW_WIDTH - 1; //Mudar o valor
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
 	//ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
@@ -89,9 +90,10 @@ int	draw_rays2d(t_data *data)
 	int	r;
 
 	r = 0;
-	while (r < 60)
+	
+	while (r < 640) //width window
 	{
-		init_raycasting(&data->ray, &data->player);
+		init_raycasting(r, &data->ray, &data->player);
 		dda(&data->ray, &data->player);
 		apply_dda(data, &data->ray);
 		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
