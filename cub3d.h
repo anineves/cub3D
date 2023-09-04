@@ -37,9 +37,24 @@ typedef struct s_player
 	//int		rotate;
 }	t_player;
 
+
+typedef struct s_image
+{
+	void	*xpm_ptr;
+	int		x;
+	int		y;
+}	t_image;
+
+
 typedef struct s_map
 {
+	char		**file;
 	char		**full;
+	char		*north;
+	char		*south;
+	char		*west;
+	char		*floor;
+	char		*ceiling;
 	//int			rows;
 	//int			columns;
 	t_player	p_player;
@@ -92,7 +107,7 @@ typedef struct s_rect
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 char	*ft_strjoin_free(char *s1, char *s2);
-void	ft_read_map(t_data *data, char *map_file);
+void	ft_read_file(t_data *data, char *map_file);
 
 /*Movements*/
 void    move_a(t_data *data);

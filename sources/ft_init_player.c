@@ -18,16 +18,16 @@ void	init_player_sn(t_player *player)
 	{
 		player->dir_x = 0;
 		player->dir_y = 1;
-		player->plane_x = -0.66;
-		player->plane_y = 0;
+		player->plane_x = 0;
+		player->plane_y = -0.66;
 		printf("entrei\n");
 	}
 	else if (player->dir == 'N')
 	{
 		player->dir_x = 0;
 		player->dir_y = -1;
-		player->plane_x = 0.66;
-		player->plane_y = 0;
+		player->plane_x = 0;
+		player->plane_y = 0.66;
 		printf("entrei N\n");
 	}
 	else
@@ -40,15 +40,15 @@ static void	init_player_ew(t_player *player)
 	{
 		player->dir_x = -1;
 		player->dir_y = 0;
-		player->plane_x = 0;
-		player->plane_y = -0.66;
+		player->plane_x = -0.66;
+		player->plane_y = 0;
 	}
 	else if (player->dir == 'E')
 	{
 		player->dir_x = 1;
 		player->dir_y = 0;
-		player->plane_x = 0;
-		player->plane_y = 0.66;
+		player->plane_x = 0.66;
+		player->plane_y = 0;
 	}
 	else
 		return ;

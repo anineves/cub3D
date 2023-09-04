@@ -38,7 +38,7 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 
 void draw_rays2d_1(t_data *data)
 {
-	int r,mx,my,mp,dof,side, pa; 
+	int r,mx,my,mp,dof, pa; 
 	float vx,vy,xo,yo;
 
 	pa = 90;
@@ -47,7 +47,7 @@ void draw_rays2d_1(t_data *data)
 	{
 		//init_raycasting(&data->ray, &data->player);
 		dof = 0;
-		side = 0;
+		//side = 0;
 		data->ray.sidedist_x = 100000;
 		float Tan = tan(degToRad(data->ray.ra));
 		if (cos(degToRad(data->ray.ra)) > 0.001)

@@ -18,15 +18,21 @@
 }*/
 
 
-int	main(void)
+int	main(int argc, char **argv)
 {
+    if(argc != 2)
+    {
+        printf("wrong ");
+        return(1);
+    }
     t_data	data;
 
     init_data(&data);
     init_mlx(&data);
     
     /* Setup hooks */ 
-    ft_read_map(&data, "1.cub");
+    ft_read_file(&data, argv[1]);
+    
     init_player_direction(&data);
     draw_map2d(&data);
     mlx_hook(data.win_ptr, 02, (1L << 0), &buttons, &data);

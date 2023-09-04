@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	ft_read_map(t_data *data, char *map_file)
+void	ft_read_file(t_data *data, char *map_file)
 {
 	char	*map_t;
 	char	*line;
@@ -26,6 +26,7 @@ void	ft_read_map(t_data *data, char *map_file)
 	while (1)
 	{
 		line = get_next_line(read);
+
 		if (line == NULL)
 			break ;
 		map_t = ft_strjoin_free(map_t, line);
