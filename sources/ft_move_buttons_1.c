@@ -15,23 +15,23 @@
 void	move_a(t_data *data)
 {
 	printf("entrei no 97 %f %f\n", data->player.px, data->player.py);
-	data->player.px = data->player.px + data->player.dir_x * MOVESPEED;
-	data->player.py = data->player.py - data->player.dir_y * MOVESPEED;
+	data->player.px = data->player.px + data->player.dir_y * MOVESPEED;
+	data->player.py = data->player.py - data->player.dir_x * MOVESPEED;
 	printf("entrei no 97 posicao x: %f posicao y:%f dir_x:%f dir_y:%f\n", data->player.px, data->player.py, data->player.dir_x, data->player.dir_y);
 }
 
 void	move_d(t_data *data)
 {
-	data->player.px = data->player.px - data->player.dir_x * MOVESPEED;
-	data->player.py = data->player.py + data->player.dir_y * MOVESPEED;
+	data->player.px = data->player.px - data->player.dir_y * MOVESPEED;
+	data->player.py = data->player.py + data->player.dir_x * MOVESPEED;
 	//return(not_hit_wall(data, new_x, new_y));
 	printf("entrei no 100 %f %f\n", data->player.px, data->player.py);
 }
 
 void	move_w(t_data *data)
 {
-	data->player.px = data->player.px + data->player.dir_x * MOVESPEED;
-	data->player.py = data->player.py + data->player.dir_y * MOVESPEED;
+	data->player.px += data->player.dir_x * MOVESPEED;
+	data->player.py += data->player.dir_y * MOVESPEED;
 	//return(not_hit_wall(data, new_x, new_y));
 	//py-=1;
 	//px+=pdx*5; 
@@ -42,8 +42,8 @@ void	move_w(t_data *data)
 void	move_s(t_data *data)
 {
 	//py+=1;
-	data->player.px = data->player.px - data->player.dir_x * MOVESPEED;
-	data->player.py = data->player.py - data->player.dir_y * MOVESPEED;
+	data->player.px -= data->player.dir_x * MOVESPEED;
+	data->player.py -= data->player.dir_y * MOVESPEED;
 	//return(not_hit_wall(data, new_x, new_y));
 	//px-=pdx*5; 
 	//py-=pdy*5;
