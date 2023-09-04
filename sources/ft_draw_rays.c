@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/03 11:54:53 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/04 18:31:30 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 void	init_raycasting(t_ray *ray, t_player *player)
 {
 	ray->ra = FixAng(player->dir_x + 30);
-	//ray->camera_x = 2 * r / (double)WINDOW_WIDTH - 1;
+	ray->camera_x = 2 * (player->px/2) / (double)WINDOW_WIDTH - 1;
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
+	//ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
+	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
 	ray->map_x = (int)player->px;
 	ray->map_y = (int)player->py;
 	ray->deltadist_x = sqrt(1 + (ray->dir_y * ray->dir_y) / \
@@ -28,6 +29,7 @@ void	init_raycasting(t_ray *ray, t_player *player)
 
 void	dda(t_ray *ray, t_player *player)
 {
+	
 	if (ray->dir_x < 0) 
 	{
 		ray->step_x = -1;
@@ -69,8 +71,16 @@ void	apply_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (data->map.full[mapX][mapY] > 0) 
+		if (data->map.full[ray->map_x][ray->map_y] > 0) 
 			hit = 1;
+	}
+
+	if(ray->side == 0)
+	{
+		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
+	}else
+	{
+		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
 	}
 }
 

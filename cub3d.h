@@ -19,7 +19,7 @@
 #define mapX  8      //map width
 #define mapY  8      //map height
 #define mapS 64
-#define MOVESPEED 0.3
+#define MOVESPEED 0.5
 #define rotSpeed 0.02
 
 typedef struct s_player
