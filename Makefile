@@ -10,7 +10,8 @@ SRCS 	=./sources/ft_move_buttons.c 			./sources/ft_utils.c 					\
 			./sources/ft_init_mlx.c				./sources/ft_init_player.c 				\
 			./sources/ft_init.c 				./sources/ft_draw_rays.c				\
 			./sources/ft_draw_rays_1.c													\
-			./sources/ft_move_buttons_1.c		main.c
+			./sources/ft_move_buttons_1.c		./sources/parsing_file.c 						\
+			main.c
 
 OBJS = $(SRCS:.c=.o)
 

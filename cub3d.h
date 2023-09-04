@@ -53,6 +53,7 @@ typedef struct s_map
 	char		*north;
 	char		*south;
 	char		*west;
+	char		*east;
 	char		*floor;
 	char		*ceiling;
 	//int			rows;
@@ -108,6 +109,9 @@ void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_read_file(t_data *data, char *map_file);
+
+/*parsing*/
+void parsing_file(t_data *data, char *file);
 
 /*Movements*/
 void    move_a(t_data *data);

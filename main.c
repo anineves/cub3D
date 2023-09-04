@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
     
     /* Setup hooks */ 
     ft_read_file(&data, argv[1]);
-    
+    //parsing_file(&data, argv[1];
     init_player_direction(&data);
     draw_map2d(&data);
     mlx_hook(data.win_ptr, 02, (1L << 0), &buttons, &data);

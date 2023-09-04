@@ -35,6 +35,7 @@ void	ft_read_file(t_data *data, char *map_file)
 	}
 	close(read);
 	//ft_verific_line(map_t, game);
+	data->map.file = ft_split(map_t, '\n');
 	data->map.full = ft_split(map_t, '\n');
 	free(map_t);
 }
