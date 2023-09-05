@@ -19,8 +19,6 @@ void	ft_read_file(t_data *data, char *map_file)
 	int		read;
 
 	read = open(map_file, O_RDONLY);
-	//if (read == -1)
-		//ft_handler_error("The map unable to open",da);
 	map_t = ft_calloc(sizeof(char), 1);
 	data->map.rows = 0;
 	while (1)
@@ -53,6 +51,8 @@ void	ft_parse(t_data *data)
 	{
 		printf("%s\n", data->map.file[i]);
 		parsing_file(data, data->map.file[i], i);
+		if(data->map.first_line != 0)
+			break;
 		i++;
 	}
 
@@ -69,4 +69,5 @@ void	ft_parse(t_data *data)
 		printf("1 %d\n", data->map.first_line);
 
 	}*/
+	//create_map(data, i);
 }

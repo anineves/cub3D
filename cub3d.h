@@ -45,6 +45,14 @@ typedef struct s_image
 	int		y;
 }	t_image;
 
+typedef struct s_img
+{
+	void	*img;
+	int		*addr;
+	int		pixel_bits;
+	int		size_line;
+	int		endian;
+}	t_img;
 
 typedef struct s_map
 {
@@ -116,6 +124,7 @@ void	ft_read_file(t_data *data, char *map_file);
 void	parsing_file(t_data *data, char *file, int row);
 void	ft_parse(t_data *data);
 int		all_params(t_data *data);
+void create_map(t_data *data, int i);
 
 /*Movements*/
 void    move_a(t_data *data);

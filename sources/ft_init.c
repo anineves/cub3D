@@ -36,7 +36,6 @@ void	init_ray(t_ray *ray)
 
 void	init_map(t_map *map)
 {
-	map->full = NULL;
 	map->file = NULL;
 	map->north = NULL; 
 	map->south = NULL;

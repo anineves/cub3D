@@ -1,48 +1,42 @@
 #include "cub3d.h"
 
-/*int map[]=           //the map array. Edit to change level but keep the outer walls
+void verific_args_ext(char *file, int argc)
 {
- 1,1,1,1,1,1,1,1,
- 1,0,1,0,0,0,0,1,
- 1,0,1,0,0,0,0,1,
- 1,0,1,0,0,0,0,1,
- 1,0,0,0,0,0,0,1,
- 1,0,0,0,0,1,0,1,
- 1,0,0,0,0,0,2,1,
- 1,1,1,1,1,1,1,1,	
-};*/
+    int len;
+    len = ft_strlen(file);
+    if(argc != 2)
+    {
+        printf("Error, invalid number of arguments");
+        exit(EXIT_FAILURE);
+    }
+    if(!ft_strnstr((file + len - 4), ".cub", 4))
+    {
+        printf("The file must end in .cub\n");
+        exit(EXIT_FAILURE);
+    }
 
-/*float degToRad(int a) 
-{ 
-    return a*PI/180.0;
-}*/
-
+}
 
 int	main(int argc, char **argv)
 {
-    if(argc != 2)
-    {
-        printf("wrong ");
-        return(1);
-    }
-    t_data	data;
+    t_data	*data;
 
-    init_data(&data);
-    init_mlx(&data);
-    
-    /* Setup hooks */ 
-    ft_read_file(&data, argv[1]);
+    verific_args_ext(argv[1], argc);
+    data = malloc(sizeof(t_data));
+    init_data(data);
+    init_mlx(data);
+    ft_read_file(data, argv[1]);
     //parsing_file(&data, argv[1];
-    init_player_direction(&data);
-    draw_map2d(&data);
-    mlx_hook(data.win_ptr, 02, (1L << 0), &buttons, &data);
-    mlx_hook(data.win_ptr, 12, (1L << 15), &draw_map2d, &data);
+    init_player_direction(data);
+    draw_map2d(data);
+    mlx_hook(data->win_ptr, 02, (1L << 0), &buttons, data);
+    mlx_hook(data->win_ptr, 12, (1L << 15), &draw_map2d, data);
     //mlx_hook(data.win_ptr, 12, (1L << 15), &draw_rays2d, &data);
-    mlx_loop_hook(data.mlx_ptr, &draw_map2d, &data);
+    mlx_loop_hook(data->mlx_ptr, &draw_map2d, data);
     //mlx_loop_hook(data.mlx_ptr, &draw_rays2d_1, &data);
-    mlx_loop(data.mlx_ptr);
+    mlx_loop(data->mlx_ptr);
 
     /* we will exit the loop if there's no window left, and execute this code */
-    mlx_destroy_display(data.mlx_ptr);
-    free(data.mlx_ptr);
+    mlx_destroy_display(data->mlx_ptr);
+    free(data->mlx_ptr);
 }
