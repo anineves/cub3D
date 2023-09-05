@@ -37,6 +37,15 @@ void	init_ray(t_ray *ray)
 void	init_map(t_map *map)
 {
 	map->full = NULL;
+	map->file = NULL;
+	map->north = NULL; 
+	map->south = NULL;
+	map->west = NULL;
+	map->east= NULL; 
+	map->floor = NULL;
+	map->ceiling = NULL;
+	map->rows = 0;
+	map->first_line = 0;
 }
 
 void	init_player(t_player *player)

@@ -22,7 +22,7 @@ void	ft_read_file(t_data *data, char *map_file)
 	//if (read == -1)
 		//ft_handler_error("The map unable to open",da);
 	map_t = ft_calloc(sizeof(char), 1);
-	//data->map.rows = 0;
+	data->map.rows = 0;
 	while (1)
 	{
 		line = get_next_line(read);
@@ -31,11 +31,42 @@ void	ft_read_file(t_data *data, char *map_file)
 			break ;
 		map_t = ft_strjoin_free(map_t, line);
 		free(line);
-		//game->map.rows++;
+		data->map.rows++;
 	}
 	close(read);
-	//ft_verific_line(map_t, game);
 	data->map.file = ft_split(map_t, '\n');
 	data->map.full = ft_split(map_t, '\n');
+	ft_parse(data); //Se comentar aqui, fica sem parser
 	free(map_t);
+}
+
+
+
+void	ft_parse(t_data *data)
+{
+
+	int		i;
+
+	i = 0;
+	printf("%d \n", data->map.rows);
+	while (i < data->map.rows )
+	{
+		printf("%s\n", data->map.file[i]);
+		parsing_file(data, data->map.file[i], i);
+		i++;
+	}
+
+	if(!all_params(data))
+		printf("incomplete file \n");
+	/*else
+	{
+		printf("N %s\n", data->map.north);
+		printf("S %s\n", data->map.south);
+		printf("F %s\n", data->map.floor);
+		printf("E %s\n", data->map.east);
+		printf("W %s\n", data->map.west);
+		printf("C %s\n", data->map.ceiling);
+		printf("1 %d\n", data->map.first_line);
+
+	}*/
 }

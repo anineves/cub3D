@@ -56,7 +56,8 @@ typedef struct s_map
 	char		*east;
 	char		*floor;
 	char		*ceiling;
-	//int			rows;
+	int			rows;
+	int			first_line;
 	//int			columns;
 	t_player	p_player;
 }	t_map;
@@ -112,7 +113,9 @@ char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_read_file(t_data *data, char *map_file);
 
 /*parsing*/
-void parsing_file(t_data *data, char *file);
+void	parsing_file(t_data *data, char *file, int row);
+void	ft_parse(t_data *data);
+int		all_params(t_data *data);
 
 /*Movements*/
 void    move_a(t_data *data);
@@ -122,7 +125,7 @@ void    move_s(t_data *data);
 void    rotate_right(t_data *data);
 int 	buttons(int key, t_data *data);
 int		handle_keypress(int keysym, t_data *data);
-int	not_hit_wall(t_data *data, double x, double y);
+int		not_hit_wall(t_data *data, double x, double y);
 /*Draw*/
 void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
 void 	draw_player(t_data *data, t_rect rect);
