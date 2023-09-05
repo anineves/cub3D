@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 21:21:40 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/05 21:37:03 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,17 @@
 
 int	not_hit_wall(t_data *data, double x, double y)
 {
-	printf("%d\n", (int)x);
-	printf("%d\n", (int)y);
-	if(data->map.full[((int)x/mapS - 1)][((int)y/mapS - 1)] == '0')
+	int i = 0;
+	printf("%d\n", (int)x/mapS);
+	printf("%d\n", (int)y/mapS);
+	printf("%c\n", data->map.full[((int)y/mapS)][((int)x/mapS)]);
+	while (i < mapX )
+	{
+		printf("Map file %s\n", data->map.file[i]);
+		printf("Map full %s\n", data->map.full[i]);
+		i++;
+	}
+	if(data->map.full[((int)y/mapS)][((int)x/mapS)] == '0')
 		return (1);
 	return (0);
 }
