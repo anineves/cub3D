@@ -54,8 +54,32 @@ static void	init_player_ew(t_player *player)
 		return ;
 }
 
+/*static	void init_player_position (t_data *data)
+{
+	int i;
+	i = 0;
+	int j;
+	j = 0;
+	while (data->map.full[++i])
+	{
+		j = -1;
+		while (data->map.full[i][++j])
+		{
+			if (data->map.full[i][j] == 'N')
+			{
+				data->player.px = j + 0.5;
+				data->player.py = i + 0.5;
+				data->map.full[i][j] = '0';
+				//set_direction(cub3d);
+				return ;
+			}
+		}
+	}
+}*/
+
 void	init_player_direction(t_data *data)
 {
+	//init_player_position(data);
 	init_player_sn(&data->player);
 	init_player_ew(&data->player);
 }

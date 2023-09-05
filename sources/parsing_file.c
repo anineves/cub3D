@@ -17,6 +17,7 @@ void ft_check_line(char *line)
 	
 }
 
+
 void create_map(t_data *data, int i)
 {
 	
@@ -24,7 +25,7 @@ void create_map(t_data *data, int i)
 
 	map_t = ft_calloc(sizeof(char), 1);
 
-	while(i < (data->map.rows -2))
+	while(i < (data->map.rows ) && data->map.file && data->map.file[i])
 	{	
 		printf("rows %d\n", data->map.rows);
 		printf("i %d\n", i);
@@ -32,7 +33,7 @@ void create_map(t_data *data, int i)
 		map_t = ft_strjoin_free(map_t, data->map.file[i]);
 		i++;
 	}
-	data->map.full = ft_split(map_t, '\n');
+	//data->map.full = ft_split(map_t, '\n');
 	free(map_t);
 }
 

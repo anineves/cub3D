@@ -69,5 +69,5 @@ void	ft_parse(t_data *data)
 		printf("1 %d\n", data->map.first_line);
 
 	}*/
-	//create_map(data, i);
+	create_map(data, i);
 }
