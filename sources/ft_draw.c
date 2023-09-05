@@ -103,7 +103,7 @@ int	draw_map2d(t_data *data)
 						data->player.py + data->player.dir_y * 20, 0xFF8C00);
 		}
 	}
-	//draw_rays2d(data);
-    draw_rays2d_1(data);
+	draw_rays2d(data);
+    //draw_rays2d_1(data);
 	return (0);
 }
