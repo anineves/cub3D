@@ -25,6 +25,7 @@
 typedef struct s_player
 {
     char	dir;
+	double	ang;
 	double	px;
 	double	py;
 	double	dir_x; //direcao do player

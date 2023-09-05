@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_buttons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/03 11:58:49 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:21:40 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	not_hit_wall(t_data *data, double x, double y)
 {
 	printf("%d\n", (int)x);
 	printf("%d\n", (int)y);
-	if(data->map.full[((int)x/64 )][((int)y/64)] == '0')
+	if(data->map.full[((int)x/mapS - 1)][((int)y/mapS - 1)] == '0')
 		return (1);
 	return (0);
 }

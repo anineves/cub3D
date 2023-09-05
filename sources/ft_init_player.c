@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/03 11:28:11 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:08:51 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	init_player_sn(t_player *player)
 		player->dir_y = 1;
 		player->plane_x = -0.66;
 		player->plane_y = 0;
+		player->ang = 270;
 		printf("entrei\n");
 	}
 	else if (player->dir == 'N')
@@ -28,6 +29,7 @@ void	init_player_sn(t_player *player)
 		player->dir_y = -1;
 		player->plane_x = 0.66;
 		player->plane_y = 0;
+		player->ang = 90;
 		printf("entrei N\n");
 	}
 	else
@@ -42,6 +44,7 @@ static void	init_player_ew(t_player *player)
 		player->dir_y = 0;
 		player->plane_x = 0;
 		player->plane_y = -0.66;
+		player->ang = 180;
 	}
 	else if (player->dir == 'E')
 	{
@@ -49,6 +52,7 @@ static void	init_player_ew(t_player *player)
 		player->dir_y = 0;
 		player->plane_x = 0;
 		player->plane_y = 0.66;
+		player->ang = 0;
 	}
 	else
 		return ;

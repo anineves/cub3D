@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/04 18:18:32 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/05 18:49:13 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_map(t_map *map)
 
 void	init_player(t_player *player)
 {
-	player->dir = 'N';
+	player->dir = 'S';
 	player->px = 3*64 + 32;
 	player->py = 2*64 + 32;
 	player->dir_x = 0.0;

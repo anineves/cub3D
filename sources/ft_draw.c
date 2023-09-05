@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/03 13:27:46 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/05 19:45:34 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,11 @@ int	draw_map2d(t_data *data)
 			else 
 				render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL} \
 					, x, y);
-			render_rect(data, (t_rect){(data->player.px),(data->player.py), \
+			render_rect(data, (t_rect){(data->player.px - 4),(data->player.py - 4), \
 					8, 8, 0x00008B}, x, y);
-			draw_line(data->mlx_ptr, data->win_ptr, data->player.px + 4, \
-						data->player.py + 4, data->player.px + data->player.dir_x * 10,\
-						data->player.py + data->player.dir_y * 10, 0xFF8C00);
+			draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
+						data->player.py, data->player.px + data->player.dir_x * 20,\
+						data->player.py + data->player.dir_y * 20, 0xFF8C00);
 		}
 	}
 	//draw_rays2d(data);

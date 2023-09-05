@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:47:24 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/04 19:09:28 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:11:28 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,11 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 
 void draw_rays2d_1(t_data *data)
 {
-	int r,mx,my,mp,dof, pa; 
+	int r,mx,my,mp,dof; 
 	float vx,vy,xo,yo;
 
-	pa = 90;
-	data->ray.ra = FixAng(pa);//ray set back 30 degrees
-	for (r = 0; r < 20; r++)
+	data->ray.ra = FixAng(data->player.ang);//ray set back 30 degrees
+	for (r = -19; r < 20; r++)
 	{
 		//init_raycasting(&data->ray, &data->player);
 		dof = 0;
@@ -69,7 +68,7 @@ void draw_rays2d_1(t_data *data)
 			data->ray.ray_x = data->player.px; 
 			data->ray.ray_y = data->player.py; 
 			dof = 8;
-		}//looking up or down. no hit  
+		}//looking up or down. no hit
 		while ( dof < 8 )
 		{ 
 			mx = (int)(data->ray.ray_x)>>6;
@@ -138,9 +137,10 @@ void draw_rays2d_1(t_data *data)
 			data->ray.ray_y = vy;
 			data->ray.sidedist_y = data->ray.sidedist_x;
 		}                  //horizontal hit first
-		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.ray_x, data->ray.ray_y , 0xFF8C00);
+		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.ray_x, data->player.py + data->ray.ray_y , 0xFF8C00);
+		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);
-		int ca=FixAng(pa-data->ray.ra); 
+		int ca=FixAng(data->player.ang-data->ray.ra); 
 		data->ray.sidedist_y=data->ray.sidedist_y*cos(degToRad(ca));                            //fix fisheye 
 		int lineH = (mapS*320)/(data->ray.sidedist_y); 
 		if(lineH > 320)

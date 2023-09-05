@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_buttons_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:05:50 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/04 16:15:18 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/05 21:22:02 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	move_a(t_data *data)
 	new_x = data->player.px + data->player.dir_y * MOVESPEED;
 	new_y = data->player.py - data->player.dir_x * MOVESPEED;
 	printf("entrei no 97 %f %f\n", data->player.px, data->player.py);
+	//data->player.px = new_x;
+	//data->player.py = new_y;
 	if(not_hit_wall(data, new_x, new_y))
 	{
 		data->player.px = new_x;
@@ -35,6 +37,8 @@ void	move_d(t_data *data)
 	double new_y;
 	new_x = data->player.px - data->player.dir_y * MOVESPEED;
 	new_y = data->player.py + data->player.dir_x * MOVESPEED;
+	//data->player.px = new_x;
+	//data->player.py = new_y;
 	if(not_hit_wall(data, new_x, new_y))
 	{
 		data->player.px = new_x;
