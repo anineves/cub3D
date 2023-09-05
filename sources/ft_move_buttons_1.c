@@ -14,17 +14,32 @@
 
 void	move_a(t_data *data)
 {
+	double new_x;
+	double new_y;
+	/*Verificar colisoes, implementei a funcao not_hit_wall
+	esta a dar problemas devido ao valor de player->px*/
+	new_x = data->player.px + data->player.dir_y * MOVESPEED;
+	new_y = data->player.py - data->player.dir_x * MOVESPEED;
 	printf("entrei no 97 %f %f\n", data->player.px, data->player.py);
-	data->player.px = data->player.px + data->player.dir_y * MOVESPEED;
-	data->player.py = data->player.py - data->player.dir_x * MOVESPEED;
+	if(not_hit_wall(data, new_x, new_y))
+	{
+		data->player.px = new_x;
+		data->player.py = new_y;
+	}
 	printf("entrei no 97 posicao x: %f posicao y:%f dir_x:%f dir_y:%f\n", data->player.px, data->player.py, data->player.dir_x, data->player.dir_y);
 }
 
 void	move_d(t_data *data)
 {
-	data->player.px = data->player.px - data->player.dir_y * MOVESPEED;
-	data->player.py = data->player.py + data->player.dir_x * MOVESPEED;
-	//return(not_hit_wall(data, new_x, new_y));
+	double new_x;
+	double new_y;
+	new_x = data->player.px - data->player.dir_y * MOVESPEED;
+	new_y = data->player.py + data->player.dir_x * MOVESPEED;
+	if(not_hit_wall(data, new_x, new_y))
+	{
+		data->player.px = new_x;
+		data->player.py = new_y;
+	}
 	printf("entrei no 100 %f %f\n", data->player.px, data->player.py);
 }
 

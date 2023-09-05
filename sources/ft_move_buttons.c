@@ -14,9 +14,10 @@
 
 int	not_hit_wall(t_data *data, double x, double y)
 {
-	(void)data;
-	(void)x;
-	(void)y;
+	printf("%d\n", (int)x);
+	printf("%d\n", (int)y);
+	if(data->map.full[((int)x/64 )][((int)y/64)] == '0')
+		return (1);
 	return (0);
 }
 

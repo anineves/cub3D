@@ -122,7 +122,7 @@ void    move_s(t_data *data);
 void    rotate_right(t_data *data);
 int 	buttons(int key, t_data *data);
 int		handle_keypress(int keysym, t_data *data);
-
+int	not_hit_wall(t_data *data, double x, double y);
 /*Draw*/
 void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
 void 	draw_player(t_data *data, t_rect rect);
