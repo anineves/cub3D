@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 19:45:34 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/05 23:04:53 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	draw_map2d(t_data *data)
 						data->player.py + data->player.dir_y * 20, 0xFF8C00);
 		}
 	}
-	draw_rays2d(data);
-    //draw_rays2d_1(data);
+	//draw_rays2d(data);
+    draw_rays2d_1(data);
 	return (0);
 }

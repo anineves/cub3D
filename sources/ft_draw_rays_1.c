@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:47:24 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 21:11:28 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/05 23:12:05 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 	return (cos(degToRad(ang))*(bx-ax)-sin(degToRad(ang))*(by-ay));
 }
 
-void draw_rays2d_1(t_data *data)
+
+/*void draw_rays2d_1(t_data *data)
 {
 	int r,mx,my,mp,dof; 
 	float vx,vy,xo,yo;
@@ -51,7 +52,7 @@ void draw_rays2d_1(t_data *data)
 		float Tan = tan(degToRad(data->ray.ra));
 		if (cos(degToRad(data->ray.ra)) > 0.001)
 		{
-			data->ray.ray_x = (((int)data->player.px>>6)<<6)+64;
+			data->ray.ray_x = (((int)data->player.px>>6)<<6)+mapS;
 			data->ray.ray_y = (data->player.px - data->ray.ray_x)*Tan + data->player.py;
 			xo = 64;
 			yo = -xo * Tan;
@@ -137,6 +138,94 @@ void draw_rays2d_1(t_data *data)
 			data->ray.ray_y = vy;
 			data->ray.sidedist_y = data->ray.sidedist_x;
 		}                  //horizontal hit first
+		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.ray_x, data->player.py + data->ray.ray_y , 0xFF8C00);
+		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
+		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);
+		int ca=FixAng(data->player.ang-data->ray.ra); 
+		data->ray.sidedist_y=data->ray.sidedist_y*cos(degToRad(ca));                            //fix fisheye 
+		int lineH = (mapS*320)/(data->ray.sidedist_y); 
+		if(lineH > 320)
+		{ 
+			lineH = 320;
+		}                     //line height and limit
+		//int lineOff = 160 - (lineH>>1);                                               //line offset
+  
+		//glLineWidth(8);glBegin(GL_LINES);glVertex2i(r*8+530,lineOff);glVertex2i(r*8+530,lineOff+lineH);glEnd();//draw vertical wall  
+
+		data->ray.ra=FixAng(data->ray.ra-1);                                                              //go to next ray
+	}
+}*/
+
+void draw_rays2d_1(t_data *data)
+{
+	int r;
+
+	data->ray.ra = FixAng(data->player.ang);//ray set back 30 degrees
+	for (r = -19; r < 20; r++)
+	{
+		data->ray.sidedist_x = 100000;
+		float Tan = tan(degToRad(data->ray.ra));
+		if (cos(degToRad(data->ray.ra)) > 0.001)
+		{
+			data->ray.ray_x = (((int)data->player.px>>6)<<6)+64;
+			data->ray.ray_y = (data->player.px - data->ray.ray_x)*Tan + data->player.py;
+		}//looking left
+		else if (cos(degToRad(data->ray.ra)) < -0.001)
+		{
+			data->ray.ray_x=(((int)data->player.px>>6)<<6) -0.0001;
+			data->ray.ray_y =(data->player.px - data->ray.ray_x) * Tan + data->player.py;
+		}//looking right
+		else 
+		{
+			data->ray.ray_x = data->player.px; 
+			data->ray.ray_y = data->player.py; 
+		}//looking up or down. no hit
+  //---Horizontal---
+		data->ray.sidedist_y=100000;
+		Tan=1.0/Tan; 
+		if(sin(degToRad(data->ray.ra))> 0.001)
+		{ 
+			data->ray.ray_y =(((int)data->player.py>>6)<<6) -0.0001; 
+			data->ray.ray_x=(data->player.py-data->ray.ray_y )*Tan+data->player.px; 
+		}//looking up 
+		else if(sin(degToRad(data->ray.ra))<-0.001)
+		{ 
+			data->ray.ray_y =(((int)data->player.py>>6)<<6)+64;      
+			data->ray.ray_x=(data->player.py - data->ray.ray_y )*Tan+data->player.px; 
+		}//looking down
+		else
+		{ 
+			data->ray.ray_x = data->player.px; 
+			data->ray.ray_y = data->player.py; 
+		}                                                   //looking straight left or right
+		int	hit;
+
+		hit = 0;
+		while (hit == 0)
+		{
+			if (data->ray.sidedist_x < data->ray.sidedist_y)
+			{
+				data->ray.sidedist_x += data->ray.deltadist_x;
+				data->ray.map_x += data->ray.step_x;
+				data->ray.side = 0;
+			}
+			else
+			{
+				data->ray.sidedist_y += data->ray.deltadist_y;
+				data->ray.map_y += data->ray.step_y;
+				data->ray.side = 1;
+			}
+			if (data->map.full[data->ray.map_x/mapS][data->ray.map_y/mapS] > '0') 
+				hit = 1;
+		}
+
+		if(data->ray.side == 0)
+		{
+			data->ray.wall_dist = (data->ray.sidedist_x - data->ray.deltadist_x);
+		}else
+		{
+			data->ray.wall_dist = (data->ray.sidedist_y - data->ray.deltadist_y);
+		}
 		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.ray_x, data->player.py + data->ray.ray_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);

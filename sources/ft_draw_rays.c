@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/04 19:11:24 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/05 22:58:59 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 void	init_raycasting(int x, t_ray *ray, t_player *player)
 {
 	init_ray(ray);
-	//ray->ra = FixAng(player->dir_x + 30);
+	ray->ra = FixAng(player->ang);
 	ray->camera_x = 2 * x / (double)WINDOW_WIDTH - 1; //Mudar o valor
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	//ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
+	ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
 	ray->map_x = (int)player->px/64;
 	ray->map_y = (int)player->py/64;
@@ -85,9 +85,9 @@ int	draw_rays2d(t_data *data)
 	(void) data;
 	int	r;
 
-	r = 0;
+	r = -19;
 	
-	while (r < 100) //mudar valor
+	while (r < 20) //mudar valor
 	{
 		printf("entrei again\n");
 		init_raycasting(r, &data->ray, &data->player);
