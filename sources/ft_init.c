@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 17:33:58 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:38:01 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_ray(t_ray *ray)
 {
+	ray->ra =0;
 	ray->camera_x = 0;
 	ray->camera_y = 0;
 	ray->dir_x = 0;
@@ -51,8 +52,8 @@ void	init_map(t_map *map)
 void	init_player(t_player *player)
 {
 	player->dir = 'S';
-	player->px = 4;
-	player->py = 4;
+	player->px = 4 * 64 + 32;
+	player->py = 3 * 64 + 32;
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;

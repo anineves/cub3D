@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:47:24 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 23:12:05 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/06 21:40:59 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 }
 
 
-/*void draw_rays2d_1(t_data *data)
+void draw_rays2d_1(t_data *data)
 {
 	int r,mx,my,mp,dof; 
 	float vx,vy,xo,yo;
 
-	data->ray.ra = FixAng(data->player.ang);//ray set back 30 degrees
-	for (r = -19; r < 20; r++)
+	data->ray.ra = FixAng(data->player.ang + 30);//ray set back 30 degrees
+	for (r = 0; r < 60; r++)
 	{
 		//init_raycasting(&data->ray, &data->player);
 		dof = 0;
@@ -52,14 +52,14 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 		float Tan = tan(degToRad(data->ray.ra));
 		if (cos(degToRad(data->ray.ra)) > 0.001)
 		{
-			data->ray.ray_x = (((int)data->player.px>>6)<<6)+mapS;
+			data->ray.ray_x = (((int)data->player.px-32) /64);
 			data->ray.ray_y = (data->player.px - data->ray.ray_x)*Tan + data->player.py;
 			xo = 64;
 			yo = -xo * Tan;
 		}//looking left
 		else if (cos(degToRad(data->ray.ra)) < -0.001)
 		{
-			data->ray.ray_x=(((int)data->player.px>>6)<<6) -0.0001;
+			data->ray.ray_x=(((int)data->player.px-32)/64) -0.0001;
 			data->ray.ray_y =(data->player.px - data->ray.ray_x) * Tan + data->player.py;
 			xo = -64;
 			yo = -xo * Tan;
@@ -72,20 +72,25 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 		}//looking up or down. no hit
 		while ( dof < 8 )
 		{ 
-			mx = (int)(data->ray.ray_x)>>6;
-			my = (int)(data->ray.ray_y )>>6;
+			mx=(int)((data->ray.ray_x)/64 -1); 
+			my=(int)((data->ray.ray_y)/64 -1);
 			mp = my * mapX + mx;
-			if(mp>0 && mp<mapX*mapY && data->map.full[my][mx]==1)
+			if(mp>0 && mp<mapX*mapY && data->map.full[my][mx]=='1')
 			{
 				dof=8;
 				data->ray.sidedist_x = cos(degToRad(data->ray.ra))*(data->ray.ray_x-data->player.px)-sin(degToRad(data->ray.ra))*(data->ray.ray_y -data->player.py);
+				printf("side %f\n", data->ray.sidedist_x);
 			}//hit
 			else
 			{ 
 				data->ray.ray_x += xo;
 				data->ray.ray_y += yo;
 				dof+=1;
-			}//check next horizontal
+			}
+			//check next horizontal
+			printf("side x %f\n", data->ray.sidedist_x);
+			printf("ray x %f\n", data->ray.ray_x);
+			printf("ray y %f\n", data->ray.ray_y);
 		}
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.ray_x, data->ray.ray_y , 0xFFFFFF);
 		vx=data->ray.ray_x; 
@@ -97,14 +102,14 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 		Tan=1.0/Tan; 
 		if(sin(degToRad(data->ray.ra))> 0.001)
 		{ 
-			data->ray.ray_y =(((int)data->player.py>>6)<<6) -0.0001; 
+			data->ray.ray_y =(((int)data->player.py-32)/64); 
 			data->ray.ray_x=(data->player.py-data->ray.ray_y )*Tan+data->player.px; 
 			yo=-64; 
 			xo=-yo*Tan;
 		}//looking up 
 		else if(sin(degToRad(data->ray.ra))<-0.001)
 		{ 
-			data->ray.ray_y =(((int)data->player.py>>6)<<6)+64;      
+			data->ray.ray_y =(((int)data->player.py-32)/64);      
 			data->ray.ray_x=(data->player.py - data->ray.ray_y )*Tan+data->player.px; 
 			yo= 64; 
 			xo=-yo*Tan;
@@ -117,10 +122,10 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 		}                                                   //looking straight left or right
 		while(dof < 8) 
 		{ 
-			mx=(int)(data->ray.ray_x)>>6; 
-			my=(int)(data->ray.ray_y )>>6; 
+			mx=(int)((data->ray.ray_x)/64 -1); 
+			my=(int)((data->ray.ray_y)/64 -1); 
 			mp=my*mapX+mx;                          
-			if(mp>0 && mp<mapX*mapY && data->map.full[my][mx]==1)
+			if(mp>0 && mp<mapX*mapY && data->map.full[my][mx]== '1')
 			{ 
 				dof=8; 
 				data->ray.sidedist_y=cos(degToRad(data->ray.ra))*(data->ray.ray_x-data->player.px)-sin(degToRad(data->ray.ra))*(data->ray.ray_y - data->player.py);
@@ -131,6 +136,9 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 				data->ray.ray_y += yo; 
 				dof+=1;
 			}//check next horizontal
+			printf("side  y %f\n", data->ray.sidedist_y);
+			printf("ray x %f\n", data->ray.ray_x);
+			printf("ray y %f\n", data->ray.ray_y);
 		}
 		if(data->ray.sidedist_x < data->ray.sidedist_y)
 		{ 
@@ -141,22 +149,22 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.ray_x, data->player.py + data->ray.ray_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);
-		int ca=FixAng(data->player.ang-data->ray.ra); 
+		/*int ca=FixAng(data->player.ang-data->ray.ra); 
 		data->ray.sidedist_y=data->ray.sidedist_y*cos(degToRad(ca));                            //fix fisheye 
 		int lineH = (mapS*320)/(data->ray.sidedist_y); 
 		if(lineH > 320)
 		{ 
 			lineH = 320;
-		}                     //line height and limit
+		} */                    //line height and limit
 		//int lineOff = 160 - (lineH>>1);                                               //line offset
   
 		//glLineWidth(8);glBegin(GL_LINES);glVertex2i(r*8+530,lineOff);glVertex2i(r*8+530,lineOff+lineH);glEnd();//draw vertical wall  
 
 		data->ray.ra=FixAng(data->ray.ra-1);                                                              //go to next ray
 	}
-}*/
+}
 
-void draw_rays2d_1(t_data *data)
+/*void draw_rays2d_1(t_data *data)
 {
 	int r;
 
@@ -243,3 +251,4 @@ void draw_rays2d_1(t_data *data)
 		data->ray.ra=FixAng(data->ray.ra-1);                                                              //go to next ray
 	}
 }
+*/

@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -O3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -O3 -g -fsanitize=address
 MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lbsd -no-pie
 LIBFT = ./libft/libft.a
 RM = rm -rf

@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 18:22:41 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:37:41 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ void	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY,
 	}
 }
 
-void	draw_player(t_data *data, t_rect rect)
-{
-	int	i;
-	int	j;
-
-	i = rect.y;
-	while (i < rect.y + rect.height)
-	{
-		j = rect.x;
-		while (j < rect.x + rect.width)
-			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0x00008B);
-		++i;
-	}
-}
 
 int	render_rect(t_data *data, t_rect rect, int x, int y)
 {
@@ -90,8 +76,7 @@ int	draw_map2d(t_data *data)
 		{
 			xo = x * mapS;
 			yo = y * mapS;
-			printf("valor x %d, valor y %d\n", x , y);
-			printf("linha %s",data->map.full[y] );
+			//printf("linha %s",data->map.file[y] );
 			if (data->map.full[y][x] == '1')
 			{
 				//printf("valor x %d, valor y %d\n", x , y);
@@ -101,15 +86,14 @@ int	draw_map2d(t_data *data)
 			else 
 				render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL} \
 					, x, y);
-			render_rect(data, (t_rect){((data->player.px*64 -32) - 4),((data->player.py*64 -32) - 4), \
+			render_rect(data, (t_rect){((data->player.px) - 4),((data->player.py) - 4), \
 					8, 8, 0x00008B}, x, y);
 			draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
 						data->player.py, data->player.px + data->player.dir_x * 20,\
 						data->player.py + data->player.dir_y * 20, 0xFF8C00);
 		}
 	}
-	//exit(EXIT_FAILURE);
-	draw_rays2d(data);
-    //draw_rays2d_1(data);
+	//draw_rays2d(data);
+    draw_rays2d_1(data);
 	return (0);
 }

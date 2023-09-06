@@ -30,11 +30,11 @@ void create_map(t_data *data, int i)
 	while(i < (data->map.rows ) && data->map.file && data->map.file[i])
 	{	
 		ft_check_line(data->map.file[i]);
-		data->map.full[j] = ft_strdup(data->map.file[i]);
+		//data->map.full[j] = ft_strdup(data->map.file[i]);
+		//printf("data full %s\n", data->map.full[j]);
 		i++;
 		j++;
 	}
-	
 	free(map_t);
 }
 

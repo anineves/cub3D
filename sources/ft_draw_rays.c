@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 17:29:58 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:02:29 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void	init_raycasting(int x, t_ray *ray, t_player *player)
 {
 	init_ray(ray);
-	ray->ra = FixAng(player->ang);
+	//ray->ra = FixAng(player->ang);
 	ray->camera_x = 2 * x / (double)WINDOW_WIDTH - 1; //Mudar o valor
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
+	//ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
-	ray->map_x = (int)player->px;
-	ray->map_y = (int)player->py;
+	ray->map_x = (int)(player->px);
+	ray->map_y = (int)(player->py);
 	ray->deltadist_x = fabs(1/ ray->dir_x);
 	ray->deltadist_y = fabs(1/ray->dir_y);
 }
@@ -70,7 +70,8 @@ void	apply_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (data->map.full[ray->map_y][ray->map_x] == '1')
+		printf("valor ray_mapy %d, valor ray map x %d\n", ray->map_y, ray->map_y);
+		if (data->map.full[(ray->map_y - 32)/64][(ray->map_x -32)/64] > '0')
 			hit = 1;
 	}
 }
@@ -82,15 +83,16 @@ int	draw_rays2d(t_data *data)
 
 	r = -19;
 	
-	while (r < 320) //mudar valor
+	while (r < 20) //mudar valor
 	{
 		printf("entrei again\n");
 		init_raycasting(r, &data->ray, &data->player);
 		dda(&data->ray, &data->player);
 		apply_dda(data, &data->ray);
 		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
-					data->player.py, data->ray.sidedist_x, \
-					data->ray.sidedist_y, 0x8B000);
+					data->player.py, data->player.px+ data->ray.sidedist_x, \
+					data->player.py + data->ray.sidedist_y, 0x8B000);
+		printf(" valor ray x %f, valor ray y %f\n", data->ray.sidedist_x, data->ray.sidedist_y);
 		r++;
 	}
 	return (1);
