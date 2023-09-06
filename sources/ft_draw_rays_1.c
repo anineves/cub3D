@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:47:24 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 21:40:59 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/06 23:21:14 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ void draw_rays2d_1(t_data *data)
 		float Tan = tan(degToRad(data->ray.ra));
 		if (cos(degToRad(data->ray.ra)) > 0.001)
 		{
-			data->ray.ray_x = (((int)data->player.px-32) /64);
+			data->ray.ray_x = (((int)data->player.px- 2 - mapS/2) /mapS);
 			data->ray.ray_y = (data->player.px - data->ray.ray_x)*Tan + data->player.py;
-			xo = 64;
+			xo = mapS;
 			yo = -xo * Tan;
 		}//looking left
 		else if (cos(degToRad(data->ray.ra)) < -0.001)
 		{
-			data->ray.ray_x=(((int)data->player.px-32)/64) -0.0001;
+			data->ray.ray_x=(((int)data->player.px-2 - mapS/2) /mapS) -0.0001;
 			data->ray.ray_y =(data->player.px - data->ray.ray_x) * Tan + data->player.py;
-			xo = -64;
+			xo = -mapS;
 			yo = -xo * Tan;
 		}//looking right
 		else 
@@ -72,8 +72,8 @@ void draw_rays2d_1(t_data *data)
 		}//looking up or down. no hit
 		while ( dof < 8 )
 		{ 
-			mx=(int)((data->ray.ray_x)/64 -1); 
-			my=(int)((data->ray.ray_y)/64 -1);
+			mx=(int)((data->ray.ray_x)/mapS -1); 
+			my=(int)((data->ray.ray_y)/mapS -1);
 			mp = my * mapX + mx;
 			if(mp>0 && mp<mapX*mapY && data->map.full[my][mx]=='1')
 			{
@@ -102,16 +102,16 @@ void draw_rays2d_1(t_data *data)
 		Tan=1.0/Tan; 
 		if(sin(degToRad(data->ray.ra))> 0.001)
 		{ 
-			data->ray.ray_y =(((int)data->player.py-32)/64); 
+			data->ray.ray_y =(((int)data->player.py- 2 - mapS/2)/mapS); 
 			data->ray.ray_x=(data->player.py-data->ray.ray_y )*Tan+data->player.px; 
-			yo=-64; 
+			yo=-mapS; 
 			xo=-yo*Tan;
 		}//looking up 
 		else if(sin(degToRad(data->ray.ra))<-0.001)
 		{ 
-			data->ray.ray_y =(((int)data->player.py-32)/64);      
+			data->ray.ray_y =(((int)data->player.py- 2 - mapS/2)/mapS);      
 			data->ray.ray_x=(data->player.py - data->ray.ray_y )*Tan+data->player.px; 
-			yo= 64; 
+			yo= mapS; 
 			xo=-yo*Tan;
 		}//looking down
 		else
@@ -122,8 +122,8 @@ void draw_rays2d_1(t_data *data)
 		}                                                   //looking straight left or right
 		while(dof < 8) 
 		{ 
-			mx=(int)((data->ray.ray_x)/64 -1); 
-			my=(int)((data->ray.ray_y)/64 -1); 
+			mx=(int)((data->ray.ray_x)/mapS -1); 
+			my=(int)((data->ray.ray_y)/mapS -1); 
 			mp=my*mapX+mx;                          
 			if(mp>0 && mp<mapX*mapY && data->map.full[my][mx]== '1')
 			{ 
@@ -146,7 +146,7 @@ void draw_rays2d_1(t_data *data)
 			data->ray.ray_y = vy;
 			data->ray.sidedist_y = data->ray.sidedist_x;
 		}                  //horizontal hit first
-		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.ray_x, data->player.py + data->ray.ray_y , 0xFF8C00);
+		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, (WINDOW_HEIGHT - mapS*mapY ) + data->player.py, data->player.px + data->ray.ray_x, (WINDOW_HEIGHT - mapS*mapY ) + data->player.py + data->ray.ray_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);
 		/*int ca=FixAng(data->player.ang-data->ray.ra); 
@@ -175,7 +175,7 @@ void draw_rays2d_1(t_data *data)
 		float Tan = tan(degToRad(data->ray.ra));
 		if (cos(degToRad(data->ray.ra)) > 0.001)
 		{
-			data->ray.ray_x = (((int)data->player.px>>6)<<6)+64;
+			data->ray.ray_x = (((int)data->player.px>>6)<<6)+mapS;
 			data->ray.ray_y = (data->player.px - data->ray.ray_x)*Tan + data->player.py;
 		}//looking left
 		else if (cos(degToRad(data->ray.ra)) < -0.001)

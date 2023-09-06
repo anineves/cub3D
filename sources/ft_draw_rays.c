@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 20:02:29 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/06 23:06:56 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	apply_dda(t_data *data, t_ray *ray)
 			ray->side = 1;
 		}
 		printf("valor ray_mapy %d, valor ray map x %d\n", ray->map_y, ray->map_y);
-		if (data->map.full[(ray->map_y - 32)/64][(ray->map_x -32)/64] > '0')
+		if (data->map.full[(ray->map_y - mapS/2)/mapS][(ray->map_x - mapS/2)/mapS] > '0')
 			hit = 1;
 	}
 }

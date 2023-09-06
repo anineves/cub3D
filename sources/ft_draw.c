@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 21:37:41 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/06 23:11:31 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ int	render_rect(t_data *data, t_rect rect, int x, int y)
 	{
 		j = rect.x;
 		while (j < rect.x + rect.width)
-			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, rect.color);
+			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, (WINDOW_HEIGHT - mapS*mapY ) + i, rect.color);
 		++i;
 	}
-	draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, \
-				rect.x + rect.width, rect.y, 0xFF8C00);
-	draw_line(data->mlx_ptr, data->win_ptr, rect.x, rect.y, \
-				rect.x, rect.y + rect.height, 0xFF8C00);
+	draw_line(data->mlx_ptr, data->win_ptr, rect.x, (WINDOW_HEIGHT - mapS*mapY ) + rect.y, \
+			 rect.x + rect.width, (WINDOW_HEIGHT - mapS*mapY ) + rect.y, 0xFF8C00);
+	draw_line(data->mlx_ptr, data->win_ptr, rect.x, (WINDOW_HEIGHT - mapS*mapY ) + rect.y, \
+			 rect.x, (WINDOW_HEIGHT - mapS*mapY ) + rect.y + rect.height, 0xFF8C00);
 	return (0);
 }
 
@@ -86,11 +86,11 @@ int	draw_map2d(t_data *data)
 			else 
 				render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL} \
 					, x, y);
-			render_rect(data, (t_rect){((data->player.px) - 4),((data->player.py) - 4), \
-					8, 8, 0x00008B}, x, y);
+			render_rect(data, (t_rect){((data->player.px) - 2),((data->player.py) - 2), \
+					4, 4, 0xFF0000}, x, y);
 			draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
-						data->player.py, data->player.px + data->player.dir_x * 20,\
-						data->player.py + data->player.dir_y * 20, 0xFF8C00);
+						(WINDOW_HEIGHT - mapS*mapY ) + data->player.py, data->player.px + data->player.dir_x * 4,\
+						(WINDOW_HEIGHT - mapS*mapY ) + data->player.py + data->player.dir_y * 4, 0xFF8C00);
 		}
 	}
 	//draw_rays2d(data);
