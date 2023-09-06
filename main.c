@@ -35,8 +35,7 @@ int	main(int argc, char **argv)
     mlx_loop_hook(data->mlx_ptr, &draw_map2d, data);
     //mlx_loop_hook(data.mlx_ptr, &draw_rays2d_1, &data);
     mlx_loop(data->mlx_ptr);
-
     /* we will exit the loop if there's no window left, and execute this code */
-    mlx_destroy_display(data->mlx_ptr);
+    //mlx_destroy_display(data->mlx_ptr);
     free(data->mlx_ptr);
 }

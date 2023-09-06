@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_map.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/08/31 23:05:56 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/06 17:17:09 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,8 @@ void	ft_parse(t_data *data)
 	int		i;
 
 	i = 0;
-	printf("%d \n", data->map.rows);
 	while (i < data->map.rows )
 	{
-		printf("%s\n", data->map.file[i]);
 		parsing_file(data, data->map.file[i], i);
 		if(data->map.first_line != 0)
 			break;
@@ -58,16 +56,5 @@ void	ft_parse(t_data *data)
 
 	if(!all_params(data))
 		printf("incomplete file \n");
-	/*else
-	{
-		printf("N %s\n", data->map.north);
-		printf("S %s\n", data->map.south);
-		printf("F %s\n", data->map.floor);
-		printf("E %s\n", data->map.east);
-		printf("W %s\n", data->map.west);
-		printf("C %s\n", data->map.ceiling);
-		printf("1 %d\n", data->map.first_line);
-
-	}*/
 	create_map(data, i);
 }

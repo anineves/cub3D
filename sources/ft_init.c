@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 18:49:13 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/06 17:33:58 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	init_map(t_map *map)
 void	init_player(t_player *player)
 {
 	player->dir = 'S';
-	player->px = 3*64 + 32;
-	player->py = 2*64 + 32;
+	player->px = 4;
+	player->py = 4;
 	player->dir_x = 0.0;
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;

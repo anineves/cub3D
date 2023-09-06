@@ -22,18 +22,19 @@ void create_map(t_data *data, int i)
 {
 	
 	char *map_t;
+	int j;
 
+	j=0;
 	map_t = ft_calloc(sizeof(char), 1);
 
 	while(i < (data->map.rows ) && data->map.file && data->map.file[i])
 	{	
-		printf("rows %d\n", data->map.rows);
-		printf("i %d\n", i);
 		ft_check_line(data->map.file[i]);
-		map_t = ft_strjoin_free(map_t, data->map.file[i]);
+		data->map.full[j] = ft_strdup(data->map.file[i]);
 		i++;
+		j++;
 	}
-	//data->map.full = ft_split(map_t, '\n');
+	
 	free(map_t);
 }
 

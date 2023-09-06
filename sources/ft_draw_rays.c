@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 22:58:59 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/06 17:29:58 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	init_raycasting(int x, t_ray *ray, t_player *player)
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
-	ray->map_x = (int)player->px/64;
-	ray->map_y = (int)player->py/64;
+	ray->map_x = (int)player->px;
+	ray->map_y = (int)player->py;
 	ray->deltadist_x = fabs(1/ ray->dir_x);
 	ray->deltadist_y = fabs(1/ray->dir_y);
 }
@@ -70,12 +70,7 @@ void	apply_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (ray->map_y < 0.25
-			|| ray->map_x < 0.25
-			|| ray->map_y > WINDOW_HEIGHT - 0.25
-			|| ray->map_x > WINDOW_WIDTH - 1.25)
-			break ;
-		else if (data->map.full[ray->map_y][ray->map_x] > '0')
+		if (data->map.full[ray->map_y][ray->map_x] == '1')
 			hit = 1;
 	}
 }
@@ -87,7 +82,7 @@ int	draw_rays2d(t_data *data)
 
 	r = -19;
 	
-	while (r < 20) //mudar valor
+	while (r < 320) //mudar valor
 	{
 		printf("entrei again\n");
 		init_raycasting(r, &data->ray, &data->player);

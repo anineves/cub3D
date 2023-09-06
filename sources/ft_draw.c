@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 23:04:53 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/06 18:22:41 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,20 +90,26 @@ int	draw_map2d(t_data *data)
 		{
 			xo = x * mapS;
 			yo = y * mapS;
+			printf("valor x %d, valor y %d\n", x , y);
+			printf("linha %s",data->map.full[y] );
 			if (data->map.full[y][x] == '1')
+			{
+				//printf("valor x %d, valor y %d\n", x , y);
 				render_rect(data, (t_rect){xo, yo, mapS, mapS, GREEN_PIXEL} \
 					, x, y);
+			}
 			else 
 				render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL} \
 					, x, y);
-			render_rect(data, (t_rect){(data->player.px - 4),(data->player.py - 4), \
+			render_rect(data, (t_rect){((data->player.px*64 -32) - 4),((data->player.py*64 -32) - 4), \
 					8, 8, 0x00008B}, x, y);
 			draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
 						data->player.py, data->player.px + data->player.dir_x * 20,\
 						data->player.py + data->player.dir_y * 20, 0xFF8C00);
 		}
 	}
-	//draw_rays2d(data);
-    draw_rays2d_1(data);
+	//exit(EXIT_FAILURE);
+	draw_rays2d(data);
+    //draw_rays2d_1(data);
 	return (0);
 }
