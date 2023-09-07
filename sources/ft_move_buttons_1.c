@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_buttons_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:05:50 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 21:43:10 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/07 21:55:53 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	move_a(t_data *data)
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
+		data->player.has_moved = 1;
 	}
 	printf("entrei no 97 posicao x: %f posicao y:%f dir_x:%f dir_y:%f\n", data->player.px, data->player.py, data->player.dir_x, data->player.dir_y);
 }
@@ -37,6 +38,7 @@ void	move_d(t_data *data)
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
+		data->player.has_moved = 1;
 	}
 	printf("entrei no 100 %f %f\n", data->player.px, data->player.py);
 }
@@ -51,6 +53,7 @@ void	move_w(t_data *data)
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
+		data->player.has_moved = 1;
 	}
 	printf("entrei no 119 %f %f\n", data->player.px, data->player.py);
 }
@@ -65,6 +68,7 @@ void	move_s(t_data *data)
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
+		data->player.has_moved = 1;
 	}
 	printf("entrei no 115 %f %f\n", data->player.px, data->player.py);
 }
@@ -84,4 +88,5 @@ void	rotate_right(t_data *data)
 							- data->player.plane_y * sin(-rotSpeed);
 	data->player.plane_y = oldplanex * sin(-rotSpeed) + \
 							data->player.plane_y * cos(-rotSpeed);
+	data->player.has_moved = 1;
 }

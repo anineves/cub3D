@@ -32,10 +32,10 @@ typedef struct s_player
 	double	dir_y; //direcao do player
 	double	plane_x; //camara plane vector
 	double	plane_y;
-	//int		move_x;
-	//int		move_y;
-	//int		has_moved;
-	//int		rotate;
+	int		move_ws;
+	int		move_ad;
+	int		has_moved;
+	int		rotate;
 }	t_player;
 
 
@@ -97,6 +97,7 @@ typedef struct s_ray
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	
 }	t_ray;
 
 typedef struct s_data
@@ -135,7 +136,7 @@ void    move_d(t_data *data);
 void    move_w(t_data *data);
 void    move_s(t_data *data);
 void    rotate_right(t_data *data);
-int 	buttons(int key, t_data *data);
+int 	buttons(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		not_hit_wall(t_data *data, double x, double y);
 /*Draw*/
@@ -150,3 +151,8 @@ void	init_raycasting(int x, t_ray *ray, t_player *player);
 
 void	init_player_direction(t_data *data);
 int 	FixAng(int a);
+
+//Render
+int render_mini(t_data *data);
+
+void listen(t_data *data);

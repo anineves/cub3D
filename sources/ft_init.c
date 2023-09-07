@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 22:47:56 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/07 21:50:04 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_player(t_player *player)
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
-	//player->has_moved = 0;
+	player->has_moved = 0;
 	//player->move_x = 0;
 	//player->move_y = 0;
 	//player->rotate = 0;

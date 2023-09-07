@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_buttons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 21:37:03 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/07 23:04:31 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,28 +44,24 @@ void	rotate_left(t_data *data)
 							data->player.plane_y * sin(rotSpeed);
 	data->player.plane_y = oldplanex * sin(rotSpeed) + data->player.plane_y \
 							* cos(rotSpeed);
+	data->player.has_moved = 1;
 }
 
-int	buttons(int key, t_data *data)
+int	buttons(t_data *data)
 {
-	if (key == 97)
+	
+	data->player.has_moved = 0;
+	if (data->player.move_ad == -1)
 		move_a(data);
-	if (key == 100) 
+	if (data->player.move_ad == 1) 
 		move_d(data); 
-	if (key == 119)
+	if (data->player.move_ws == 1)
 		move_w(data);
-	if (key == 115)
+	if (data->player.move_ws == -1)
 		move_s(data);
-	if (key == XK_Right)
+	if (data->player.rotate == 1)
 		rotate_right(data);
-	if (key == XK_Left)
+	if (data->player.rotate == -1)
 		rotate_left(data);
-	if (key == XK_Escape)
-	{
-		printf("entrei no Escape");
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		data->win_ptr = NULL;
-		return (1);
-	}
 	return (0);
 }
