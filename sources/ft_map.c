@@ -17,7 +17,9 @@ void	ft_read_file(t_data *data, char *map_file)
 	char	*map_t;
 	char	*line;
 	int		read;
+	int		len;
 
+	len = 1;
 	read = open(map_file, O_RDONLY);
 	map_t = ft_calloc(sizeof(char), 1);
 	data->map.rows = 0;
@@ -27,6 +29,10 @@ void	ft_read_file(t_data *data, char *map_file)
 
 		if (line == NULL)
 			break ;
+		len = ft_strlen(line);
+		if(len > data->map.len)
+			data->map.len = len;
+		printf("data len %d\n", data->map.len);
 		map_t = ft_strjoin_free(map_t, line);
 		free(line);
 		data->map.rows++;

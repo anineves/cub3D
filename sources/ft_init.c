@@ -39,6 +39,8 @@ void	init_map(t_map *map)
 {
 	map->full = NULL;
 	map->file = NULL;
+	map->len = 0;
+	map->num_player = 0;
 	map->north = NULL; 
 	map->south = NULL;
 	map->west = NULL;

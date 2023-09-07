@@ -1,12 +1,14 @@
 #include "../cub3d.h"
 
-void ft_check_line(char *line)
+void ft_check_line(char *line, t_data *data)
 {
 	int i;
 	
 	i = 0;
 	while (line[i] != '\0')
 	{
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||line[i] == 'P')
+			data->map.num_player++;
 		if (!ft_strchr(" 01NSWE", line[i]))
 		{
 			printf("Error invalid character\n");
@@ -29,11 +31,16 @@ void create_map(t_data *data, int i)
 
 	while(i < (data->map.rows ) && data->map.file && data->map.file[i])
 	{	
-		ft_check_line(data->map.file[i]);
+		ft_check_line(data->map.file[i], data);
 		//data->map.full[j] = ft_strdup(data->map.file[i]);
 		//printf("data full %s\n", data->map.full[j]);
 		i++;
 		j++;
+	}
+	if(data->map.num_player != 1)
+	{
+		printf("ERROR, map must have one Player\n");
+		exit (EXIT_FAILURE);
 	}
 	free(map_t);
 }

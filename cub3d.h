@@ -59,6 +59,8 @@ typedef struct s_map
 {
 	char		**file;
 	char		**full;
+	int		len;
+	int		num_player;
 	char		*north;
 	char		*south;
 	char		*west;
