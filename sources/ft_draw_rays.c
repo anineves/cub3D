@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 23:06:56 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/07 17:11:45 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,22 @@ int	draw_rays2d(t_data *data)
 	(void) data;
 	int	r;
 
-	r = -19;
+	r = 0;
 	
-	while (r < 20) //mudar valor
+	while (r < 640) //mudar valor
 	{
 		printf("entrei again\n");
 		init_raycasting(r, &data->ray, &data->player);
 		dda(&data->ray, &data->player);
 		apply_dda(data, &data->ray);
+		/*draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
+					data->player.py, data->player.dir_x  , \
+					data->player.dir_y , 0x8B000);*/
+
 		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
-					data->player.py, data->player.px+ data->ray.sidedist_x, \
-					data->player.py + data->ray.sidedist_y, 0x8B000);
+						data->player.py, data->player.px + data->player.dir_x * (int) data->ray.sidedist_x,\
+						data->player.py + data->player.dir_y * 
+						(int) data->ray.sidedist_y, 0x008C00);
 		printf(" valor ray x %f, valor ray y %f\n", data->ray.sidedist_x, data->ray.sidedist_y);
 		r++;
 	}

@@ -10,8 +10,8 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 
-#define WINDOW_WIDTH 1920
-#define WINDOW_HEIGHT 1000
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 640
 #define MLX_ERROR 1
 #define RED_PIXEL 0xFFFFFF
 #define GREEN_PIXEL 0x000000
