@@ -54,7 +54,7 @@ void	init_map(t_map *map)
 
 void	init_player(t_player *player)
 {
-	player->dir = 'S';
+	player->dir = 'N';
 	player->px = 4 * mapS + mapS/2;
 	player->py = 3 * mapS + mapS/2;
 	player->dir_x = 0.0;

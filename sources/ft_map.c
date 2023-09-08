@@ -100,12 +100,12 @@ void	ft_parse(t_data *data, char *map_file)
 		printf("incomplete file \n");
 	data->map.full = ft_calloc((data->map.rows - data->map.first_line)+ 1, sizeof(char *));
 	create_map(data, i);
-
-	i =0;
+	//validate_map(data);
+	/*i =0;
 	printf("mapa fullll\n");
 	while (i <= data->map.rows - data->map.first_line)
 	{
 		printf("linha %d, %s\n", i, data->map.full[i]);
 		i++;
-	}
+	}*/
 }

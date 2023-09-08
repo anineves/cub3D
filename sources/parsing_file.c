@@ -8,7 +8,9 @@ void ft_check_line(char *line, t_data *data)
 	while (line[i] != '\0')
 	{
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||line[i] == 'P')
+		{
 			data->map.num_player++;
+		}
 		if (!ft_strchr("0 1NSWE", line[i]))
 		{
 			printf("Error invalid character '%c'\n", line[i]);
@@ -37,8 +39,6 @@ void create_map(t_data *data, int i)
 			data->map.full[k][j] = data->map.file[i][j];
 			j++;
 		}
-		printf("full line %d, %s\n", i, data->map.full[i-data->map.first_line]);
-		printf("full line %d, %s\n\n", k, data->map.full[k]);
 		j=0;
 		i++;
 		k++;
@@ -58,6 +58,33 @@ int all_params(t_data *data)
 	return (1);
 }
 
+char *validate_texture(char *line, int i)
+{
+	int		len;
+	char	*textura;
+	int		j;
+
+	j = 0;
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+		i++;
+	len = i;
+	while (line[len] != '\0' && (line[len] != ' ' && line[len] != '\t'))
+		len++;
+	textura = malloc(sizeof(char) * (len - i + 1));
+	if (!textura)
+		return (NULL);
+	while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+		textura[j++] = line[i++];
+	textura[j] = '\0';
+	len = ft_strlen(textura);
+	if (!ft_strnstr(&textura[len - 4], ".xpm", 4))
+	{
+		printf("Error, incorrect texture's path");
+		exit(EXIT_FAILURE);
+	}
+	return (textura);
+}
+
 void parsing_file(t_data *data, char *line, int row)
 {
 
@@ -68,13 +95,13 @@ void parsing_file(t_data *data, char *line, int row)
         while(line[i] == ' ' || line[i] == '\t')
 			i++;
         if (ft_strncmp(line + i, "NO ", 3) == 0) 
-            data->map.north = ft_strdup(line + i + 3);
+            data->map.north = validate_texture(line, i + 3);
         else if (ft_strncmp(line + i , "SO ", 3) == 0) 
-            data->map.south = ft_strdup(line + i + 3);
+            data->map.south = validate_texture(line, i + 3);
         else if (ft_strncmp(line + i, "WE ", 3) == 0)
-            data->map.west = ft_strdup(line + i + 3);
+            data->map.west = validate_texture(line, i + 3);
         else if (ft_strncmp(line + i, "EA ", 3) == 0)
-            data->map.east = ft_strdup(line + i + 3);
+            data->map.east = validate_texture(line, i + 3);
         else if (ft_strncmp(line + i, "C ", 2) == 0)
             data->map.ceiling = ft_strdup(line + i + 2);
         else if (ft_strncmp(line + i, "F ", 2) == 0)
