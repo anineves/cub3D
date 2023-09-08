@@ -9,9 +9,9 @@ void ft_check_line(char *line, t_data *data)
 	{
 		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||line[i] == 'P')
 			data->map.num_player++;
-		if (!ft_strchr(" 01NSWE", line[i]))
+		if (!ft_strchr("0 1NSWE", line[i]))
 		{
-			printf("Error invalid character\n");
+			printf("Error invalid character '%c'\n", line[i]);
 			exit (EXIT_FAILURE);
 		}
 		i++;
@@ -23,26 +23,31 @@ void ft_check_line(char *line, t_data *data)
 void create_map(t_data *data, int i)
 {
 	
-	char *map_t;
 	int j;
+	int k;
 
 	j=0;
-	map_t = ft_calloc(sizeof(char), 1);
-
+	k=0;
 	while(i < (data->map.rows ) && data->map.file && data->map.file[i])
 	{	
 		ft_check_line(data->map.file[i], data);
-		//data->map.full[j] = ft_strdup(data->map.file[i]);
-		//printf("data full %s\n", data->map.full[j]);
+		data->map.full[k] = ft_calloc(ft_strlen(data->map.file[i])+1, sizeof(char));
+		while (data->map.file[i][j] != '\0')
+		{
+			data->map.full[k][j] = data->map.file[i][j];
+			j++;
+		}
+		printf("full line %d, %s\n", i, data->map.full[i-data->map.first_line]);
+		printf("full line %d, %s\n\n", k, data->map.full[k]);
+		j=0;
 		i++;
-		j++;
+		k++;
 	}
 	if(data->map.num_player != 1)
 	{
 		printf("ERROR, map must have one Player\n");
 		exit (EXIT_FAILURE);
 	}
-	free(map_t);
 }
 
 int all_params(t_data *data)
@@ -62,8 +67,6 @@ void parsing_file(t_data *data, char *line, int row)
 	i = 0;
         while(line[i] == ' ' || line[i] == '\t')
 			i++;
-		if(line[i] == '\0')
-			data->map.first_line = row;
         if (ft_strncmp(line + i, "NO ", 3) == 0) 
             data->map.north = ft_strdup(line + i + 3);
         else if (ft_strncmp(line + i , "SO ", 3) == 0) 

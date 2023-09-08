@@ -59,6 +59,7 @@ typedef struct s_map
 {
 	char		**file;
 	char		**full;
+	char		**map;
 	int		len;
 	int		num_player;
 	char		*north;
@@ -107,7 +108,12 @@ typedef struct s_data
     t_map       map;
     t_player    player;
 	t_ray		ray;
-}	t_data;
+	t_img		north_img;
+	t_img		south_img;
+	t_img		west_img;
+	t_img		east_img;
+
+	}	t_data;
 
 typedef struct s_rect
 {
@@ -126,7 +132,7 @@ void	ft_read_file(t_data *data, char *map_file);
 
 /*parsing*/
 void	parsing_file(t_data *data, char *file, int row);
-void	ft_parse(t_data *data);
+void	ft_parse(t_data *data, char *map_file);
 int		all_params(t_data *data);
 void create_map(t_data *data, int i);
 

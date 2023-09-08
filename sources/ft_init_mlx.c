@@ -18,7 +18,7 @@ int	init_mlx(t_data *data)
 	if (data->mlx_ptr == NULL)
 		return (MLX_ERROR);
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WINDOW_WIDTH, WINDOW_HEIGHT, \
-					"my window");
+					"cub3d");
 	if (data->win_ptr == NULL)
 	{
 		free(data->win_ptr);

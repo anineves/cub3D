@@ -73,8 +73,8 @@ void	apply_dda(t_data *data, t_ray *ray)
 		}
 		if (ray->map_y < 0.25
 			|| ray->map_x < 0.25
-			|| ray->map_y > data->map.rows *mapS - 0.25
-			|| ray->map_x > data->map.len *mapS - 1.25)
+			|| ray->map_y > data->map.rows *mapS - mapS/2
+			|| ray->map_x > data->map.len *mapS - mapS/2)
 			break ;
 		else if (data->map.full[(ray->map_y - mapS/2)/mapS][(ray->map_x - mapS/2)/mapS] > '0')
 			hit = 1;

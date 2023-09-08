@@ -39,6 +39,7 @@ void	init_map(t_map *map)
 {
 	map->full = NULL;
 	map->file = NULL;
+	map->file = NULL;
 	map->len = 0;
 	map->num_player = 0;
 	map->north = NULL; 
@@ -61,9 +62,9 @@ void	init_player(t_player *player)
 	player->plane_x = 0.0;
 	player->plane_y = 0.0;
 	player->has_moved = 0;
-	//player->move_x = 0;
-	//player->move_y = 0;
-	//player->rotate = 0;
+	player->move_ad = 0;
+	player->move_ws = 0;
+	player->rotate = 0;
 }
 
 void	init_data(t_data *data)
