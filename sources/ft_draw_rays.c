@@ -15,10 +15,8 @@
 void	init_raycasting(int x, t_ray *ray, t_player *player)
 {
 	init_ray(ray);
-	//ray->ra = FixAng(player->ang);
-	ray->camera_x = 2 * x / (double)WINDOW_WIDTH - 1; //Mudar o valor
+	ray->camera_x = 2 * x / (double)WINDOW_WIDTH - 1;
 	ray->dir_x = player->dir_x + player->plane_x * ray->camera_x;
-	//ray->dir_y = player->dir_y + player->plane_y * ray->camera_y;
 	ray->dir_y = player->dir_y + player->plane_y * ray->camera_x;
 	ray->map_x = (int)(player->px);
 	ray->map_y = (int)(player->py);

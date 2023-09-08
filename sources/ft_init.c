@@ -46,15 +46,15 @@ void	init_map(t_map *map)
 	map->south = NULL;
 	map->west = NULL;
 	map->east= NULL;
-	map->floor = NULL;
-	map->ceiling = NULL;
+	map->floor = 0;
+	map->ceiling = 0;
 	map->rows = 0;
 	map->first_line = 0;
 }
 
 void	init_player(t_player *player)
 {
-	player->dir = 'N';
+	player->dir = 'S';
 	player->px = 4 * mapS + mapS/2;
 	player->py = 3 * mapS + mapS/2;
 	player->dir_x = 0.0;

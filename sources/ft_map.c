@@ -13,7 +13,6 @@
 #include "../cub3d.h"
 
 
-
 void	ft_read_file(t_data *data, char *map_file)
 {
 	char	*line;

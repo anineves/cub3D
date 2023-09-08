@@ -66,8 +66,8 @@ typedef struct s_map
 	char		*south;
 	char		*west;
 	char		*east;
-	char		*floor;
-	char		*ceiling;
+	int		floor;
+	int		ceiling;
 	int			rows;
 	int			first_line;
 	//int			columns;

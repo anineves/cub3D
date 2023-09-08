@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
     init_data(&data);
     init_mlx(&data);
     ft_parse(&data, argv[1]);
-    //parsing_file(&data, argv[1];
     init_player_direction(&data);
     draw_map2d(&data);
     listen(&data);
