@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/07 20:31:43 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/08 21:26:08 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,8 +154,8 @@ int	draw_rays2d(t_data *data)
 		/*draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
 					data->player.py, data->player.dir_x  , \
 					data->player.dir_y , 0x8B000);*/
-		//calculate_per(data);
-		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
+		//calculate_per(data);>mlx_ptr, data->win_ptr
+		draw_line(data, data->player.px, \
 						data->player.py, data->player.px + data->player.dir_x * ((int)data->ray.sidedist_x + (int)data->ray.deltadist_x),\
 						data->player.py + data->player.dir_y * 
 						((int)data->ray.sidedist_y + (int)data->ray.deltadist_y), 0x008C00);

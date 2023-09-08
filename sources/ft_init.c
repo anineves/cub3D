@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/07 21:50:04 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/08 22:14:58 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+
+void	init_img(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->pixel_bits = 0;
+	img->size_line = 0;
+	img->endian = 0;
+}
+
+
+void	init_img_value(t_data *data, t_img *image, int width, int height)
+{
+	init_img(image);
+	image->img = mlx_new_image(data->mlx_ptr, width, height);
+	if (image->img == NULL)
+		ft_close(data);
+		//clean_exit(data, err_msg("mlx", ERR_MLX_IMG, 1));
+	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
+			&image->size_line, &image->endian);
+	return ;
+}
 
 void	init_ray(t_ray *ray)
 {
@@ -73,4 +95,5 @@ void	init_data(t_data *data)
 	data->win_ptr = NULL;
 	init_map(&data->map);
 	init_player(&data->player);
+	init_img(&data->minimap);
 }

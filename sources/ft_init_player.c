@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/05 21:08:51 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/08 22:16:17 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_player_sn(t_player *player)
 		player->plane_x = -0.66;
 		player->plane_y = 0;
 		player->ang = 270;
-		printf("entrei\n");
+		printf("entrei S\n");
 	}
 	else if (player->dir == 'N')
 	{

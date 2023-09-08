@@ -72,6 +72,7 @@ typedef struct s_map
 	int			first_line;
 	//int			columns;
 	t_player	p_player;
+	t_img		*img;
 }	t_map;
 
 
@@ -113,8 +114,8 @@ typedef struct s_data
 	t_img		south_img;
 	t_img		west_img;
 	t_img		east_img;
-
-	}	t_data;
+	t_img		minimap;
+}	t_data;
 
 typedef struct s_rect
 {
@@ -125,6 +126,7 @@ typedef struct s_rect
     int color;
 }	t_rect;
 
+void	init_img_value(t_data *data, t_img *image, int width, int height);
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_ray(t_ray *ray);
@@ -147,7 +149,8 @@ int 	buttons(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		not_hit_wall(t_data *data, double x, double y);
 /*Draw*/
-void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
+
+void	draw_line(t_data *data, double beginX, double beginY, int endX, int endY, int color);
 void 	draw_player(t_data *data, t_rect rect);
 int 	draw_map2d(t_data *data);
 int 	draw_rays2d(t_data *data);
@@ -164,3 +167,4 @@ int render_mini(t_data *data);
 int render(t_data *data);
 
 void listen(t_data *data);
+int ft_close(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 21:38:30 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/07 23:06:23 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/08 23:02:45 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,24 @@ int render(t_data *data)
 
 int render_mini(t_data *data)
 {
+	t_map map;
+
+	map.img = &data->minimap;
+	init_img_value(data, &data->minimap, mapS*mapX, mapS * mapY);
+    draw_map2d(map);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map.img,
+		mapS *mapX, WINDOW_HEIGHT
+		- (mapS *mapY));
+	mlx_destroy_image(data->mlx_ptr, data->minimap.img);
+    return(0);
+}
+
+
+int render(t_data *data)
+{
     buttons(data);
     if(data->player.has_moved == 0)
         return (0);
-    draw_map2d(data);
+    render_mini(data);
     return(0);
 }
