@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
     //mlx_hook(data->win_ptr, 12, (1L << 15), &draw_map2d, data);
     //mlx_hook(data.win_ptr, 12, (1L << 15), &draw_rays2d, &data);
     mlx_loop_hook(data.mlx_ptr, &render_mini, &data);
+    //mlx_loop_hook(data.mlx_ptr, &render, &data);
     //mlx_loop_hook(data.mlx_ptr, &draw_rays2d_1, &data);
     mlx_loop(data.mlx_ptr);
     /* we will exit the loop if there's no window left, and execute this code */

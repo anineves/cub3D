@@ -105,6 +105,7 @@ typedef struct s_data
 {
     void	    *mlx_ptr;
     void	    *win_ptr;
+	char		**texture_pixels;
     t_map       map;
     t_player    player;
 	t_ray		ray;
@@ -160,5 +161,6 @@ int 	FixAng(int a);
 
 //Render
 int render_mini(t_data *data);
+int render(t_data *data);
 
 void listen(t_data *data);

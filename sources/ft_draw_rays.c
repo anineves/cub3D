@@ -86,6 +86,57 @@ void calculate_per(t_data *data)
     else          
 		data->ray.wall_dist = (data->ray.sidedist_x - data->ray.deltadist_x);
 }
+/*
+
+Codigo para o render
+static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
+{
+	if (ray->side == 0)
+		ray->wall_dist = (ray->sidedist_x - ray->deltadist_x);
+	else
+		ray->wall_dist = (ray->sidedist_y - ray->deltadist_y);
+	ray->line_height = (int)(WINDOW_HEIGHT / ray->wall_dist);
+	ray->draw_start = -(ray->line_height) / 2 +WINDOW_HEIGHT/ 2;
+	if (ray->draw_start < 0)
+		ray->draw_start = 0;
+	ray->draw_end = ray->line_height / 2 + WINDOW_HEIGHT/ 2;
+	if (ray->draw_end >= WINDOW_HEIGHT)
+		ray->draw_end = WINDOW_HEIGHT- 1;
+	if (ray->side == 0)
+		ray->wall_x = player->py + ray->wall_dist * ray->dir_y;
+	else
+		ray->wall_x = player->px + ray->wall_dist * ray->dir_x;
+	ray->wall_x -= floor(ray->wall_x);
+}
+
+
+void	update_texture_pixels(t_data *data, t_map *tex, t_ray *ray, int x)
+{
+	int			y;
+	int			color;
+
+	get_texture_index(data, ray);
+	tex->x = (int)(ray->wall_x * tex->size);
+	if ((ray->side == 0 && ray->dir_x < 0)
+		|| (ray->side == 1 && ray->dir_y > 0))
+		tex->x = tex->size - tex->x - 1;
+	tex->step = 1.0 * tex->size / ray->line_height;
+	tex->pos = (ray->draw_start - data->win_height / 2
+			+ ray->line_height / 2) * tex->step;
+	y = ray->draw_start;
+	while (y < ray->draw_end)
+	{
+		tex->y = (int)tex->pos & (tex->size - 1);
+		tex->pos += tex->step;
+		color = data->textures[tex->index][tex->size * tex->y + tex->x];
+		if (tex->index == NORTH || tex->index == EAST)
+			color = (color >> 1) & 8355711;
+		if (color > 0)
+			data->texture_pixels[y][x] = color;
+		y++;
+	}
+}   
+*/
 int	draw_rays2d(t_data *data)
 {
 	int	r;
@@ -98,6 +149,8 @@ int	draw_rays2d(t_data *data)
 		init_raycasting(r, &data->ray, &data->player);
 		dda(&data->ray, &data->player);
 		apply_dda(data, &data->ray);
+		//calculate_line_height(&data->ray, data, &data->player);
+		//update_texture_pixels(data, &data->map, &data->ray, r);
 		/*draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
 					data->player.py, data->player.dir_x  , \
 					data->player.dir_y , 0x8B000);*/
@@ -107,7 +160,7 @@ int	draw_rays2d(t_data *data)
 						data->player.py + data->player.dir_y * 
 						((int)data->ray.sidedist_y + (int)data->ray.deltadist_y), 0x008C00);
 		printf(" valor ray x %f, valor ray y %f\n", data->ray.sidedist_x, data->ray.sidedist_y);
-		r++;
+				r++;
 	}
 	return (1);
 }
