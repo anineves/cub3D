@@ -6,15 +6,16 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 21:38:30 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/07 23:06:23 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/09 13:49:56 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
+ 
 
-/*
 
-Codigo para o render 
+
+
 void	init_img(t_data *data, t_img *image, int width, int height)
 {
 	init_img_clean(image);
@@ -22,6 +23,14 @@ void	init_img(t_data *data, t_img *image, int width, int height)
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
 	return ;
+}
+
+void	set_image_pixel(t_img *image, int x, int y, int color)
+{
+	int	pixel;
+
+	pixel = y * (image->size_line / 4) + x;
+	image->addr[pixel] = color;
 }
 
 static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
@@ -86,13 +95,13 @@ int render(t_data *data)
         return (0);
     render_images(data);
     return(0);
-}*/
+}
 
-int render_mini(t_data *data)
+/*int render_mini(t_data *data)
 {
     buttons(data);
     if(data->player.has_moved == 0)
         return (0);
     draw_map2d(data);
     return(0);
-}
+}*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw_rays_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:47:24 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/06 23:21:14 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/09 11:50:50 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void draw_rays2d_1(t_data *data)
 	int r,mx,my,mp,dof; 
 	float vx,vy,xo,yo;
 
-	data->ray.ra = FixAng(data->player.ang + 30);//ray set back 30 degrees
-	for (r = 0; r < 60; r++)
+	data->ray.ra = FixAng(data->player.ang);//ray set back 30 degrees
+	for (r = -30; r < 30; r++)
 	{
 		//init_raycasting(&data->ray, &data->player);
 		dof = 0;
@@ -146,7 +146,7 @@ void draw_rays2d_1(t_data *data)
 			data->ray.ray_y = vy;
 			data->ray.sidedist_y = data->ray.sidedist_x;
 		}                  //horizontal hit first
-		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, (WINDOW_HEIGHT - mapS*mapY ) + data->player.py, data->player.px + data->ray.ray_x, (WINDOW_HEIGHT - mapS*mapY ) + data->player.py + data->ray.ray_y , 0xFF8C00);
+		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px+data->player.dir_x * data->ray.ray_x, data->player.py+data->player.dir_y * data->ray.ray_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);
 		/*int ca=FixAng(data->player.ang-data->ray.ra); 

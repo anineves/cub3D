@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/07 23:11:34 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/09 16:07:05 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,12 @@ static int	key_release_handler(int key, t_data *data)
 }
 
 
-void listen(t_data *data)
+void events(t_data *data)
 {
     mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, key_release_handler, data);
-    
+    mlx_loop_hook(data->mlx_ptr, &render, &data);
+    //mlx_loop_hook(data.mlx_ptr, &draw_rays2d_1, &data);
+    mlx_loop(data->mlx_ptr);
 }

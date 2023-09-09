@@ -95,19 +95,24 @@ void validate_color(t_data *data, char *line, int i, int type)
 	g = ft_atoi(colors[1]);
 	b = ft_atoi(colors[2]);
 	free(colors);
-	//printf("r %d\n", r );
-	//printf("b %d\n", g );
-	//printf("b %d\n", b );
+	printf("r %d\n", r );
+	printf("b %d\n", g );
+	printf("b %d\n", b );
 	if (r < 0 || r > 255 || g < 0 || g >255 || b < 0 || b >255)
 	{
 		printf("Error, one color");
 		exit(EXIT_FAILURE);
 	}
 	if (type == 1)
-		data->map.ceiling = ((225 & 0xff) << 16) + ((30 & 0xff) << 8) + (0 & 0xff);
+	{
+		data->map.ceiling = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+		printf("ceiling %02x \n\n\n\n\n\n\n", data->map.ceiling);
+	}
 	if (type == 2)
-		data->map.floor = ((225 & 0xff) << 16) + ((30 & 0xff) << 8) + (0 & 0xff);
-	//printf("ceiling %02x \n\n\n\n\n\n\n", data->map.ceiling );
+	{
+		data->map.floor = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+		printf("floor %02x \n\n\n\n\n\n\n", data->map.floor );
+	}
 }
 
 char *validate_texture(char *line, int i)
@@ -156,9 +161,9 @@ void parsing_file(t_data *data, char *line, int row)
         else if (ft_strncmp(line + i, "EA ", 3) == 0)
             data->map.east = validate_texture(line, i + 3);
         else if (ft_strncmp(line + i, "C ", 2) == 0)
-            validate_color(data, line , i + 2, 1);
+            validate_color(data, line+ i + 2 , i + 2, 1);
         else if (ft_strncmp(line + i, "F ", 2) == 0)
-            validate_color(data, line , i + 2, 2);
+            validate_color(data, line+ i + 2 , i + 2, 2);
 		else if (line[i] == '0' || line[i] == '1')
 			data->map.first_line = row;
 		else if (line[i] != '\0')

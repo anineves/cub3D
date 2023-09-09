@@ -11,7 +11,7 @@
 #include <X11/keysym.h>
 
 #define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 640
+#define WINDOW_HEIGHT 480
 #define MLX_ERROR 1
 #define RED_PIXEL 0xFFFFFF
 #define GREEN_PIXEL 0x000000
@@ -20,7 +20,15 @@
 #define mapY  8      //map height
 #define mapS 64
 #define MOVESPEED 0.5
-#define rotSpeed 0.02
+#define rotSpeed 0.05
+
+enum e_texture_index
+{
+	NORTH = 0,
+	SOUTH = 1,
+	EAST = 2,
+	WEST = 3
+};
 
 typedef struct s_player
 {
@@ -38,13 +46,6 @@ typedef struct s_player
 	int		rotate;
 }	t_player;
 
-
-typedef struct s_image
-{
-	void	*xpm_ptr;
-	int		x;
-	int		y;
-}	t_image;
 
 typedef struct s_img
 {
@@ -70,6 +71,12 @@ typedef struct s_map
 	int		ceiling;
 	int			rows;
 	int			first_line;
+	int		tex_x;
+	int		tex_y;
+	int		tex_index;
+	double		pos;
+	double 		step;
+	int		size_tex;
 	//int			columns;
 	t_player	p_player;
 }	t_map;
@@ -105,7 +112,8 @@ typedef struct s_data
 {
     void	    *mlx_ptr;
     void	    *win_ptr;
-	char		**texture_pixels;
+	int		**texture_pixels;
+	int			**textures;
     t_map       map;
     t_player    player;
 	t_ray		ray;
@@ -128,8 +136,12 @@ typedef struct s_rect
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_ray(t_ray *ray);
+void	init_texture_img(t_data *data, t_img *image, char *path);
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_read_file(t_data *data, char *map_file);
+float	degToRad(int a) ;
+void	init_img_clean(t_img *img);
+void	set_image_pixel(t_img *image, int x, int y, int color);
 
 /*parsing*/
 void	parsing_file(t_data *data, char *file, int row);
@@ -152,6 +164,7 @@ void 	draw_player(t_data *data, t_rect rect);
 int 	draw_map2d(t_data *data);
 int 	draw_rays2d(t_data *data);
 int 	render_rect(t_data *data, t_rect rect, int x, int y);
+void 	render_images(t_data *data);
 
 void draw_rays2d_1(t_data *data);
 void	init_raycasting(int x, t_ray *ray, t_player *player);
@@ -163,4 +176,5 @@ int 	FixAng(int a);
 int render_mini(t_data *data);
 int render(t_data *data);
 
-void listen(t_data *data);
+void events(t_data *data);
+void	init_textures(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/07 16:27:19 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/09 11:52:02 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	draw_map2d(t_data *data)
 			else 
 				render_rect(data, (t_rect){xo, yo, mapS, mapS, RED_PIXEL} \
 					, x, y);
-			render_rect(data, (t_rect){((data->player.px) - 2),((data->player.py) - 2), \
+			render_rect(data, (t_rect){((data->player.px ) - 2),((data->player.py) - 2), \
 					4, 4, 0xFF0000}, x, y);
 					
 			/*draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
