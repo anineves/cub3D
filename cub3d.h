@@ -79,6 +79,7 @@ typedef struct s_map
 	int		size_tex;
 	//int			columns;
 	t_player	p_player;
+	t_img		*img;
 }	t_map;
 
 
@@ -121,6 +122,7 @@ typedef struct s_data
 	t_img		south_img;
 	t_img		west_img;
 	t_img		east_img;
+	t_img		minimap;
 
 	}	t_data;
 
@@ -159,9 +161,9 @@ int 	buttons(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		not_hit_wall(t_data *data, double x, double y);
 /*Draw*/
-void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
+void	draw_line(t_data *data, double beginX, double beginY, int endX, int endY, int color);
 void 	draw_player(t_data *data, t_rect rect);
-int 	draw_map2d(t_data *data);
+int 	draw_map2d(t_map *map, t_data *data);
 int 	draw_rays2d(t_data *data);
 int 	render_rect(t_data *data, t_rect rect, int x, int y);
 void 	render_images(t_data *data);

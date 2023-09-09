@@ -37,7 +37,7 @@ float	distance(float ax, float ay, float bx, float by, float ang)
 }
 
 
-void draw_rays2d_1(t_data *data)
+/*void draw_rays2d_1(t_data *data)
 {
 	int r,mx,my,mp,dof; 
 	float vx,vy,xo,yo;
@@ -146,7 +146,7 @@ void draw_rays2d_1(t_data *data)
 			data->ray.ray_y = vy;
 			data->ray.sidedist_y = data->ray.sidedist_x;
 		}                  //horizontal hit first
-		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px+data->player.dir_x * data->ray.ray_x, data->player.py+data->player.dir_y * data->ray.ray_y , 0xFF8C00);
+		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px+data->player.dir_x * data->ray.ray_x, data->player.py+data->player.dir_y * data->ray.ray_y , 0xFF8C00);*/
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);
 		/*int ca=FixAng(data->player.ang-data->ray.ra); 
@@ -160,9 +160,9 @@ void draw_rays2d_1(t_data *data)
   
 		//glLineWidth(8);glBegin(GL_LINES);glVertex2i(r*8+530,lineOff);glVertex2i(r*8+530,lineOff+lineH);glEnd();//draw vertical wall  
 
-		data->ray.ra=FixAng(data->ray.ra-1);                                                              //go to next ray
+		/*data->ray.ra=FixAng(data->ray.ra-1);                                                              //go to next ray
 	}
-}
+}*/
 
 /*void draw_rays2d_1(t_data *data)
 {

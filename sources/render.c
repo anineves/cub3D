@@ -29,6 +29,8 @@ void	set_image_pixel(t_img *image, int x, int y, int color)
 {
 	int	pixel;
 
+	printf("Image size line %d\n", image->size_line);
+	printf("Color %d\n", color);
 	pixel = y * (image->size_line / 4) + x;
 	image->addr[pixel] = color;
 }
@@ -78,7 +80,22 @@ void	init_texture_pixels(t_data *data)
 				sizeof * data->texture_pixels);
 		i++;
 	}
-} 
+}
+
+int render_mini(t_data *data)
+{
+	t_map map;
+
+	map = data->map;
+	map.img = &data->minimap;
+	init_img(data, &data->minimap, mapS*mapX, mapS * mapY);
+	printf("aqui\n");
+    draw_map2d(&map, data);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->map.img,
+		0, 0);
+	mlx_destroy_image(data->mlx_ptr, data->minimap.img);
+    return(0);
+}
 
 void render_images(t_data *data) 
 { 
@@ -86,6 +103,7 @@ void render_images(t_data *data)
 	init_ray(&data->ray);
 	draw_rays2d(data);
 	render_frame(data);
+	render_mini(data);
 }
 
 int render(t_data *data)
