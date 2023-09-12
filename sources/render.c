@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 21:38:30 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/09 13:49:56 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:32:15 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int render(t_data *data)
     if(data->player.has_moved == 0)
         return (0);
     render_images(data);
+	draw_map2d(data);
     return(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/09 16:24:42 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/12 18:59:27 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	init_map(t_map *map)
 	map->south = NULL;
 	map->west = NULL;
 	map->east= NULL;
-	map->floor = 0;
-	map->ceiling = 0;
+	map->floor = -1;
+	map->ceiling = -1;
 	map->rows = 0;
 	map->first_line = 0;
 	map->pos = 0;

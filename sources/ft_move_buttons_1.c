@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:05:50 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/07 21:55:53 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/12 19:28:53 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	move_a(t_data *data)
 	new_y = data->player.py - data->player.dir_x * MOVESPEED;
 	printf("entrei no 97 %f %f\n", data->player.px, data->player.py);
 	//if(not_hit_wall(data, new_x - 4, new_y - 4))
-	if(data->map.full[(int)new_y][(int)new_x])
+	if(data->map.full[(int)new_y][(int)new_x] == '0')
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
@@ -35,7 +35,7 @@ void	move_d(t_data *data)
 	double new_y;
 	new_x = data->player.px - data->player.dir_y * MOVESPEED;
 	new_y = data->player.py + data->player.dir_x * MOVESPEED;
-	if(data->map.full[(int)new_y][(int)new_x])
+	if(data->map.full[(int)new_y][(int)new_x] == '0')
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
@@ -48,9 +48,9 @@ void	move_w(t_data *data)
 {
 	double new_x;
 	double new_y;
-	new_x = data->player.px + data->player.dir_x * MOVESPEED;
-	new_y = data->player.py + data->player.dir_y * MOVESPEED;
-	if(data->map.full[(int)new_y][(int)new_x])
+	new_x = data->player.px - data->player.dir_x * MOVESPEED;
+	new_y = data->player.py - data->player.dir_y * MOVESPEED;
+	if(data->map.full[(int)new_y][(int)new_x]== '0')
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
@@ -63,9 +63,9 @@ void	move_s(t_data *data)
 {
 	double new_x;
 	double new_y;
-	new_x = data->player.px - data->player.dir_x * MOVESPEED;
-	new_y = data->player.py - data->player.dir_y * MOVESPEED;
-	if(data->map.full[(int)new_y][(int)new_x])
+	new_x = data->player.px + data->player.dir_x * MOVESPEED;
+	new_y = data->player.py + data->player.dir_y * MOVESPEED;
+	if(data->map.full[(int)new_y][(int)new_x] == '0')
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;

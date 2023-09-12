@@ -22,11 +22,12 @@ int	main(int argc, char **argv)
 
     verific_args_ext(argv[1], argc);
     init_data(&data);
-    init_mlx(&data);
     get_file(&data, argv[1]);
     init_player_direction(&data);
+    init_mlx(&data);
     init_textures(&data);
     render_images(&data);
     events(&data);
-    free(data.mlx_ptr);
+    mlx_loop_hook(data.mlx_ptr, &render, &data);
+    mlx_loop(data.mlx_ptr);
 }

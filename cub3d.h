@@ -21,6 +21,7 @@
 #define mapS 64
 #define MOVESPEED 0.5
 #define rotSpeed 0.05
+#define mapM 16
 
 #define W 119
 #define A 97
@@ -178,6 +179,7 @@ unsigned int	get_type_wall(t_data *data, t_ray *ray);
 /*Draw*/
 void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
 void 	draw_player(t_data *data, t_rect rect);
+int	draw_map2d(t_data *data);
 //int 	draw_map2d(t_data *data);
 int 	draw_rays2d(t_data *data);
 int 	render_rect(t_data *data, t_rect rect, int x, int y);

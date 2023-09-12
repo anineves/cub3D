@@ -1,22 +1,23 @@
 #include "../cub3d.h"
 
-void player_info(t_data *data, int x, int y, char dir)
+void player_info(t_data *data, int x, int y, char dir, int i)
 {
 	data->player.px = (double)x + 0.5;
 	data->player.py = (double)y + 0.5;
 	data->player.dir = dir;
+	data->map.file[i][x] = '0';
 }
 
-void ft_check_line(char *line, t_data *data, int y)
+void ft_check_line(char *line, t_data *data, int y, int i)
 {
 	int x;
 	
 	x = 0;
 	while (line[x] != '\0')
 	{
-		if (line[x] == 'N' || line[x] == 'S' || line[x] == 'E' ||line[x] == 'P')
+		if (line[x] == 'N' || line[x] == 'S' || line[x] == 'E' ||line[x] == 'W')
 		{
-			player_info(data, x, y, line[x]);
+			player_info(data, x, y, line[x], i);
 			data->map.num_player++;
 		}
 		if (!ft_strchr("0 1NSWE", line[x]))
@@ -37,7 +38,7 @@ void create_map(t_data *data, int i)
 	k=0;
 	while(i < (data->map.rows ) && data->map.file && data->map.file[i])
 	{	
-		ft_check_line(data->map.file[i], data, i - data->map.first_line);
+		ft_check_line(data->map.file[i], data, i - data->map.first_line, i);
 		data->map.full[k] = ft_calloc(ft_strlen(data->map.file[i])+1, sizeof(char));
 		while (data->map.file[i][j] != '\0')
 		{
@@ -58,7 +59,7 @@ void create_map(t_data *data, int i)
 int all_params(t_data *data)
 {
 	if(!data->map.north || !data->map.south || !data->map.west || !data->map.east 
-			|| !data->map.floor || !data->map.ceiling || data->map.first_line == 0)
+			|| data->map.floor == -1 || data->map.ceiling == -1 || data->map.first_line == 0)
 		return(0);
 	return (1);
 }
@@ -87,21 +88,17 @@ void validate_color(t_data *data, char *line, int i, int type)
 	}
 	if (comma != 2)
 	{
-		printf("Error, color");
+		printf("Error, color\n");
 		exit(EXIT_FAILURE);
 	}
 	colors = ft_split(line, ',');
-	printf("c0 %s\n", colors[0]);
 	r = ft_atoi(colors[0]);
 	g = ft_atoi(colors[1]);
 	b = ft_atoi(colors[2]);
 	free(colors);
-	printf("r %d\n", r );
-	printf("b %d\n", g );
-	printf("b %d\n", b );
 	if (r < 0 || r > 255 || g < 0 || g >255 || b < 0 || b >255)
 	{
-		printf("Error, one color");
+		printf("Error, one color\n");
 		exit(EXIT_FAILURE);
 	}
 	if (type == 1)

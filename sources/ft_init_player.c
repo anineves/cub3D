@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/09 10:13:14 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/12 17:46:42 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,29 +57,6 @@ static void	init_player_ew(t_player *player)
 	else
 		return ;
 }
-
-/*static	void init_player_position (t_data *data)
-{
-	int i;
-	i = 0;
-	int j;
-	j = 0;
-	while (data->map.full[++i])
-	{
-		j = -1;
-		while (data->map.full[i][++j])
-		{
-			if (data->map.full[i][j] == 'N')
-			{
-				data->player.px = j + 0.5;
-				data->player.py = i + 0.5;
-				data->map.full[i][j] = '0';
-				//set_direction(cub3d);
-				return ;
-			}
-		}
-	}
-}*/
 
 void	init_player_direction(t_data *data)
 {
