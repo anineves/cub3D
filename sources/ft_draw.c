@@ -12,7 +12,7 @@
 
 #include "../cub3d.h"
 
-void	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
+/*void	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
 {
 	double	deltax;
 	double	deltay;
@@ -37,7 +37,7 @@ void	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY,
 }
 
 
-/*int	render_rect(t_data *data, t_rect rect, int x, int y)
+int	render_rect(t_data *data, t_rect rect, int x, int y)
 {
 	int	i;
 	int	j;
@@ -59,7 +59,7 @@ void	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY,
 	draw_line(data->mlx_ptr, data->win_ptr, rect.x, (WINDOW_HEIGHT - mapS*mapY ) + rect.y, \
 			 rect.x, (WINDOW_HEIGHT - mapS*mapY ) + rect.y + rect.height, 0xFF8C00);
 	return (0);
-}*/
+}
 
 
 int	render_rect(t_data *data, t_rect rect, int x, int y)
@@ -114,9 +114,9 @@ int	draw_map2d(t_data *data)
 			render_rect(data, (t_rect){((data->player.px ) - 2),((data->player.py) - 2), \
 					4, 4, 0xFF0000}, x, y);
 					
-			/*draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
+			draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
 						(WINDOW_HEIGHT - mapS*mapY ) + data->player.py, data->player.px + data->player.dir_x * 4,\
-						(WINDOW_HEIGHT - mapS*mapY ) + data->player.py + data->player.dir_y * 4, 0xFF8C00);*/
+						(WINDOW_HEIGHT - mapS*mapY ) + data->player.py + data->player.dir_y * 4, 0xFF8C00);
 			draw_line(data->mlx_ptr, data->win_ptr, data->player.px, \
 						data->player.py, data->player.px + data->player.dir_x * 20,\
 						data->player.py + data->player.dir_y * 20, 0xFF8C00);
@@ -126,3 +126,4 @@ int	draw_map2d(t_data *data)
     //draw_rays2d_1(data);
 	return (0);
 }
+*/

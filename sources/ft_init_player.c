@@ -16,8 +16,8 @@ void	init_player_sn(t_player *player)
 {
 	if (player->dir == 'S')
 	{
-		player->dir_x = 0;
-		player->dir_y = 1;
+		player->dir_x = 0.0f;
+		player->dir_y = 1.0f;
 		player->plane_x = -0.66;
 		player->plane_y = 0;
 		player->ang = 270;
@@ -25,8 +25,8 @@ void	init_player_sn(t_player *player)
 	}
 	else if (player->dir == 'N')
 	{
-		player->dir_x = 0;
-		player->dir_y = -1;
+		player->dir_x = 0.0f;
+		player->dir_y = -1.0f;
 		player->plane_x = 0.66;
 		player->plane_y = 0;
 		player->ang = 90;
@@ -83,7 +83,7 @@ static void	init_player_ew(t_player *player)
 
 void	init_player_direction(t_data *data)
 {
-	//init_player_position(data);
+
 	init_player_sn(&data->player);
 	init_player_ew(&data->player);
 }

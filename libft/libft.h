@@ -18,6 +18,8 @@
 # include <string.h>
 # include <stdlib.h>
 # include <ctype.h>
+# include <stdbool.h>
+# include <limits.h>
 //# include <bsd/string.h>
 # include <stdarg.h>
 # include <fcntl.h>

@@ -23,37 +23,37 @@ int ft_close(t_data *data)
 
 static int	key_press_handler(int key, t_data *data)
 {
-	if (key == XK_Escape)
+	if (key == ESC)
 		ft_close(data);
-	if (key == XK_Left)
+	if (key == LEFT)
 		data->player.rotate -= 1;
-	if (key == XK_Right)
+	if (key == RIGHT)
 		data->player.rotate += 1;
-	if (key == XK_w)
+	if (key == W)
 		data->player.move_ws = 1;
-	if (key == XK_s)
+	if (key == S)
 		data->player.move_ws = -1;
-	if (key == XK_a)
+	if (key == A)
 		data->player.move_ad = -1;
-	if (key == XK_d)
+	if (key == D)
 		data->player.move_ad = 1;
 	return (0);
 }
 static int	key_release_handler(int key, t_data *data)
 {
-	if (key == XK_Escape)
+	if (key == ESC)
 		ft_close(data);
-	if (key == XK_w && data->player.move_ws == 1)
+	if (key == W && data->player.move_ws == 1)
 		data->player.move_ws = 0;
-	if (key == XK_s && data->player.move_ws == -1)
+	if (key == S && data->player.move_ws == -1)
 		data->player.move_ws = 0;
-	if (key == XK_a && data->player.move_ad == -1)
+	if (key == A && data->player.move_ad == -1)
 		data->player.move_ad = 0;
-	if (key == XK_d && data->player.move_ad == 1)
+	if (key == D && data->player.move_ad == 1)
 		data->player.move_ad = 0;
-	if (key == XK_Left && data->player.rotate <= 1)
+	if (key == LEFT && data->player.rotate <= 1)
 		data->player.rotate = 0;
-	if (key == XK_Right && data->player.rotate >= -1)
+	if (key == RIGHT && data->player.rotate >= -1)
 		data->player.rotate = 0;
 	return (0);
 }
@@ -61,9 +61,10 @@ static int	key_release_handler(int key, t_data *data)
 
 void events(t_data *data)
 {
-    mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
+
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, key_release_handler, data);
+	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
     mlx_loop_hook(data->mlx_ptr, &render, &data);
     //mlx_loop_hook(data.mlx_ptr, &draw_rays2d_1, &data);
     mlx_loop(data->mlx_ptr);

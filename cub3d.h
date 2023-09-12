@@ -10,8 +10,8 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#define WINDOW_WIDTH 1280
+#define WINDOW_HEIGHT 920
 #define MLX_ERROR 1
 #define RED_PIXEL 0xFFFFFF
 #define GREEN_PIXEL 0x000000
@@ -21,6 +21,14 @@
 #define mapS 64
 #define MOVESPEED 0.5
 #define rotSpeed 0.05
+
+#define W 119
+#define A 97
+#define S 115
+#define D 100
+#define LEFT 65361
+#define RIGHT 65363
+#define ESC 65307
 
 enum e_texture_index
 {
@@ -84,11 +92,7 @@ typedef struct s_map
 
 typedef struct s_ray
 {
-	double	ra;
-	double	ray_x;
-	double	ray_y;
 	double	camera_x;
-	double	camera_y;
 	double	dir_x;
 	double	dir_y;
 	int		map_x;
@@ -105,6 +109,10 @@ typedef struct s_ray
 	int		line_height;
 	int		draw_start;
 	int		draw_end;
+	int		tex_x;
+	int		tex_y;
+	double	tex_pos;
+	double	step;
 	
 }	t_ray;
 
@@ -117,6 +125,7 @@ typedef struct s_data
     t_map       map;
     t_player    player;
 	t_ray		ray;
+	t_img		text;
 	t_img		north_img;
 	t_img		south_img;
 	t_img		west_img;
@@ -133,11 +142,13 @@ typedef struct s_rect
     int color;
 }	t_rect;
 
+
+/*init*/
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_ray(t_ray *ray);
 void	init_texture_img(t_data *data, t_img *image, char *path);
-char	*ft_strjoin_free(char *s1, char *s2);
+void	init_img(t_data *data, t_img *image, int width, int height);
 void	ft_read_file(t_data *data, char *map_file);
 float	degToRad(int a) ;
 void	init_img_clean(t_img *img);
@@ -145,9 +156,10 @@ void	set_image_pixel(t_img *image, int x, int y, int color);
 
 /*parsing*/
 void	parsing_file(t_data *data, char *file, int row);
-void	ft_parse(t_data *data, char *map_file);
+void	get_file(t_data *data, char *map_file);
 int		all_params(t_data *data);
-void create_map(t_data *data, int i);
+void	create_map(t_data *data, int i);
+void	validate_map(t_data *data, char **map);
 
 /*Movements*/
 void    move_a(t_data *data);
@@ -158,19 +170,26 @@ void    rotate_right(t_data *data);
 int 	buttons(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		not_hit_wall(t_data *data, double x, double y);
+
+/*mlx*/
+t_img	ft_init_img(t_data *data);
+unsigned int	get_type_wall(t_data *data, t_ray *ray);
+
 /*Draw*/
 void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
 void 	draw_player(t_data *data, t_rect rect);
-int 	draw_map2d(t_data *data);
+//int 	draw_map2d(t_data *data);
 int 	draw_rays2d(t_data *data);
 int 	render_rect(t_data *data, t_rect rect, int x, int y);
 void 	render_images(t_data *data);
-
 void draw_rays2d_1(t_data *data);
 void	init_raycasting(int x, t_ray *ray, t_player *player);
-
 void	init_player_direction(t_data *data);
 int 	FixAng(int a);
+void	apply_dda(t_data *data, t_ray *ray);
+void	dda(t_ray *ray, t_player *player);
+int 	raycasting(t_data *data);
+
 
 //Render
 int render_mini(t_data *data);
@@ -178,3 +197,7 @@ int render(t_data *data);
 
 void events(t_data *data);
 void	init_textures(t_data *data);
+
+/*utils*/
+char	*ft_strjoin_free(char *s1, char *s2);
+void	ft_error(char *msg, t_data *data);

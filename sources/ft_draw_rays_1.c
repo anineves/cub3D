@@ -13,7 +13,7 @@
 
 #include "../cub3d.h"
 
-float	degToRad(int a) 
+/*float	degToRad(int a) 
 {
 	return (a*M_PI/180.0);
 }
@@ -149,22 +149,22 @@ void draw_rays2d_1(t_data *data)
 		draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px+data->player.dir_x * data->ray.ray_x, data->player.py+data->player.dir_y * data->ray.ray_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->player.px + data->ray.sidedist_x, data->player.py + data->ray.sidedist_y , 0xFF8C00);
 		//draw_line(data->mlx_ptr, data->win_ptr, data->player.px, data->player.py, data->ray.sidedist_x, data->ray.sidedist_y , 0xFFFFFF);
-		/*int ca=FixAng(data->player.ang-data->ray.ra); 
+		int ca=FixAng(data->player.ang-data->ray.ra); 
 		data->ray.sidedist_y=data->ray.sidedist_y*cos(degToRad(ca));                            //fix fisheye 
 		int lineH = (mapS*320)/(data->ray.sidedist_y); 
 		if(lineH > 320)
 		{ 
 			lineH = 320;
-		} */                    //line height and limit
+		}                   //line height and limit
 		//int lineOff = 160 - (lineH>>1);                                               //line offset
   
 		//glLineWidth(8);glBegin(GL_LINES);glVertex2i(r*8+530,lineOff);glVertex2i(r*8+530,lineOff+lineH);glEnd();//draw vertical wall  
 
-		data->ray.ra=FixAng(data->ray.ra-1);                                                              //go to next ray
+		data->ray.ra=FixAng(data->ray.ra-1);                                                           go to next ray
 	}
 }
 
-/*void draw_rays2d_1(t_data *data)
+void draw_rays2d_1(t_data *data)
 {
 	int r;
 

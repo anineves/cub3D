@@ -13,18 +13,6 @@
 #include "../cub3d.h"
  
 
-
-
-
-void	init_img(t_data *data, t_img *image, int width, int height)
-{
-	init_img_clean(image);
-	image->img = mlx_new_image(data->mlx_ptr, width, height);
-	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
-			&image->size_line, &image->endian);
-	return ;
-}
-
 void	set_image_pixel(t_img *image, int x, int y, int color)
 {
 	int	pixel;
@@ -65,6 +53,8 @@ static void	render_frame(t_data *data)
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, image.img, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, image.img);
 }
+
+
 void	init_texture_pixels(t_data *data)
 {
 	int	i;
@@ -80,12 +70,16 @@ void	init_texture_pixels(t_data *data)
 	}
 } 
 
+
+
 void render_images(t_data *data) 
 { 
+
     init_texture_pixels(data);
-	init_ray(&data->ray);
-	draw_rays2d(data);
+	///init_ray(&data->ray);
+	raycasting(data);
 	render_frame(data);
+
 }
 
 int render(t_data *data)

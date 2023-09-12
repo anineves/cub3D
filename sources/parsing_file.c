@@ -1,26 +1,27 @@
 #include "../cub3d.h"
 
+void player_info(t_data *data, int x, int y, char dir)
+{
+	data->player.px = (double)x + 0.5;
+	data->player.py = (double)y + 0.5;
+	data->player.dir = dir;
+}
+
 void ft_check_line(char *line, t_data *data, int y)
 {
-	(void) y;
-	int i;
+	int x;
 	
-	i = 0;
-	while (line[i] != '\0')
+	x = 0;
+	while (line[x] != '\0')
 	{
-		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' ||line[i] == 'P')
+		if (line[x] == 'N' || line[x] == 'S' || line[x] == 'E' ||line[x] == 'P')
 		{
-			//data->player.px = i * mapS + mapS/2;
-			//data->player.py = y * mapS + mapS/2;
-			//data->player.dir = line[i];
+			player_info(data, x, y, line[x]);
 			data->map.num_player++;
 		}
-		if (!ft_strchr("0 1NSWE", line[i]))
-		{
-			printf("Error invalid character '%c'\n", line[i]);
-			exit (EXIT_FAILURE);
-		}
-		i++;
+		if (!ft_strchr("0 1NSWE", line[x]))
+			ft_error("Error invalid character", data);
+		x++;
 	}
 	
 }

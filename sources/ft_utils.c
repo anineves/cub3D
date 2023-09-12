@@ -37,3 +37,26 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	free(s1);
 	return (newstr);
 }
+
+
+void ft_error(char *msg, t_data *data)
+{
+	if(data)
+	{
+		if (!data)
+			return ;
+		if (data->win_ptr)
+			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+		if (data->mlx_ptr)
+		{
+			mlx_destroy_display(data->mlx_ptr);
+			free(data->mlx_ptr);
+		}
+	
+	}
+	ft_putstr_fd("ERROR\n", STDERR_FILENO);
+	ft_putendl_fd(msg, STDERR_FILENO);
+
+
+	exit(EXIT_FAILURE);
+}

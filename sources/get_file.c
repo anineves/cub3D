@@ -36,7 +36,6 @@ void	ft_read_file(t_data *data, char *map_file)
 			data->map.file[i][j] = line[j];
 			j++;
 		}
-		//data->map.file[i][j] = '\0';
 		j=0;
 		free(line);
 		i++;
@@ -80,7 +79,7 @@ void count_lines(t_data *data, char *file)
 	close(fd);
 }
 
-void	ft_parse(t_data *data, char *map_file)
+void	get_file(t_data *data, char *map_file)
 {
 	int		i;
 	i = 0;
@@ -99,6 +98,6 @@ void	ft_parse(t_data *data, char *map_file)
 		printf("incomplete file \n");
 	data->map.full = ft_calloc((data->map.rows - data->map.first_line)+ 1, sizeof(char *));
 	create_map(data, i);
-	
+	//validate_map(data, data->map.full);
 
 }

@@ -19,7 +19,8 @@ void	move_a(t_data *data)
 	new_x = data->player.px + data->player.dir_y * MOVESPEED;
 	new_y = data->player.py - data->player.dir_x * MOVESPEED;
 	printf("entrei no 97 %f %f\n", data->player.px, data->player.py);
-	if(not_hit_wall(data, new_x - 4, new_y - 4))
+	//if(not_hit_wall(data, new_x - 4, new_y - 4))
+	if(data->map.full[(int)new_y][(int)new_x])
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
@@ -34,7 +35,7 @@ void	move_d(t_data *data)
 	double new_y;
 	new_x = data->player.px - data->player.dir_y * MOVESPEED;
 	new_y = data->player.py + data->player.dir_x * MOVESPEED;
-	if(not_hit_wall(data, new_x - 4, new_y - 4))
+	if(data->map.full[(int)new_y][(int)new_x])
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
@@ -49,7 +50,7 @@ void	move_w(t_data *data)
 	double new_y;
 	new_x = data->player.px + data->player.dir_x * MOVESPEED;
 	new_y = data->player.py + data->player.dir_y * MOVESPEED;
-	if(not_hit_wall(data, new_x - 4, new_y - 4))
+	if(data->map.full[(int)new_y][(int)new_x])
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
@@ -64,7 +65,7 @@ void	move_s(t_data *data)
 	double new_y;
 	new_x = data->player.px - data->player.dir_x * MOVESPEED;
 	new_y = data->player.py - data->player.dir_y * MOVESPEED;
-	if(not_hit_wall(data, new_x - 4, new_y - 4))
+	if(data->map.full[(int)new_y][(int)new_x])
 	{
 		data->player.px = new_x;
 		data->player.py = new_y;
