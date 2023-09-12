@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:43:58 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/08/31 22:02:56 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/12 21:57:29 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (newstr);
 }
 
-
-void ft_error(char *msg, t_data *data)
+void	ft_error(char *msg, t_data *data)
 {
-	if(data)
+	if (data)
 	{
 		if (!data)
 			return ;
@@ -52,11 +51,8 @@ void ft_error(char *msg, t_data *data)
 			mlx_destroy_display(data->mlx_ptr);
 			free(data->mlx_ptr);
 		}
-	
 	}
 	ft_putstr_fd("ERROR\n", STDERR_FILENO);
 	ft_putendl_fd(msg, STDERR_FILENO);
-
-
 	exit(EXIT_FAILURE);
 }

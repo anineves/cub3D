@@ -7,7 +7,7 @@ NAME = cub3d
 
 SRCS 	=./sources/ft_move_buttons.c 			./sources/ft_utils.c 					\
 			./sources/ft_draw.c 				./sources/get_file.c 					\
-			./sources/ft_init_mlx.c				./sources/ft_init_player.c 				\
+			./sources/ft_init_player.c 				\
 			./sources/ft_init.c 				./sources/raycasting.c					\
 			./sources/ft_draw_rays_1.c			./sources/dda.c							\
 			./sources/ft_move_buttons_1.c		./sources/parsing_file.c 				\

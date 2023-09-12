@@ -3,23 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/12 18:17:05 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/12 22:47:33 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
-int ft_close(t_data *data)
+int	ft_close(t_data *data)
 {
-    mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	data->win_ptr = NULL;
-    return (0);
+	return (0);
 }
-
 
 static int	key_press_handler(int key, t_data *data)
 {
@@ -39,6 +37,7 @@ static int	key_press_handler(int key, t_data *data)
 		data->player.move_ad = 1;
 	return (0);
 }
+
 static int	key_release_handler(int key, t_data *data)
 {
 	if (key == ESC)
@@ -58,11 +57,10 @@ static int	key_release_handler(int key, t_data *data)
 	return (0);
 }
 
-
-void events(t_data *data)
+void	events(t_data *data)
 {
-
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
-	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, key_release_handler, data);
+	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, \
+				key_release_handler, data);
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
 }

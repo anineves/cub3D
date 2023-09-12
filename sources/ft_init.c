@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 18:59:27 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/12 22:23:08 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,24 @@ void	init_map(t_map *map)
 {
 	map->full = NULL;
 	map->file = NULL;
-	map->file = NULL;
 	map->len = 0;
 	map->num_player = 0;
 	map->north = NULL; 
 	map->south = NULL;
 	map->west = NULL;
-	map->east= NULL;
-	map->floor = -1;
-	map->ceiling = -1;
+	map->east = NULL;
+	map->f = -1;
+	map->c = -1;
 	map->rows = 0;
 	map->first_line = 0;
 	map->pos = 0;
-	map->step =0;
-	map->size_tex = 64 ;
+	map->step = 0;
+	map->size_tex = 64;
 }
-
 
 void	init_player(t_player *player)
 {
-	player->dir = 'S';
+	player->dir = 0;
 	player->px = 0;
 	player->py = 0;
 	player->dir_x = 0.0;
@@ -69,19 +67,26 @@ void	init_player(t_player *player)
 	player->rotate = 0;
 }
 
-
+void	init_img_clean(t_img *img)
+{
+	img->img = NULL;
+	img->addr = NULL;
+	img->pixel_bits = 0;
+	img->size_line = 0;
+	img->endian = 0;
+}
 
 void	init_data(t_data *data)
 {
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
+	data->texture_pixels = NULL;
+	data->textures = NULL;
 	init_map(&data->map);
+	init_player(&data->player);
+	init_ray(&data->ray);
 	init_img_clean(&data->north_img);
 	init_img_clean(&data->south_img);
 	init_img_clean(&data->east_img);
 	init_img_clean(&data->west_img);
-	init_player(&data->player);
-	init_ray(&data->ray);
-	data->texture_pixels = NULL;
-	data->textures = NULL;
 }

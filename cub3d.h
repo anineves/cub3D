@@ -76,8 +76,8 @@ typedef struct s_map
 	char		*south;
 	char		*west;
 	char		*east;
-	int		floor;
-	int		ceiling;
+	int		f;
+	int		c;
 	int			rows;
 	int			first_line;
 	int		tex_x;
@@ -154,13 +154,15 @@ void	ft_read_file(t_data *data, char *map_file);
 float	degToRad(int a) ;
 void	init_img_clean(t_img *img);
 void	set_image_pixel(t_img *image, int x, int y, int color);
+void	player_info(t_data *data, int x, int y, char dir);
 
 /*parsing*/
+void	ft_check_line(char *line, t_data *data, int y, int i);
 void	parsing_file(t_data *data, char *file, int row);
 void	get_file(t_data *data, char *map_file);
 int		all_params(t_data *data);
 void	create_map(t_data *data, int i);
-void	validate_map(t_data *data, char **map);
+void	validate_map(t_data *data);
 
 /*Movements*/
 void    move_a(t_data *data);
@@ -178,7 +180,8 @@ unsigned int	get_type_wall(t_data *data, t_ray *ray);
 
 /*Draw*/
 void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
-void 	draw_player(t_data *data, t_rect rect);
+//void 	draw_player(t_data *data, t_rect rect);
+void	draw_player(t_data *data, int x, int y);
 int	draw_map2d(t_data *data);
 //int 	draw_map2d(t_data *data);
 int 	draw_rays2d(t_data *data);

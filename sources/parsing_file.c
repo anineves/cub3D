@@ -1,119 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_file.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
+/*   Updated: 2023/09/12 21:46:15 by anaraujo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../cub3d.h"
 
-void player_info(t_data *data, int x, int y, char dir, int i)
+void	ft_check_line(char *line, t_data *data, int y, int i)
 {
-	data->player.px = (double)x + 0.5;
-	data->player.py = (double)y + 0.5;
-	data->player.dir = dir;
-	data->map.file[i][x] = '0';
-}
+	int	x;
 
-void ft_check_line(char *line, t_data *data, int y, int i)
-{
-	int x;
-	
 	x = 0;
 	while (line[x] != '\0')
 	{
-		if (line[x] == 'N' || line[x] == 'S' || line[x] == 'E' ||line[x] == 'W')
+		if (line[x] == 'N' || line[x] == 'S' \
+			|| line[x] == 'E' || line[x] == 'W')
 		{
-			player_info(data, x, y, line[x], i);
+			player_info(data, x, y, line[x]);
+			data->map.file[i][x] = '0';
 			data->map.num_player++;
 		}
 		if (!ft_strchr("0 1NSWE", line[x]))
 			ft_error("Error invalid character", data);
 		x++;
 	}
-	
 }
 
-
-void create_map(t_data *data, int i)
-{
-	
-	int j;
-	int k;
-
-	j=0;
-	k=0;
-	while(i < (data->map.rows ) && data->map.file && data->map.file[i])
-	{	
-		ft_check_line(data->map.file[i], data, i - data->map.first_line, i);
-		data->map.full[k] = ft_calloc(ft_strlen(data->map.file[i])+1, sizeof(char));
-		while (data->map.file[i][j] != '\0')
-		{
-			data->map.full[k][j] = data->map.file[i][j];
-			j++;
-		}
-		j=0;
-		i++;
-		k++;
-	}
-	if(data->map.num_player != 1)
-	{
-		printf("ERROR, map must have one Player\n");
-		exit (EXIT_FAILURE);
-	}
-}
-
-int all_params(t_data *data)
-{
-	if(!data->map.north || !data->map.south || !data->map.west || !data->map.east 
-			|| data->map.floor == -1 || data->map.ceiling == -1 || data->map.first_line == 0)
-		return(0);
-	return (1);
-}
-
-void validate_color(t_data *data, char *line, int i, int type)
+int	validate_color_2(char *line, int i)
 {
 	int		len;
 	int		comma;
-	int		r;
-	int		g;
-	int		b;
-	char	**colors;
 
 	comma = 0;
-	r = 0;
-	g = 0;
-	b = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	len = i;
 	while (line[len] != '\0' && line[len] != ' ' && line[len] != '\t')
 	{
-		if(line[len] == ',')
+		if (line[len] == ',')
 			comma++;
-		len++;	
+		len++;
 	}
 	if (comma != 2)
 	{
 		printf("Error, color\n");
 		exit(EXIT_FAILURE);
 	}
-	colors = ft_split(line, ',');
-	r = ft_atoi(colors[0]);
-	g = ft_atoi(colors[1]);
-	b = ft_atoi(colors[2]);
-	free(colors);
-	if (r < 0 || r > 255 || g < 0 || g >255 || b < 0 || b >255)
+	return (0);
+}
+
+void	validate_color(t_data *data, char *line, int i, int type)
+{
+	int		r;
+	int		g;
+	int		b;
+	char	**colors;
+
+	r = 0;
+	g = 0;
+	b = 0;
+	if (validate_color_2(line, i) == 0)
 	{
-		printf("Error, one color\n");
-		exit(EXIT_FAILURE);
-	}
-	if (type == 1)
-	{
-		data->map.ceiling = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-		printf("ceiling %02x \n\n\n\n\n\n\n", data->map.ceiling);
-	}
-	if (type == 2)
-	{
-		data->map.floor = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-		printf("floor %02x \n\n\n\n\n\n\n", data->map.floor );
+		colors = ft_split(line, ',');
+		r = ft_atoi(colors[0]);
+		g = ft_atoi(colors[1]);
+		b = ft_atoi(colors[2]);
+		if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		{
+			printf("Error, one color\n");
+			exit(EXIT_FAILURE);
+		}
+		if (type == 1)
+			data->map.c = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+		if (type == 2)
+			data->map.f = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+		free(colors);
 	}
 }
 
-char *validate_texture(char *line, int i)
+char	*validate_texture(char *line, int i)
 {
 	int		len;
 	char	*textura;
@@ -128,7 +99,8 @@ char *validate_texture(char *line, int i)
 	textura = malloc(sizeof(char) * (len - i + 1));
 	if (!textura)
 		return (NULL);
-	while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t' && line[i] != '\n')
+	while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t' \
+			&& line[i] != '\n')
 		textura[j++] = line[i++];
 	textura[j] = '\0';
 	len = ft_strlen(textura);
@@ -140,33 +112,31 @@ char *validate_texture(char *line, int i)
 	return (textura);
 }
 
-
-void parsing_file(t_data *data, char *line, int row)
+void	parsing_file(t_data *data, char *line, int row)
 {
+	int		i;
 
-	(void) row;
-
-	int i;
+	(void)row;
 	i = 0;
-        while(line[i] == ' ' || line[i] == '\t')
-			i++;
-        if (ft_strncmp(line + i, "NO ", 3) == 0) 
-            data->map.north = validate_texture(line, i + 3);
-        else if (ft_strncmp(line + i , "SO ", 3) == 0) 
-            data->map.south = validate_texture(line, i + 3);
-        else if (ft_strncmp(line + i, "WE ", 3) == 0)
-            data->map.west = validate_texture(line, i + 3);
-        else if (ft_strncmp(line + i, "EA ", 3) == 0)
-            data->map.east = validate_texture(line, i + 3);
-        else if (ft_strncmp(line + i, "C ", 2) == 0)
-            validate_color(data, line+ i + 2 , i + 2, 1);
-        else if (ft_strncmp(line + i, "F ", 2) == 0)
-            validate_color(data, line+ i + 2 , i + 2, 2);
-		else if (line[i] == '0' || line[i] == '1')
-			data->map.first_line = row;
-		else if (line[i] != '\0')
-		{
-			printf("Error invalid line\n");
-			exit (EXIT_FAILURE);
-		}
+	while (line[i] == ' ' || line[i] == '\t')
+		i++;
+	if (ft_strncmp(line + i, "NO ", 3) == 0) 
+		data->map.north = validate_texture(line, i + 3);
+	else if (ft_strncmp(line + i, "SO ", 3) == 0) 
+		data->map.south = validate_texture(line, i + 3);
+	else if (ft_strncmp(line + i, "WE ", 3) == 0)
+		data->map.west = validate_texture(line, i + 3);
+	else if (ft_strncmp(line + i, "EA ", 3) == 0)
+		data->map.east = validate_texture(line, i + 3);
+	else if (ft_strncmp(line + i, "C ", 2) == 0)
+		validate_color(data, line + i + 2, i + 2, 1);
+	else if (ft_strncmp(line + i, "F ", 2) == 0)
+		validate_color(data, line + i + 2, i + 2, 2);
+	else if (line[i] == '0' || line[i] == '1')
+		data->map.first_line = row;
+	else if (line[i] != '\0')
+	{
+		printf("Error invalid line\n");
+		exit (EXIT_FAILURE);
+	}
 }

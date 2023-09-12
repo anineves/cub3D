@@ -1,11 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   dda.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/09/12 22:44:39 by anaraujo          #+#    #+#             */
+/*   Updated: 2023/09/12 22:46:13 by anaraujo         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
 void	dda(t_ray *ray, t_player *player)
 {
-	
-	printf(" dirx %f\n diry %f\n", ray->dir_x, ray->dir_y);
 	if (ray->dir_x < 0) 
 	{
 		ray->step_x = -1;
@@ -26,9 +34,6 @@ void	dda(t_ray *ray, t_player *player)
 		ray->step_y = 1;
 		ray->sidedist_y = (ray->map_y + 1.0f - player->py) * ray->deltadist_y;
 	}
-	printf("primeira vex \n\n\n");
-		printf("Entrei , sidex %f \n", ray->sidedist_x);
-		printf("Entrei , sidey %f \n\n", ray->sidedist_y);
 }
 
 void	apply_dda(t_data *data, t_ray *ray)
@@ -50,13 +55,7 @@ void	apply_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		printf("Entrei , sidex %f \n", ray->sidedist_x);
-		printf("Entrei , sidey %f \n", ray->sidedist_y);
-	
-	 	if (data->map.full[ray->map_y][ray->map_x] == '1')
-		{
+		if (data->map.full[ray->map_y][ray->map_x] == '1')
 			hit = 1;
-		}
-
 	}
 }
