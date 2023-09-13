@@ -24,16 +24,16 @@ void	init_player_sn(t_player *player)
 	if (player->dir == 'S')
 	{
 		player->dir_x = 0.0f;
-		player->dir_y = 1.0f;
-		player->plane_x = -0.66;
+		player->dir_y = -1.0f;
+		player->plane_x = 0.66;
 		player->plane_y = 0;
 		player->ang = 270;
 	}
 	else if (player->dir == 'N')
 	{
 		player->dir_x = 0.0f;
-		player->dir_y = -1.0f;
-		player->plane_x = 0.66;
+		player->dir_y = 1.0f;
+		player->plane_x = -0.66;
 		player->plane_y = 0;
 		player->ang = 90;
 	}

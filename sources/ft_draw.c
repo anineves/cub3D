@@ -73,7 +73,7 @@ void	draw_player(t_data *data, int x, int y)
 	draw_line(data->mlx_ptr, data->win_ptr, data->player.px * mapM, \
 				(WINDOW_HEIGHT - mapM * mapY) + data->player.py * mapM, \
 				data->player.px * mapM + data->player.dir_x * 8, \
-				(WINDOW_HEIGHT - mapM * mapY) + data->player.py * mapM + \
+				(WINDOW_HEIGHT - mapM * mapY) + data->player.py * mapM - \
 				data->player.dir_y * 8, 0xFF8C00);
 }
 

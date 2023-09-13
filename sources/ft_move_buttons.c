@@ -12,24 +12,6 @@
 
 #include "../cub3d.h"
 
-int	not_hit_wall(t_data *data, double x, double y)
-{
-	int	i;
-
-	i = 0;
-	/*printf("%d\n", (int)x/mapS);
-	printf("%d\n", (int)y/mapS);
-	printf("%c\n", data->map.full[((int)y/mapS)][((int)x/mapS)]);
-	while (i < mapX)
-	{
-		printf("Map file %s\n", data->map.file[i]);
-		printf("Map full %s\n", data->map.full[i]);
-		i++;
-	}*/
-	if (data->map.full[((int)y / mapS)][((int)x / mapS)] == '0')
-		return (1);
-	return (0);
-}
 
 void	rotate_left(t_data *data)
 {

@@ -107,7 +107,7 @@ void	validate_map(t_data *data)
 	if (ft_ver_firstlastline(data, 0) == 1)
 		ft_error("Isn't surrounded by walls\n", data);
 	ft_walls_line(data);
-	ft_walls_col(data);
+	//ft_walls_col(data);
 	if (ft_ver_firstlastline(data, i) == 1)
 		ft_error("Isn't surrounded by walls\n", data);
 }

@@ -18,10 +18,8 @@ void	ft_read_file(t_data *data, char *map_file)
 	int		read;
 	int		i;
 	int		j;
-	int		len;
 
 	i = 0;
-	len = 0;
 	read = open(map_file, O_RDONLY);
 	while (1)
 	{
