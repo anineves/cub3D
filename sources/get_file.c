@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 22:22:51 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:57:56 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_read_file(t_data *data, char *map_file)
 			data->map.file[i][j] = line[j];
 			j++;
 		}
+		data->map.file[i][j] = '\0';
 		free(line);
 		i++;
 	}
@@ -94,6 +95,7 @@ void	create_map(t_data *data, int i)
 			data->map.full[k][j] = data->map.file[i][j];
 			j++;
 		}
+		data->map.full[k][j] = '\0';
 		i++;
 		k++;
 	}
