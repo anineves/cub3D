@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 23:11:05 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/13 23:46:52 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,16 +50,16 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 	if (ray->side == 0)
 	{
 		if (ray->dir_x < 0)
-			data->map.tex_index = WEST;
-		else
 			data->map.tex_index = EAST;
+		else
+			data->map.tex_index = WEST;
 	}
 	else
 	{
 		if (ray->dir_y > 0)
-			data->map.tex_index = SOUTH;
-		else
 			data->map.tex_index = NORTH;
+		else
+			data->map.tex_index = SOUTH;
 	}
 }
 
