@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:05:50 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 23:12:29 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/13 23:20:48 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	move_a(t_data *data)
 	double	new_x;
 	double	new_y;
 
-	new_x = data->player.px + data->player.dir_y * MOVESPEED;
-	new_y = data->player.py - data->player.dir_x * MOVESPEED;
+	new_x = data->player.px - data->player.dir_y * MOVESPEED;
+	new_y = data->player.py + data->player.dir_x * MOVESPEED;
 	if (data->map.full[(int)new_y][(int)new_x] == '0')
 	{
 		data->player.px = new_x;
@@ -32,8 +32,8 @@ void	move_d(t_data *data)
 	double	new_x;
 	double	new_y;
 
-	new_x = data->player.px - data->player.dir_y * MOVESPEED;
-	new_y = data->player.py + data->player.dir_x * MOVESPEED;
+	new_x = data->player.px + data->player.dir_y * MOVESPEED;
+	new_y = data->player.py - data->player.dir_x * MOVESPEED;
 	if (data->map.full[(int)new_y][(int)new_x] == '0')
 	{
 		data->player.px = new_x;

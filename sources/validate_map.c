@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:01:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/13 22:53:50 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/13 23:08:56 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	validate_map(t_data *data)
 	if (ft_ver_firstlastline(data, 0) == 1)
 		ft_error("Isn't surrounded by walls\n", data);
 	ft_walls_line(data);
-	ft_walls_col(data);
+	//ft_walls_col(data);
 	if (ft_ver_firstlastline(data, i) == 1)
 		ft_error("Isn't surrounded by walls\n", data);
 }
