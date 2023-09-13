@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:44:39 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 22:46:13 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/13 22:29:12 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	dda(t_ray *ray, t_player *player)
 {
-	if (ray->dir_x < 0) 
+	if (ray->dir_x < 0)
 	{
 		ray->step_x = -1;
 		ray->sidedist_x = (player->px - ray->map_x) * ray->deltadist_x;
