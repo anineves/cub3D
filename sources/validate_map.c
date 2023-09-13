@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:01:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/13 22:13:21 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/13 22:53:50 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_ver_firstlastline(t_data *data, int i)
 	int	k;
 
 	k = 0;
-	while (data->map.full[i][k] == '\0')
+	while ((size_t)k < (ft_strlen(data->map.full[i]) - 1))
 	{
 		if (data->map.full[i][k] == ' ' || data->map.full[i][k] == '1')
 			k++;
@@ -66,26 +66,34 @@ void	ft_walls_col(t_data *data)
 	k = 0;
 	while (j < data->map.len)
 	{
-		if ((size_t)j >= ft_strlen(data->map.full[k]) - 1)
+		if ((size_t)j > ft_strlen(data->map.full[k]) - 1)
 			break ;
 		i = 0;
 		while (data->map.full[i][j] == ' ')
 			i++;
+		printf("I %d.\n", i);
+		printf("J %d.\n", j);
 		if (data->map.full[i][j] != '1')
+		{
+			printf("Mapa %s\n Caracter %c.\n", data->map.full[i], data->map.full[i][j]);
 			ft_error("Isn't surrounded by walls 1\n", data);
+		}
+		//i++;
 		while (i < data->map.rows - data->map.first_line)
 		{
+			printf("I while %d.\n", i);
 			if (i + 1 < (data->map.rows - data->map.first_line) && data->map.full[i + 1][j] == ' ' && \
-				data->map.full[i][j] != '1')
+				(data->map.full[i][j] == '0'))
 				ft_error("Isn't surrounded by walls 2\n", data);
 			if (i + 1 == data->map.rows - data->map.first_line && \
-			data->map.full[i][j] != '1')
+			data->map.full[i][j] == '0')
 				ft_error("Isn't surrounded by walls 3\n", data);
 			else if (i + 1 == data->map.rows - data->map.first_line && \
 			data->map.full[i][j] == '1')
 				break;
 			i++;
 		}
+		printf("j aumentou\n");
 		j++;
 		k++;
 	}
@@ -93,13 +101,13 @@ void	ft_walls_col(t_data *data)
 
 void	validate_map(t_data *data)
 {
-	//int	i;
+	int	i;
 
-	/*i = data->map.rows - data->map.first_line;
+	i = data->map.rows - data->map.first_line - 1;
 	if (ft_ver_firstlastline(data, 0) == 1)
-		ft_error("Isn't surrounded by walls\n", data);*/
+		ft_error("Isn't surrounded by walls\n", data);
 	ft_walls_line(data);
 	ft_walls_col(data);
-	//if (ft_ver_firstlastline(data, i) == 1)
-		//ft_error("Isn't surrounded by walls\n", data);
+	if (ft_ver_firstlastline(data, i) == 1)
+		ft_error("Isn't surrounded by walls\n", data);
 }
