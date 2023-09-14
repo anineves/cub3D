@@ -84,22 +84,27 @@ int	draw_map2d(t_data *data)
 	int	xo;
 	int	yo;
 
-	y = -1;
-	while (++y < mapY)
+	y = 0;
+	while (y < data->map.rows_full)
 	{
 		x = -1;
-		while (++x < mapX)
+		while (++x < data->map.len)
 		{
 			xo = x * mapM;
 			yo = y * mapM;
 			if (data->map.full[y][x] == '1')
 				render_rect(data, (t_rect){xo, yo, mapM, mapM, GREEN_PIXEL} \
 					, x, y);
-			else 
+			else if (data->map.full[y][x] == '0')
 				render_rect(data, (t_rect){xo, yo, mapM, mapM, RED_PIXEL} \
+					, x, y);
+			else
+				render_rect(data, (t_rect){xo, yo, mapM, mapM, 0x000000} \
 					, x, y);
 			draw_player(data, x, y);
 		}
+		printf(" y %d, line %s\n", y, data->map.full[y]);
+		y++;
 	}
 	return (0);
 }

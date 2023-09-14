@@ -46,6 +46,7 @@ void	init_map(t_map *map)
 	map->f = -1;
 	map->c = -1;
 	map->rows = 0;
+	map->rows_full = 0;
 	map->first_line = 0;
 	map->pos = 0;
 	map->step = 0;

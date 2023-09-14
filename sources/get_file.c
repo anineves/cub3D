@@ -43,11 +43,11 @@ void	ft_read_file(t_data *data, char *map_file)
 
 void	count_lines(t_data *data, char *file)
 {
-	int		len;
+
 	int		fd;
 	char	*line;
 
-	len = 0;
+
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
@@ -59,9 +59,6 @@ void	count_lines(t_data *data, char *file)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		len = ft_strlen(line);
-		if (len > data->map.len)
-			data->map.len = len;
 		data->map.rows++;
 		free(line);
 	}
@@ -87,12 +84,17 @@ void	create_map(t_data *data, int i)
 	{
 		j = 0;
 		ft_check_line(data->map.file[i], data, i - data->map.first_line, i);
-		data->map.full[k] = ft_calloc(ft_strlen(data->map.file[i]) + 1, sizeof(char));
+		data->map.full[k] = ft_calloc(data->map.len + 1, sizeof(char));
 		while (data->map.file[i][j] != '\0')
 		{
 			data->map.full[k][j] = data->map.file[i][j];
 			j++;
 		}
+		while (j < (int)data->map.len)
+        {
+            data->map.full[k][j] = ' ';
+            j++;
+        }
 		data->map.full[k][j] = '\0';
 		i++;
 		k++;
@@ -102,6 +104,23 @@ void	create_map(t_data *data, int i)
 		printf("ERROR, map must have one Player\n");
 		exit (EXIT_FAILURE);
 	}
+}
+
+
+void get_big_line(t_data *data, int i)
+{
+	int len;
+
+	len = 0;
+	while (i < data->map.rows)
+	{
+		len = ft_strlen(data->map.file[i]);
+		if (len > data->map.len)
+			data->map.len = len;
+		data->map.rows_full++;
+		i++;
+	}
+		
 }
 
 void	get_file(t_data *data, char *map_file)
@@ -121,10 +140,15 @@ void	get_file(t_data *data, char *map_file)
 	}
 	if (!all_params(data))
 		printf("incomplete file \n");
-	data->map.full = ft_calloc((data->map.rows - data->map.first_line) + 1, \
+	get_big_line(data, i);
+	data->map.full = ft_calloc((data->map.rows_full) + 1, \
 								sizeof(char *));
+	printf("i %d\n", i);
+	printf("rows %d\n", data->map.rows);
+	printf("rows full%d\n", data->map.rows_full);
+	printf("len %d\n", data->map.len);
 	create_map(data, i);
 	if (data->map.num_player != 1)
 		ft_error("number of player must be one\n", data);
-	validate_map(data);
+	//validate_map(data);
 }

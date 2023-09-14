@@ -13,8 +13,8 @@
 #define WINDOW_WIDTH 1280
 #define WINDOW_HEIGHT 920
 #define MLX_ERROR 1
-#define RED_PIXEL 0xFFFFFF
-#define GREEN_PIXEL 0x000000
+#define RED_PIXEL 0x9ADB91
+#define GREEN_PIXEL 0x964B00
 #define PI 3.14159265358979323846
 #define mapX  8      //map width
 #define mapY  8      //map height
@@ -79,6 +79,7 @@ typedef struct s_map
 	int		f;
 	int		c;
 	int			rows;
+	int			rows_full;
 	int			first_line;
 	int		tex_x;
 	int		tex_y;
