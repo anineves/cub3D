@@ -12,7 +12,8 @@
 
 #include "../cub3d.h"
 
-void	set_image_pixel(t_img *image, int x, int y, int color)
+//definir o valor de um pixel na imagem
+void	fill_pixel(t_img *image, int x, int y, int color)
 {
 	int	pixel;
 
@@ -20,15 +21,19 @@ void	set_image_pixel(t_img *image, int x, int y, int color)
 	image->addr[pixel] = color;
 }
 
-static void	set_frame_image_pixel(t_data *data, t_img *image, int x, int y)
+//define os pixels na imagem. Verifica a cor do pixel em data->texture_pixels na posição (x, y),  e define o pixel correspondente na t_img image com essa cor. Se existir textura nao definida (data->texture_pixels[y][x] == 0), usa data->map.c para o ceiling  e data->map.f para a parte floor).
+
+static void	fill_image(t_data *data, t_img *image, int x, int y)
 {
-	if (data->texture_pixels[y][x] > 0)
-		set_image_pixel(image, x, y, data->texture_pixels[y][x]);
+	if (data->texture_pixels[y][x] != 0)
+		fill_pixel(image, x, y, data->texture_pixels[y][x]);
 	else if (y < WINDOW_HEIGHT / 2)
-		set_image_pixel(image, x, y, data->map.c);
+		fill_pixel(image, x, y, data->map.c);
 	else if (y < WINDOW_HEIGHT -1)
-		set_image_pixel(image, x, y, data->map.f);
+		fill_pixel(image, x, y, data->map.f);
 }
+
+// cria uma imagem do tamanho W_W e W_H e preenche os pixels com a funcao set_frame_image_pixel 
 
 static void	render_frame(t_data *data)
 {
@@ -44,7 +49,7 @@ static void	render_frame(t_data *data)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			set_frame_image_pixel(data, &image, x, y);
+			fill_image(data, &image, x, y);
 			x++;
 		}
 		y++;
@@ -53,6 +58,7 @@ static void	render_frame(t_data *data)
 	mlx_destroy_image(data->mlx_ptr, image.img);
 }
 
+//Aloca memoria, para texture_pixels que vai armazenar o valor dos pixeis da textura durante o raycasting  
 void	init_texture_pixels(t_data *data)
 {
 	int	i;
@@ -71,7 +77,6 @@ void	init_texture_pixels(t_data *data)
 void	render_images(t_data *data)
 {
 	init_texture_pixels(data);
-	///init_ray(&data->ray);
 	raycasting(data);
 	render_frame(data);
 }
@@ -86,11 +91,3 @@ int	render(t_data *data)
 	return (0);
 }
 
-/*int render_mini(t_data *data)
-{
-    buttons(data);
-    if(data->player.has_moved == 0)
-        return (0);
-    draw_map2d(data);
-    return(0);
-}*/

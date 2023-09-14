@@ -24,6 +24,8 @@ void	init_raycasting(int x, t_ray *ray, t_player *player)
 	ray->deltadist_y = fabs(1 / ray->dir_y);
 }
 
+//calcula a altura da linha da parede que será desenhada. usa ray->wall_dist para determinar a altura da linha. calcula os pontos de início (ray->draw_start) e fim (ray->draw_end) da linha a ser desenhada.
+
 static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 {
 	(void)data;
@@ -45,6 +47,8 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 	ray->wall_x -= floor(ray->wall_x);
 }
 
+//determina qual textura deve ser usada para renderizar a parede com base na direção em que o raio está indo. verifica se o raio atinge uma parede vertical ou horizontal (ray->side) e também verifica a direção do raio (ray->dir_x e ray->dir_y) para determinar qual textura deve ser aplicada.
+
 static void	get_texture_index(t_data *data, t_ray *ray)
 {
 	if (ray->side == 0)
@@ -62,6 +66,10 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 			data->map.tex_index = SOUTH;
 	}
 }
+
+/* atualiza o array data->texture_pixels.
+calcula a posição (map->pos) na textura que deve ser mostrada para cada pixel na linha da parede. Obtém o valor de cor da textura na posição calculada e  armazena na matriz data->texture_pixels. Antes de armazenar a cor, verifica se a textura e aplica um deslocamento de cor para tornar a renderização mais suave. Se a cor for maior que zero, ela é armazenada na matriz data->texture_pixels.
+*/
 
 void	update_texture_pixels(t_data *data, t_map *map, t_ray *ray, int x)
 {
@@ -109,56 +117,3 @@ int	raycasting(t_data *data)
 	return (1);
 }
 
-/*void	calculate_pixel(t_data *data, t_ray *ray)
-{
-	if (!ray->side)
-		ray->wall_x = (int)data->player.py + ray->wall_dist * ray->dir_y;
-	else
-		ray->wall_x = (int)data->player.py + ray->wall_dist * ray->dir_x;
-	ray->wall_x -= floor(ray->wall_x);
-	ray->tex_x = (int)(ray->wall_x * (double)mapS);
-	if (!ray->side && ray->dir_x > 0)
-		ray->tex_x = mapS - ray->tex_x - 1;
-	if (ray->side && ray->dir_y < 0)
-		ray->tex_x = mapS - ray->tex_x - 1;
-	ray->step = 1.0 * mapS / ray->line_height;
-	ray->tex_pos = (ray->draw_start - (WINDOW_HEIGHT / 2) + ray->line_height / 2)
-		* ray->step;
-}
-
-void	put_pixel(t_img *img, int x, int y,
-	unsigned int color)
-{
-	char	*dst;
-	int *int_ptr;
-
-	int_ptr = (int *)img->addr + (y * img->size_line + x * (img->pixel_bits / 8));
-	dst = (char *)int_ptr;
-	*(unsigned int *) dst = color;
-}
-
-
-static void	draw_vertical_line(t_data *data, t_ray *ray, int x)
-{
-	int	y;
-
-	y = -1;
-	while (++y < ray->draw_start)
-	{
-		put_pixel(&data->text, x, y, data->map.ceiling);
-	}
-	y = ray->draw_start;
-	while (y < ray->draw_end)
-	{
-		ray->tex_y = (int)ray->tex_pos & (mapS - 1);
-		ray->tex_pos += ray->step;
-		put_pixel(&data->text, x, y, get_type_wall(data, ray));
-		y += 1;
-	}
-	y = ray->draw_end;
-	while (y < WINDOW_HEIGHT)
-	{
-		put_pixel(&data->text, x, y, data->map.floor);
-		y += 1;
-	}
-}*/ 
