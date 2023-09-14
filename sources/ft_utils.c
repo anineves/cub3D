@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:43:58 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 21:57:29 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/14 19:28:11 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_error(char *msg, t_data *data)
 			free(data->mlx_ptr);
 		}
 	}
-	ft_putstr_fd("ERROR\n", STDERR_FILENO);
-	ft_putendl_fd(msg, STDERR_FILENO);
+	ft_putstr_fd("Error\n", STDOUT_FILENO);
+	ft_putendl_fd(msg, STDOUT_FILENO);
 	exit(EXIT_FAILURE);
 }

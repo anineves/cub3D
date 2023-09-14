@@ -73,11 +73,17 @@ typedef struct s_map
 	int		len;
 	int		num_player;
 	char		*north;
+	int			n;
 	char		*south;
+	int			s;
 	char		*west;
+	int			w;
 	char		*east;
+	int			e;
 	int		f;
+	int		f_f;
 	int		c;
+	int		f_c;
 	int			rows;
 	int			rows_full;
 	int			first_line;

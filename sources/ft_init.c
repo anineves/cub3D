@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 22:23:08 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/14 20:42:54 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,14 @@ void	init_map(t_map *map)
 	map->south = NULL;
 	map->west = NULL;
 	map->east = NULL;
-	map->f = -1;
-	map->c = -1;
+	map->f = -1000000;
+	map->c = -1000000;
+	map->f_c = 0;
+	map->f_f = 0;
+	map->n = 0;
+	map->s = 0;
+	map->e = 0;
+	map->w = 0;
 	map->rows = 0;
 	map->rows_full = 0;
 	map->first_line = 0;

@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 17:36:57 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/14 22:53:12 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	count_lines(t_data *data, char *file)
 
 int	all_params(t_data *data)
 {
-	if (!data->map.north || !data->map.south || !data->map.west \
-			|| !data->map.east || data->map.f == -1 \
-			|| data->map.c == -1 || data->map.first_line == 0)
+	if (data->map.n != 1 || data->map.s != 1 || data->map.w  != 1\
+			|| data->map.e != 1 || data->map.f_c != 1\
+			|| data->map.f_f != 1 || data->map.first_line == 0)
 		return (0);
 	return (1);
 }
@@ -78,21 +78,38 @@ void	create_map(t_data *data, int i)
 {
 	int	j;
 	int	k;
+	int l;
 
 	k = 0;
+	l = 0;
 	while (i < (data->map.rows) && data->map.file && data->map.file[i])
 	{
 		j = 0;
 		ft_check_line(data->map.file[i], data, i - data->map.first_line, i);
 		data->map.full[k] = ft_calloc(data->map.len + 1, sizeof(char));
+		printf("char %c.\n", data->map.file[i][0]);
+		l = i;
+		while(l < data->map.rows)
+		{
+			printf("entrei while\n");
+			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
+			{
+				printf("entrei if\n");
+				if(data->map.file[l] && data->map.file[l][0] != '\0')
+					ft_error("empty line\n", data);
+			}
+			l++;
+		}
 		while (data->map.file[i][j] != '\0')
 		{
-			data->map.full[k][j] = data->map.file[i][j];
+			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
+				data->map.full[k][j] = data->map.file[i][j];
 			j++;
 		}
 		while (j < (int)data->map.len)
         {
-            data->map.full[k][j] = ' ';
+			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
+            	data->map.full[k][j] = ' ';
             j++;
         }
 		data->map.full[k][j] = '\0';
@@ -100,10 +117,7 @@ void	create_map(t_data *data, int i)
 		k++;
 	}
 	if (data->map.num_player != 1)
-	{
-		printf("ERROR, map must have one Player\n");
-		exit (EXIT_FAILURE);
-	}
+		ft_error("number of player must be one\n", data);
 }
 
 
@@ -139,16 +153,13 @@ void	get_file(t_data *data, char *map_file)
 		i++;
 	}
 	if (!all_params(data))
-		printf("incomplete file \n");
+		ft_error("incomplete file\n", data);
+	printf("f_c %d\n", data->map.f_c);
 	get_big_line(data, i);
 	data->map.full = ft_calloc((data->map.rows_full) + 1, \
 								sizeof(char *));
-	printf("i %d\n", i);
-	printf("rows %d\n", data->map.rows);
-	printf("rows full%d\n", data->map.rows_full);
-	printf("len %d\n", data->map.len);
 	create_map(data, i);
 	if (data->map.num_player != 1)
 		ft_error("number of player must be one\n", data);
-	//validate_map(data);
+	validate_map(data);
 }
