@@ -19,7 +19,7 @@
 #define mapX  8      //map width
 #define mapY  8      //map height
 #define mapS 64
-#define MOVESPEED 0.5
+#define MOVESPEED 0.08
 #define rotSpeed 0.05
 #define mapM 16
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 23:17:37 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:35:00 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,16 @@ void	init_player_sn(t_player *player)
 	if (player->dir == 'S')
 	{
 		player->dir_x = 0.0f;
-		player->dir_y = -1.0f;
-		player->plane_x = 0.66;
+		player->dir_y = 1.0f;
+		player->plane_x = -0.66;
 		player->plane_y = 0;
 		player->ang = 270;
 	}
 	else if (player->dir == 'N')
 	{
 		player->dir_x = 0.0f;
-		player->dir_y = 1.0f;
-		player->plane_x = -0.66;
+		player->dir_y = -1.0f;
+		player->plane_x = 0.66;
 		player->plane_y = 0;
 		player->ang = 90;
 	}

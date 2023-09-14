@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:44:39 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/13 22:29:12 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:33:25 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	dda(t_ray *ray, t_player *player)
 		ray->step_x = 1;
 		ray->sidedist_x = (ray->map_x + 1.0f - player->px) * ray->deltadist_x;
 	}
-	if (ray->dir_y > 0)
+	if (ray->dir_y < 0)
 	{
 		ray->step_y = -1;
 		ray->sidedist_y = (player->py - ray->map_y) * ray->deltadist_y;

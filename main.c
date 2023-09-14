@@ -16,12 +16,12 @@ void	verific_args_ext(char *file, int argc)
 {
 	int	len;
 
-	len = ft_strlen(file);
 	if (argc != 2)
 	{
 		printf("Error\nInvalid number of arguments\n");
 		exit(EXIT_FAILURE);
 	}
+	len = ft_strlen(file);
 	if (!ft_strnstr((file + len - 4), ".cub", 4))
 	{
 		printf("Error\nThe file must end in .cub.\n");

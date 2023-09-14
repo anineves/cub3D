@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 23:05:20 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/14 18:05:00 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,16 @@ int	render_rect(t_data *data, t_rect rect, int x, int y)
 		j = rect.x;
 		while (j < rect.x + rect.width)
 			mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, \
-							(WINDOW_HEIGHT - mapM * mapY) + i, rect.color);
+							(WINDOW_HEIGHT - mapM * data->map.rows_full) + i, rect.color);
 		++i;
 	}
 	draw_line(data->mlx_ptr, data->win_ptr, rect.x, \
-				(WINDOW_HEIGHT - mapM * mapY) + rect.y, \
-				rect.x + rect.width, (WINDOW_HEIGHT - mapM * mapY) + rect.y, \
+				(WINDOW_HEIGHT - mapM * data->map.rows_full) + rect.y, \
+				rect.x + rect.width, (WINDOW_HEIGHT - mapM * data->map.rows_full) + rect.y, \
 				0xFF8C00);
 	draw_line(data->mlx_ptr, data->win_ptr, rect.x, \
-				(WINDOW_HEIGHT - mapM * mapY) + rect.y, \
-				rect.x, (WINDOW_HEIGHT - mapM * mapY) + rect.y + rect.height, \
+				(WINDOW_HEIGHT - mapM * data->map.rows_full) + rect.y, \
+				rect.x, (WINDOW_HEIGHT - mapM * data->map.rows_full) + rect.y + rect.height, \
 				0xFF8C00);
 	return (0);
 }
@@ -71,9 +71,9 @@ void	draw_player(t_data *data, int x, int y)
 				((data->player.py * mapM) - 2), \
 				4, 4, 0xFF0000}, x, y);
 	draw_line(data->mlx_ptr, data->win_ptr, data->player.px * mapM, \
-				(WINDOW_HEIGHT - mapM * mapY) + data->player.py * mapM, \
+				(WINDOW_HEIGHT - mapM * data->map.rows_full) + data->player.py * mapM, \
 				data->player.px * mapM + data->player.dir_x * 8, \
-				(WINDOW_HEIGHT - mapM * mapY) + data->player.py * mapM - \
+				(WINDOW_HEIGHT - mapM * data->map.rows_full) + data->player.py * mapM + \
 				data->player.dir_y * 8, 0xFF8C00);
 }
 
@@ -103,7 +103,6 @@ int	draw_map2d(t_data *data)
 					, x, y);
 			draw_player(data, x, y);
 		}
-		printf(" y %d, line %s\n", y, data->map.full[y]);
 		y++;
 	}
 	return (0);
