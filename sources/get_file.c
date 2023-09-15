@@ -50,10 +50,7 @@ void	count_lines(t_data *data, char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		printf("Error\nCannot open the file\n");
-		exit(EXIT_FAILURE);
-	}
+		ft_error("Cannot open the file\n", data);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -93,17 +90,12 @@ void	create_map(t_data *data, int i)
 		{
 			printf("entrei while\n");
 			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
-			{
-				printf("entrei if\n");
-				if(data->map.file[l] && data->map.file[l][0] != '\0')
 					ft_error("empty line\n", data);
-			}
 			l++;
 		}
 		while (data->map.file[i][j] != '\0')
 		{
-			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
-				data->map.full[k][j] = data->map.file[i][j];
+			data->map.full[k][j] = data->map.file[i][j];
 			j++;
 		}
 		while (j < (int)data->map.len)

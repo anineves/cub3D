@@ -89,6 +89,7 @@ char	*validate_texture(t_data *data, char *line, int i)
 	int		len;
 	char	*textura;
 	int		j;
+	int		fd;
 
 	j = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
@@ -106,6 +107,9 @@ char	*validate_texture(t_data *data, char *line, int i)
 	len = ft_strlen(textura);
 	if (!ft_strnstr(&textura[len - 4], ".xpm", 4))
 		ft_error("incorrect texture's path", data);
+	fd = open(textura, O_RDONLY);
+	if (fd == -1)
+		ft_error("Cannot open the xpm\n", data);
 	return (textura);
 }
 

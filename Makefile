@@ -12,8 +12,7 @@ SRCS 	=./sources/ft_move_buttons.c 			./sources/ft_utils.c 					\
 			./sources/ft_draw_rays_1.c			./sources/dda.c							\
 			./sources/ft_move_buttons_1.c		./sources/parsing_file.c 				\
 			./sources/render.c					./sources/events.c 						\
-			./sources/ft_init_img.c				./sources/validate_map.c				\
-			./sources/put_color_pixel.c 												\
+			./sources/ft_init_img.c				./sources/validate_map.c													\
 			main.c
 
 OBJS = $(SRCS:.c=.o)
