@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 22:19:30 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:13:32 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ char	*validate_texture(t_data *data, char *line, int i)
 	len = i;
 	while (line[len] != '\0' && (line[len] != ' ' && line[len] != '\t'))
 		len++;
-	textura = malloc(sizeof(char) * (len - i + 1));
+	textura = malloc(sizeof(char) * (len - i + 1)); //temos de libertar isto
 	if (!textura)
 		return (NULL);
 	while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t' \

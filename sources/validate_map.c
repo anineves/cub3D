@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:01:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 22:54:31 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:07:52 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void ft_space(t_data *data)
 			{
 				if(data->map.full[i][j+1] && data->map.full[i][j+1] == '0')
 					ft_error("Invalid map 0", data);
-				if(data->map.full[i][j-1] && data->map.full[i][j-1] == '0')
+				if(j >0 && data->map.full[i][j-1] && data->map.full[i][j-1] == '0')
 					ft_error("Invalid map 0", data);
 				if(data->map.full[i+1] && data->map.full[i+1][j] == '0')
 					ft_error("Invalid map 0", data);
@@ -127,7 +127,6 @@ void ft_space(t_data *data)
 			}
 			j++;
 		}
-		
 		i++;
 	}
 }

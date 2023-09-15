@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/12 19:58:51 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:20:37 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 
 void	init_textures(t_data *data)
 {
-	data->textures = ft_calloc(5, sizeof * data->textures);
+	data->textures = ft_calloc(4, sizeof * data->textures);
 	data->textures[NORTH] = xpm_to_img(data, data->map.north);
 	data->textures[SOUTH] = xpm_to_img(data, data->map.south);
 	data->textures[EAST] = xpm_to_img(data, data->map.east);

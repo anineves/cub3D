@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 22:53:12 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/15 20:59:18 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ void	get_file(t_data *data, char *map_file)
 
 	i = 0;
 	count_lines(data, map_file);
-	data->map.file = ft_calloc(data->map.rows + 1, sizeof(char *));
+	data->map.file = ft_calloc(data->map.rows + 1, sizeof(char *)); //libertar memoria disto
 	ft_read_file(data, map_file);
 	while (i < data->map.rows)
 	{
@@ -146,7 +146,6 @@ void	get_file(t_data *data, char *map_file)
 	}
 	if (!all_params(data))
 		ft_error("incomplete file\n", data);
-	printf("f_c %d\n", data->map.f_c);
 	get_big_line(data, i);
 	data->map.full = ft_calloc((data->map.rows_full) + 1, \
 								sizeof(char *));

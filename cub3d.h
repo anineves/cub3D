@@ -213,3 +213,4 @@ void	init_textures(t_data *data);
 /*utils*/
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_error(char *msg, t_data *data);
+void 	ft_destroy_images(t_data *data);
