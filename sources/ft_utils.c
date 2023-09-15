@@ -38,20 +38,39 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (newstr);
 }
 
+
+void	ft_free_map(char **map)
+{
+	size_t	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		map[i] = NULL;
+		i += 1;
+	}
+	if (i > 0)
+		free(map);
+	map = NULL;
+}
+
 void	ft_error(char *msg, t_data *data)
 {
-	if (data)
+	if (!data)
+		return ;
+		//ft_destroy_images(data);
+	if (data->win_ptr)
+		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
+	if (data->mlx_ptr)
 	{
-		if (!data)
-			return ;
-		if (data->win_ptr)
-			mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-		if (data->mlx_ptr)
-		{
-			mlx_destroy_display(data->mlx_ptr);
-			free(data->mlx_ptr);
-		}
+		mlx_destroy_display(data->mlx_ptr);
+		free(data->mlx_ptr);
 	}
+	if(data->map.file)
+		ft_free_map(data->map.file);
+	if(data->map.full)
+		ft_free_map(data->map.full);
 	ft_putstr_fd("Error\n", STDOUT_FILENO);
 	ft_putendl_fd(msg, STDOUT_FILENO);
 	exit(EXIT_FAILURE);
