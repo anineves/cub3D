@@ -63,11 +63,13 @@ void	validate_color(t_data *data, char *line, int i, int type)
 	int		r;
 	int		g;
 	int		b;
+	int		j;
 	char	**colors;
 
 	r = -1;
 	g = -1;
 	b = -1;
+	j = -1;
 	if (validate_color_2(data, line, i) == 0)
 	{
 		colors = ft_split(line, ',');
@@ -80,7 +82,9 @@ void	validate_color(t_data *data, char *line, int i, int type)
 			data->map.c = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 		if (type == 2)
 			data->map.f = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-		free(colors);
+		while (colors[++j])
+                free(colors[j]);
+            free(colors);
 	}
 }
 

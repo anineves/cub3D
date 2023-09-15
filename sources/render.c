@@ -40,7 +40,9 @@ static void	render_frame(t_data *data)
 	t_img	image;
 	int		x;
 	int		y;
+	int		j;
 
+	j = -1;
 	image.img = NULL;
 	init_img(data, &image, WINDOW_WIDTH, WINDOW_HEIGHT);
 	y = 0;
@@ -54,6 +56,9 @@ static void	render_frame(t_data *data)
 		}
 		y++;
 	}
+	while (data->texture_pixels[++j])
+                free(data->texture_pixels[j]);
+    free(data->texture_pixels);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, image.img, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, image.img);
 }

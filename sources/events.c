@@ -14,9 +14,8 @@
 
 int	ft_close(t_data *data)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	data->win_ptr = NULL;
-	return (0);
+	ft_error("CLOSED", data);
+	return 0;
 }
 
 static int	key_press_handler(int key, t_data *data)
