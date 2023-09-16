@@ -3,21 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 13:59:33 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:05:05 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-
-//cria uma nova imagem vazia com as dimensões fornecidas usando mlx_new_image e obtém informações sobre a imagem usando mlx_get_data
-
+/*cria uma nova imagem vazia com as dimensões fornecidas usando mlx_new_image 
+e obtém informações sobre a imagem usando mlx_get_data*/
 void	init_img(t_data *data, t_img *image, int width, int height)
 {
-	
 	init_img_clean(image);
 	image->img = mlx_new_image(data->mlx_ptr, width, height);
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
@@ -36,9 +34,8 @@ t_img	ft_init_img(t_data *data)
 	return (image);
 }
 
-
-
-//  inicia uma estrutura t_img para uma textura.  mlx_xpm_file_to_image carrega a imagem do ficheiro XPM  mlx_get_data_addr obtem informações sobre a imagem
+/*inicia uma estrutura t_img para uma textura.  mlx_xpm_file_to_image carrega 
+a imagem do ficheiro XPM  mlx_get_data_addr obtem informações sobre a imagem*/
 int	init_texture_img(t_data *data, t_img *image, char *path)
 {
 	init_img_clean(image);
@@ -51,7 +48,8 @@ int	init_texture_img(t_data *data, t_img *image, char *path)
 	return (1);
 }
 
-//carrega a textura XPM em uma estrutrura t_img, retorna o bffer que representa os pixels da textura
+/*carrega a textura XPM em uma estrutrura t_img, retorna o bffer que representa 
+os pixels da textura*/
 static int	*xpm_to_img(t_data *data, char *path)
 {
 	t_img	tmp;
@@ -59,26 +57,23 @@ static int	*xpm_to_img(t_data *data, char *path)
 	int		x;
 	int		y;
 
-	y = 0;
+	y = -1;
 	buffer = ft_calloc(1,
 			sizeof * buffer * mapS * mapS);
-			
 	if (!init_texture_img(data, &tmp, path))
 	{
 		mlx_destroy_image(data->mlx_ptr, tmp.img);
 		free(buffer);
 		ft_error("size", data, 1);
 	}
-	while (y < mapS)
+	while (++y < mapS)
 	{
-		x = 0;
-		while (x < mapS)
+		x = -1;
+		while (++x < mapS)
 		{
 			buffer[y * mapS + x]
 				= tmp.addr[y * mapS + x];
-			++x;
 		}
-		y++;
 	}
 	mlx_destroy_image(data->mlx_ptr, tmp.img);
 	return (buffer);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 21:38:30 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/16 10:28:30 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:15:50 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,11 @@ void	fill_pixel(t_img *image, int x, int y, int color)
 	image->addr[pixel] = color;
 }
 
-//define os pixels na imagem. Verifica a cor do pixel em data->texture_pixels na posição (x, y),  e define o pixel correspondente na t_img image com essa cor. Se existir textura nao definida (data->texture_pixels[y][x] == 0), usa data->map.c para o ceiling  e data->map.f para a parte floor).
-
+/*define os pixels na imagem. Verifica a cor do pixel em 
+data->texture_pixels na posição (x, y),  e define o pixel 
+correspondente na t_img image com essa cor.
+Se existir textura nao definida (data->texture_pixels[y][x] == 0), 
+usa data->map.c para o ceiling  e data->map.f para a parte floor).*/
 static void	fill_image(t_data *data, t_img *image, int x, int y)
 {
 	if (data->texture_pixels[y][x] != 0)
@@ -33,8 +36,8 @@ static void	fill_image(t_data *data, t_img *image, int x, int y)
 		fill_pixel(image, x, y, data->map.f);
 }
 
-// cria uma imagem do tamanho W_W e W_H e preenche os pixels com a funcao set_frame_image_pixel 
-
+/*cria uma imagem do tamanho W_W e W_H e preenche os pixels com a funcao 
+set_frame_image_pixel */
 static void	render_frame(t_data *data)
 {
 	t_img	image;
@@ -57,14 +60,14 @@ static void	render_frame(t_data *data)
 		y++;
 	}
 	while (data->texture_pixels[++j])
-                free(data->texture_pixels[j]);
-    free(data->texture_pixels);
-	//ft_free_textures1(data->texture_pixels);
+		free(data->texture_pixels[j]);
+	free(data->texture_pixels);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, image.img, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, image.img);
 }
 
-//Aloca memoria, para texture_pixels que vai armazenar o valor dos pixeis da textura durante o raycasting  
+/*Aloca memoria, para texture_pixels que vai armazenar o valor 
+dos pixeis da textura durante o raycasting */
 void	init_texture_pixels(t_data *data)
 {
 	int	i;
@@ -86,14 +89,3 @@ void	render_images(t_data *data)
 	raycasting(data);
 	render_frame(data);
 }
-
-int	render(t_data *data)
-{
-	buttons(data);
-	if (data->player.has_moved == 0)
-		return (0);
-	render_images(data);
-	draw_map2d(data);
-	return (0);
-}
-

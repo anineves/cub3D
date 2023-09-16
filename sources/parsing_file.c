@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 11:44:00 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:42:50 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ int	validate_color_2(t_data *data, char *line, int i)
 	int		comma;
 
 	comma = 0;
-	
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	len = i;
-	printf(" i %d, len %d\n", i, len);
 	while (line[len] != '\0')
 	{
 		printf("entrei %c \n", line[len]);
@@ -52,9 +50,8 @@ int	validate_color_2(t_data *data, char *line, int i)
 			comma++;
 		len++;
 	}
-	printf("coma%d\n", comma);
 	if (comma != 2)
-		ft_error(" missing One color\n", data,1);
+		ft_error(" missing One color\n", data, 1);
 	return (0);
 }
 
@@ -82,32 +79,15 @@ void	validate_color(t_data *data, char *line, int i, int type)
 			data->map.c = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 		if (type == 2)
 			data->map.f = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
-		while (colors[++j])
-                free(colors[j]);
-            free(colors);
+		ft_free_map(colors);
 	}
 }
 
-char	*validate_texture(t_data *data, char *line, int i)
+void	validate_texture1(t_data *data, char *textura)
 {
-	int		len;
-	char	*textura;
-	int		j;
-	int		fd;
+	int	len;
+	int	fd;
 
-	j = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	len = i;
-	while (line[len] != '\0' && (line[len] != ' ' && line[len] != '\t'))
-		len++;
-	textura = malloc(sizeof(char) * (len - i + 1)); //temos de libertar isto
-	if (!textura)
-		return (NULL);
-	while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t' \
-			&& line[i] != '\n')
-		textura[j++] = line[i++];
-	textura[j] = '\0';
 	len = ft_strlen(textura);
 	if (!ft_strnstr(&textura[len - 4], ".xpm", 4))
 	{
@@ -120,52 +100,27 @@ char	*validate_texture(t_data *data, char *line, int i)
 		free(textura);
 		ft_error("Cannot open the xpm\n", data, 1);
 	}
-	return (textura);
 }
 
-void	parsing_file(t_data *data, char *line, int row)
+char	*validate_texture(t_data *data, char *line, int i)
 {
-	int		i;
+	int		len;
+	char	*textura;
+	int		j;
 
-	(void)row;
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
+	j = 0;
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	if (ft_strncmp(line + i, "NO ", 3) == 0 && data->map.n == 0)
-	{
-		data->map.north = validate_texture(data, line, i + 3 );
-		data->map.n++;
-	}
-	else if (ft_strncmp(line + i, "SO ", 3) == 0 && data->map.s == 0)
-	{
-		
-		data->map.south = validate_texture(data, line, i + 3);
-		data->map.s++;
-	} 
-	else if (ft_strncmp(line + i, "WE ", 3) == 0 && data->map.w == 0)
-	{
-		
-		data->map.west = validate_texture(data, line, i + 3);
-		data->map.w++;
-	}
-	else if (ft_strncmp(line + i, "EA ", 3) == 0 && data->map.e == 0)
-	{
-		data->map.east = validate_texture(data, line, i + 3);
-		data->map.e++;
-	}
-	else if (ft_strncmp(line + i, "C ", 2) == 0 && data->map.f_c == 0)
-	{	
-		validate_color(data, line, i + 2, 1);
-		data->map.f_c++;
-	}
-	else if (ft_strncmp(line + i, "F ", 2) == 0 && data->map.f_f == 0)
-	{	
-		validate_color(data, line, i + 2, 1);
-		data->map.f_f++;
-	}
-	else if (line[i] == '0' || line[i] == '1')
-		data->map.first_line = row;
-	else if (line[i] != '\0')
-		ft_error("Invalid line\n", data, 1);
-	printf("ceiling %x\n", data->map.c);
+	len = i;
+	while (line[len] != '\0' && (line[len] != ' ' && line[len] != '\t'))
+		len++;
+	textura = malloc(sizeof(char) * (len - i + 1));
+	if (!textura)
+		return (NULL);
+	while (line[i] != '\0' && line[i] != ' ' && line[i] != '\t' \
+			&& line[i] != '\n')
+		textura[j++] = line[i++];
+	textura[j] = '\0';
+	validate_texture1(data, textura);
+	return (textura);
 }

@@ -39,6 +39,12 @@ enum e_texture_index
 	WEST = 3
 };
 
+typedef struct s_pos
+{
+	int		x;
+	int		y;
+}	t_pos;
+
 typedef struct s_player
 {
     char	dir;
@@ -164,11 +170,14 @@ void	player_info(t_data *data, int x, int y, char dir);
 
 /*parsing*/
 void	ft_check_line(char *line, t_data *data, int y, int i);
-void	parsing_file(t_data *data, char *file, int row);
+int	parsing_file(t_data *data, char *line, int row);
 void	get_file(t_data *data, char *map_file);
 int		all_params(t_data *data);
 void	create_map(t_data *data, int i);
 void	validate_map(t_data *data);
+void	validate_color(t_data *data, char *line, int i, int type);
+char	*validate_texture(t_data *data, char *line, int i);
+void	count_lines(t_data *data, char *file);
 
 /*Movements*/
 void    move_a(t_data *data);
@@ -176,6 +185,7 @@ void    move_d(t_data *data);
 void    move_w(t_data *data);
 void    move_s(t_data *data);
 void    rotate_right(t_data *data);
+void	rotate_left(t_data *data);
 int 	buttons(t_data *data);
 int		handle_keypress(int keysym, t_data *data);
 int		not_hit_wall(t_data *data, double x, double y);
@@ -185,13 +195,13 @@ t_img	ft_init_img(t_data *data);
 unsigned int	get_type_wall(t_data *data, t_ray *ray);
 
 /*Draw*/
-void 	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
+void	draw_line(t_data *data, t_pos begin, t_pos end, int color);
 //void 	draw_player(t_data *data, t_rect rect);
-void	draw_player(t_data *data, int x, int y);
+void	draw_player(t_data *data);
 int	draw_map2d(t_data *data);
 //int 	draw_map2d(t_data *data);
 int 	draw_rays2d(t_data *data);
-int 	render_rect(t_data *data, t_rect rect, int x, int y);
+int 	render_rect(t_data *data, t_rect rect);
 void 	render_images(t_data *data);
 void draw_rays2d_1(t_data *data);
 void	init_raycasting(int x, t_ray *ray, t_player *player);
@@ -213,4 +223,7 @@ void	init_textures(t_data *data);
 char	*ft_strjoin_free(char *s1, char *s2);
 void	ft_error(char *msg, t_data *data, int code);
 void 	ft_destroy_images(t_data *data);
-void	ft_free_textures1(int **textures);
+void	ft_free_textures3(t_data *data);
+void	ft_free_textures(t_data *data);
+void	ft_free_map(char **map);
+int	ft_close(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 17:56:18 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 16:08:02 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ void	init_raycasting(int x, t_ray *ray, t_player *player)
 	ray->deltadist_y = fabs(1 / ray->dir_y);
 }
 
-//calcula a altura da linha da parede que será desenhada. usa ray->wall_dist para determinar a altura da linha. calcula os pontos de início (ray->draw_start) e fim (ray->draw_end) da linha a ser desenhada.
-
+/*calcula a altura da linha da parede que será desenhada. 
+usa ray->wall_dist para determinar a altura da linha. 
+calcula os pontos de início (ray->draw_start) e fim 
+(ray->draw_end) da linha a ser desenhada.*/
 static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 {
 	(void)data;
@@ -47,8 +49,10 @@ static void	calculate_line_height(t_ray *ray, t_data *data, t_player *player)
 	ray->wall_x -= floor(ray->wall_x);
 }
 
-//determina qual textura deve ser usada para renderizar a parede com base na direção em que o raio está indo. verifica se o raio atinge uma parede vertical ou horizontal (ray->side) e também verifica a direção do raio (ray->dir_x e ray->dir_y) para determinar qual textura deve ser aplicada.
-
+/*determina qual textura deve ser usada para renderizar a parede com 
+base na direção em que o raio está indo. verifica se o raio atinge uma 
+parede vertical ou horizontal (ray->side) e também verifica a direção do raio 
+(ray->dir_x e ray->dir_y) para determinar qual textura deve ser aplicada.*/
 static void	get_texture_index(t_data *data, t_ray *ray)
 {
 	if (ray->side == 0)
@@ -68,9 +72,13 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 }
 
 /* atualiza o array data->texture_pixels.
-calcula a posição (map->pos) na textura que deve ser mostrada para cada pixel na linha da parede. Obtém o valor de cor da textura na posição calculada e  armazena na matriz data->texture_pixels. Antes de armazenar a cor, verifica se a textura e aplica um deslocamento de cor para tornar a renderização mais suave. Se a cor for maior que zero, ela é armazenada na matriz data->texture_pixels.
+calcula a posição (map->pos) na textura que deve ser mostrada para cada pixel 
+na linha da parede. Obtém o valor de cor da textura na posição calculada e  
+armazena na matriz data->texture_pixels. Antes de armazenar a cor, 
+verifica se a textura e aplica um deslocamento de cor para tornar a 
+renderização mais suave. Se a cor for maior que zero, ela é armazenada 
+na matriz data->texture_pixels.
 */
-
 void	update_texture_pixels(t_data *data, t_map *map, t_ray *ray, int x)
 {
 	int			y;
@@ -103,17 +111,14 @@ int	raycasting(t_data *data)
 	int	r;
 
 	r = 0;
-	while (r < WINDOW_WIDTH) //mudar valor
+	while (r < WINDOW_WIDTH)
 	{
 		init_raycasting(r, &data->ray, &data->player);
 		dda(&data->ray, &data->player);
 		apply_dda(data, &data->ray);
 		calculate_line_height(&data->ray, data, &data->player);
 		update_texture_pixels(data, &data->map, &data->ray, r);
-		//calculate_pixel(data, &data->ray);
-		//draw_vertical_line(data, &data->ray, r);
 		r++;
 	}
 	return (1);
 }
-

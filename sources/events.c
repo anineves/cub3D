@@ -6,17 +6,11 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/16 08:53:37 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/16 18:01:25 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-int	ft_close(t_data *data)
-{
-	ft_error("CLOSED", data, 0);
-	return 0;
-}
 
 static int	key_press_handler(int key, t_data *data)
 {
@@ -56,10 +50,41 @@ static int	key_release_handler(int key, t_data *data)
 	return (0);
 }
 
+static void	mouse_position(t_data *data, int x, int y)
+{
+	if (x > WINDOW_WIDTH - 5)
+	{
+		x = 5;
+		mlx_mouse_move(data->mlx_ptr, data->win_ptr, x, y);
+	}
+	if (x < 5)
+	{
+		x = WINDOW_WIDTH - 5;
+		mlx_mouse_move(data->mlx_ptr, data->win_ptr, x, y);
+	}
+}
+
+int	rotate_mouse(int x, int y, t_data *data)
+{
+	static int	old_x = WINDOW_WIDTH / 2;
+
+	mouse_position(data, x, y);
+	if (x == old_x)
+		return (0);
+	else if (x < old_x)
+		rotate_left(data);
+	else if (x > old_x)
+		rotate_right(data);
+	old_x = x;
+	return (0);
+}
+
 void	events(t_data *data)
 {
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, \
 				key_release_handler, data);
+	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, \
+				rotate_mouse, data);
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
 }

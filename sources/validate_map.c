@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:01:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 15:33:30 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:56:50 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ int	ft_ver_firstlastline(t_data *data, int i)
 	return (0);
 }
 
-int just_space (char *line)
+int	just_space(char *line)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
-		if(line[i] != ' ')
+		if (line[i] != ' ')
 			return (0);
 		i++;
 	}
@@ -61,40 +61,33 @@ void	ft_walls_line(t_data *data)
 				ft_error("Isn't surrounded by walls 2\n", data, 1);
 			if (data->map.full[i][j + 1] == '\0' && \
 				data->map.full[i][j] == '0')
-				{
-				printf("line %d \n", i);
 				ft_error(" Isn't surrounded by walls3\n", data, 1);
-				}
-				
-			/*if (data->map.full[i][j] == ' ' && ((data->map.full[i - 1][j]  && data->map.full[i - 1][j] == '0') \
-					||(data->map.full[i + 1][j] && data->map.full[i + 1][j] == '0')))
-				ft_error("Isn't surrounded by walls\n", data);*/
 			j++;
 		}
 	}
 }
 
-void ft_space(t_data *data)
+void	ft_space(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
-	i=0;
-	while(i < data->map.rows_full)
+	i = 0;
+	while (i < data->map.rows_full)
 	{
-		j=0;
+		j = 0;
 		while (j < data->map.len)
 		{
-			if(data->map.full[i][j] == 32)
+			if (data->map.full[i][j] == 32)
 			{
-				printf(" linha com espaco %s. \n", data->map.full[i]);
-				if(data->map.full[i][j+1] && data->map.full[i][j+1] == '0')
+				if (data->map.full[i][j + 1] && data->map.full[i][j + 1] == '0')
 					ft_error("Invalid map 0", data, 1);
-				if(j >0 && data->map.full[i][j-1] && data->map.full[i][j-1] == '0')
+				if (j > 0 && data->map.full[i][j - 1] \
+					&& data->map.full[i][j - 1] == '0')
 					ft_error("Invalid map 0", data, 1);
-				if(data->map.full[i+1] && data->map.full[i+1][j] == '0')
+				if (data->map.full[i + 1] && data->map.full[i + 1][j] == '0')
 					ft_error("Invalid map 0", data, 1);
-				if(i > 0 && data->map.full[i-1][j] == '0')
+				if (i > 0 && data->map.full[i - 1][j] == '0')
 					ft_error("Invalid map 0", data, 1);
 			}
 			j++;
@@ -103,11 +96,10 @@ void ft_space(t_data *data)
 	}
 }
 
-
-
 void	validate_map(t_data *data)
 {
 	int	i;
+
 	i = data->map.rows - data->map.first_line - 1;
 	ft_space(data);
 	if (ft_ver_firstlastline(data, 0) == 1)

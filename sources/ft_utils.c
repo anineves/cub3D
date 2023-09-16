@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:43:58 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 12:25:45 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 17:13:10 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (newstr);
 }
 
-
 void	ft_free_map(char **map)
 {
 	size_t	i;
@@ -54,41 +53,23 @@ void	ft_free_map(char **map)
 	map = NULL;
 }
 
-void	ft_free_textures1(int **textures)
+void	ft_free_textures3(t_data *data)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (textures[i])
+	while (i < 4)
 	{
-		free(textures[i]);
+		if (data->textures[i] != NULL)
+		{
+			free(data->textures[i]);
+			data->textures[i] = NULL;
+		}
 		i++;
 	}
-	if (textures)
-	{
-		free(textures);
-		textures = NULL;
-	}
+	free(data->textures);
+	data->textures = NULL;
 }
-
-void ft_free_textures3(t_data *data)
-{
-	int i;
-
-	i = 0;
-    while(i < 4)
-    {
-        if (data->textures[i] != NULL)
-        {
-            free(data->textures[i]);
-            data->textures[i] = NULL;
-        }
-		i++;
-    }
-    free(data->textures);
-    data->textures = NULL;
-}
-
 
 void	ft_free_textures(t_data *data)
 {
@@ -100,43 +81,4 @@ void	ft_free_textures(t_data *data)
 		free(data->map.east);
 	if (data->map.west)
 		free(data->map.west);
-}
-
-void ft_destroy_images(t_data *data)
-{
-	if (data->north_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->north_img.img);
-	if (data->south_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->south_img.img);
-	if (data->west_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->west_img.img);
-	if (data->east_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->east_img.img);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-}
-
-void	ft_error(char *msg, t_data *data, int code)
-{
-	if (!data)
-		exit(code);
-	if (data->win_ptr)
-		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	if (data->mlx_ptr)
-	{
-		mlx_destroy_display(data->mlx_ptr);
-		//mlx_loop_end(data->mlx_ptr); //testar
-		free(data->mlx_ptr);
-	}
-	if(data->map.file)
-		ft_free_map(data->map.file);
-	if(data->map.full)
-		ft_free_map(data->map.full);
-	if (data->textures)
-		ft_free_textures3(data);
-	ft_free_textures(data);
-	if(code == 1)
-		ft_putstr_fd("Error\n", STDOUT_FILENO);
-	ft_putendl_fd(msg, STDOUT_FILENO);
-	exit(code);
 }
