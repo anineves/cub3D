@@ -154,7 +154,7 @@ typedef struct s_rect
 void	init_data(t_data *data);
 int		init_mlx(t_data *data);
 void	init_ray(t_ray *ray);
-void	init_texture_img(t_data *data, t_img *image, char *path);
+int	init_texture_img(t_data *data, t_img *image, char *path);
 void	init_img(t_data *data, t_img *image, int width, int height);
 void	ft_read_file(t_data *data, char *map_file);
 float	degToRad(int a) ;

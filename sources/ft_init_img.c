@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/15 20:20:37 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/16 13:59:33 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,16 @@ t_img	ft_init_img(t_data *data)
 
 
 //  inicia uma estrutura t_img para uma textura.  mlx_xpm_file_to_image carrega a imagem do ficheiro XPM  mlx_get_data_addr obtem informações sobre a imagem
-
-void	init_texture_img(t_data *data, t_img *image, char *path)
+int	init_texture_img(t_data *data, t_img *image, char *path)
 {
 	init_img_clean(image);
 	image->img = mlx_xpm_file_to_image(data->mlx_ptr, path, \
 					&data->map.size_tex, &data->map.size_tex);
 	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
 			&image->size_line, &image->endian);
-	return ;
+	if (image->pixel_bits != 32 || image->size_line != 256)
+		return (0);
+	return (1);
 }
 
 //carrega a textura XPM em uma estrutrura t_img, retorna o bffer que representa os pixels da textura
@@ -61,7 +62,13 @@ static int	*xpm_to_img(t_data *data, char *path)
 	y = 0;
 	buffer = ft_calloc(1,
 			sizeof * buffer * mapS * mapS);
-	init_texture_img(data, &tmp, path);
+			
+	if (!init_texture_img(data, &tmp, path))
+	{
+		mlx_destroy_image(data->mlx_ptr, tmp.img);
+		free(buffer);
+		ft_error("size", data, 1);
+	}
 	while (y < mapS)
 	{
 		x = 0;

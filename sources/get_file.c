@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 11:10:23 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 14:31:17 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,24 +78,16 @@ void	create_map(t_data *data, int i)
 {
 	int	j;
 	int	k;
-	int l;
+
 
 	k = 0;
-	l = 0;
 	while (i < (data->map.rows) && data->map.file && data->map.file[i])
 	{
 		j = 0;
 		ft_check_line(data->map.file[i], data, i - data->map.first_line, i);
 		data->map.full[k] = ft_calloc(data->map.len + 1, sizeof(char));
-		printf("char %c.\n", data->map.file[i][0]);
-		l = i;
-		while(l < data->map.rows)
-		{
-			printf("entrei while\n");
-			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
-					ft_error("empty line\n", data, 1);
-			l++;
-		}
+		if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
+			ft_error("empty line\n", data, 1);
 		while (data->map.file[i][j] != '\0')
 		{
 			data->map.full[k][j] = data->map.file[i][j];
@@ -108,6 +100,7 @@ void	create_map(t_data *data, int i)
             j++;
         }
 		data->map.full[k][j] = '\0';
+	
 		i++;
 		k++;
 	}
