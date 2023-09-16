@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/15 20:59:18 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/16 08:55:15 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	count_lines(t_data *data, char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		ft_error("Cannot open the file\n", data);
+		ft_error("Cannot open the file\n", data, 1);
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -90,7 +90,7 @@ void	create_map(t_data *data, int i)
 		{
 			printf("entrei while\n");
 			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
-					ft_error("empty line\n", data);
+					ft_error("empty line\n", data, 1);
 			l++;
 		}
 		while (data->map.file[i][j] != '\0')
@@ -109,7 +109,7 @@ void	create_map(t_data *data, int i)
 		k++;
 	}
 	if (data->map.num_player != 1)
-		ft_error("number of player must be one\n", data);
+		ft_error("number of player must be one\n", data, 1);
 }
 
 
@@ -145,12 +145,12 @@ void	get_file(t_data *data, char *map_file)
 		i++;
 	}
 	if (!all_params(data))
-		ft_error("incomplete file\n", data);
+		ft_error("incomplete file\n", data, 1);
 	get_big_line(data, i);
 	data->map.full = ft_calloc((data->map.rows_full) + 1, \
 								sizeof(char *));
 	create_map(data, i);
 	if (data->map.num_player != 1)
-		ft_error("number of player must be one\n", data);
+		ft_error("number of player must be one\n", data, 1);
 	validate_map(data);
 }

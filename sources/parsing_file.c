@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/15 20:13:32 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/16 08:57:17 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 			data->map.num_player++;
 		}
 		if (!ft_strchr("0 1NSWE", line[x]))
-			ft_error("Error invalid character", data);
+			ft_error("Error invalid character", data, 1);
 		x++;
 	}
 }
@@ -47,14 +47,14 @@ int	validate_color_2(t_data *data, char *line, int i)
 	{
 		printf("entrei %c \n", line[len]);
 		if (!ft_strchr("0123456789,", line[len]))
-			ft_error("Error invalid character in color", data);
+			ft_error("Error invalid character in color", data, 1);
 		if (line[len] == ',' && line[len + 1])
 			comma++;
 		len++;
 	}
 	printf("coma%d\n", comma);
 	if (comma != 2)
-		ft_error(" missing One color\n", data);
+		ft_error(" missing One color\n", data,1);
 	return (0);
 }
 
@@ -77,7 +77,7 @@ void	validate_color(t_data *data, char *line, int i, int type)
 		g = ft_atoi(colors[1]);
 		b = ft_atoi(colors[2]);
 		if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-			ft_error("One color\n", data);
+			ft_error("One color\n", data, 1);
 		if (type == 1)
 			data->map.c = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 		if (type == 2)
@@ -110,10 +110,10 @@ char	*validate_texture(t_data *data, char *line, int i)
 	textura[j] = '\0';
 	len = ft_strlen(textura);
 	if (!ft_strnstr(&textura[len - 4], ".xpm", 4))
-		ft_error("incorrect texture's path", data);
+		ft_error("incorrect texture's path", data, 1);
 	fd = open(textura, O_RDONLY);
 	if (fd == -1)
-		ft_error("Cannot open the xpm\n", data);
+		ft_error("Cannot open the xpm\n", data, 1);
 	return (textura);
 }
 
@@ -160,6 +160,6 @@ void	parsing_file(t_data *data, char *line, int row)
 	else if (line[i] == '0' || line[i] == '1')
 		data->map.first_line = row;
 	else if (line[i] != '\0')
-		ft_error("Invalid line\n", data);
+		ft_error("Invalid line\n", data, 1);
 	printf("ceiling %x\n", data->map.c);
 }

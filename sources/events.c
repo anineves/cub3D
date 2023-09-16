@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/12 22:47:33 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/16 08:53:37 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_close(t_data *data)
 {
-	ft_error("CLOSED", data);
+	ft_error("CLOSED", data, 0);
 	return 0;
 }
 

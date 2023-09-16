@@ -69,7 +69,6 @@ typedef struct s_map
 {
 	char		**file;
 	char		**full;
-	char		**map;
 	int		len;
 	int		num_player;
 	char		*north;
@@ -133,7 +132,7 @@ typedef struct s_data
     t_map       map;
     t_player    player;
 	t_ray		ray;
-	t_img		text;
+	//t_img		text;
 	t_img		north_img;
 	t_img		south_img;
 	t_img		west_img;
@@ -212,5 +211,5 @@ void	init_textures(t_data *data);
 
 /*utils*/
 char	*ft_strjoin_free(char *s1, char *s2);
-void	ft_error(char *msg, t_data *data);
+void	ft_error(char *msg, t_data *data, int code);
 void 	ft_destroy_images(t_data *data);
