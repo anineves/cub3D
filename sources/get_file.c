@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 08:55:15 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/16 11:10:23 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,10 @@ void	ft_read_file(t_data *data, char *map_file)
 	{
 		j = 0;
 		line = get_next_line(read);
-		if (line == NULL)
+		
+		if (line == NULL && i == 0)
+			ft_error("empty", data, 1);
+		else if (line == NULL )
 			break ;
 		data->map.file[i] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
 		while (line[j] != '\0' && line[j] != '\n')
@@ -67,7 +70,7 @@ int	all_params(t_data *data)
 	if (data->map.n != 1 || data->map.s != 1 || data->map.w  != 1\
 			|| data->map.e != 1 || data->map.f_c != 1\
 			|| data->map.f_f != 1 || data->map.first_line == 0)
-		return (0);
+		ft_error("param", data, 1); 
 	return (1);
 }
 

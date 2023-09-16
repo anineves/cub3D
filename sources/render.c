@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 21:38:30 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/12 22:43:21 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/16 10:28:30 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ static void	render_frame(t_data *data)
 	while (data->texture_pixels[++j])
                 free(data->texture_pixels[j]);
     free(data->texture_pixels);
+	//ft_free_textures1(data->texture_pixels);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, image.img, 0, 0);
 	mlx_destroy_image(data->mlx_ptr, image.img);
 }

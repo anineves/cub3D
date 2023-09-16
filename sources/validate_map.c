@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:01:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 08:57:01 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/16 11:47:05 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,10 +131,11 @@ void ft_space(t_data *data)
 	}
 }
 
+
+
 void	validate_map(t_data *data)
 {
 	int	i;
-
 	i = data->map.rows - data->map.first_line - 1;
 	ft_space(data);
 	if (ft_ver_firstlastline(data, 0) == 1)

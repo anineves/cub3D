@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:43:58 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 09:01:51 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/16 11:31:56 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ void	ft_free_map(char **map)
 		map[i] = NULL;
 		i += 1;
 	}
-	if (i > 0)
-		free(map);
+	free(map);
 	map = NULL;
 }
 
@@ -71,6 +70,25 @@ void	ft_free_textures1(int **textures)
 		textures = NULL;
 	}
 }
+
+void ft_free_textures3(t_data *data)
+{
+	int i;
+
+	i = 0;
+    while(i < 4)
+    {
+        if (data->textures[i] != NULL)
+        {
+            free(data->textures[i]);
+            data->textures[i] = NULL;
+        }
+		i++;
+    }
+    free(data->textures);
+    data->textures = NULL;
+}
+
 
 void	ft_free_textures(t_data *data)
 {
@@ -107,7 +125,7 @@ void	ft_error(char *msg, t_data *data, int code)
 	if (data->mlx_ptr)
 	{
 		mlx_destroy_display(data->mlx_ptr);
-		mlx_loop_end(data->mlx_ptr); //testar
+		//mlx_loop_end(data->mlx_ptr); //testar
 		free(data->mlx_ptr);
 	}
 	if(data->map.file)
@@ -115,11 +133,10 @@ void	ft_error(char *msg, t_data *data, int code)
 	if(data->map.full)
 		ft_free_map(data->map.full);
 	if (data->textures)
-		ft_free_textures1(data->textures);
-	if (data->texture_pixels)
-		ft_free_textures1(data->texture_pixels);
+		ft_free_textures3(data);
 	ft_free_textures(data);
-	ft_putstr_fd("Error\n", STDOUT_FILENO);
+	if(code == 1)
+		ft_putstr_fd("Error\n", STDOUT_FILENO);
 	ft_putendl_fd(msg, STDOUT_FILENO);
 	exit(code);
 }
