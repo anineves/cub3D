@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:46:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 14:31:17 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/16 15:36:29 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	create_map(t_data *data, int i)
 		}
 		while (j < (int)data->map.len)
         {
-			if(data->map.file[i][0] == '\0' || data->map.file[i][0] == '\n'  )
+			if(data->map.file[i][0] != '\0' || data->map.file[i][0] != '\n'  )
             	data->map.full[k][j] = ' ';
             j++;
         }
