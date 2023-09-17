@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 16:16:00 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/17 19:33:41 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	init_data(t_data *data)
 	data->win_ptr = NULL;
 	data->texture_pixels = NULL;
 	data->textures = NULL;
+	data->clickmouse = 0;
 	init_map(&data->map);
 	init_player(&data->player);
 	init_ray(&data->ray);

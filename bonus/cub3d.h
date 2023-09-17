@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 18:53:03 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/17 19:28:35 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,6 +174,7 @@ typedef struct s_data
 	void		*win_ptr;
 	int			**texture_pixels;
 	int			**textures;
+	int			clickmouse;
 	t_map		map;
 	t_player	player;
 	t_ray		ray;

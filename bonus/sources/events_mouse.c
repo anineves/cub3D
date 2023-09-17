@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 14:08:49 by andreia           #+#    #+#             */
-/*   Updated: 2023/09/17 19:06:52 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/17 19:23:36 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void is_button_play(t_data *data, int x, int y)
 {
+    //printf("Size x %d\nSize y %d\n", data ->menu.button_p.size.x, data ->menu.button_p.size.y);
     if (x > 380 && y >200 && y < 200 + data->menu.button_p.size.y \
         && x < 380 + data ->menu.button_p.size.x)
         data->menu.is_button_play = 1;
@@ -23,6 +24,7 @@ void is_button_play(t_data *data, int x, int y)
 
 void is_button_quit(t_data *data, int x, int y)
 {
+    //printf("Size quit x %d\nSize quit y %d\n", data ->menu.button_q.size.x, data ->menu.button_q.size.y);
     if (x > 430 && y >400 && y < 400 + data->menu.button_q.size.y \
         && x < 430 + data ->menu.button_q.size.x)
         data->menu.is_button_quit = 1;
