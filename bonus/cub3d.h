@@ -52,7 +52,7 @@
 #define BUTTON2_XPM "./assets/quit1.xpm"
 
 #define BACKGROUND "./assets/CUB3D.xpm"
-
+#define PCOIN "./assets/coin.xpm"
 /*#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
 #define BUTTON1_XPM "./assets/PlayButton.xpm"
 
@@ -66,7 +66,8 @@ enum e_texture_index
 	NORTH = 0,
 	SOUTH = 1,
 	EAST = 2,
-	WEST = 3
+	WEST = 3,
+	COIN = 4
 };
 
 typedef struct s_pos
@@ -129,6 +130,7 @@ typedef struct s_map
 	double		pos;
 	double		step;
 	int			size_tex;
+	t_pos		enemy;
 	t_player	p_player;
 }	t_map;
 
@@ -182,6 +184,7 @@ typedef struct s_data
 	t_img		south_img;
 	t_img		west_img;
 	t_img		east_img;
+	t_img		coin_img;
 	t_menu		menu;
 }	t_data;
 

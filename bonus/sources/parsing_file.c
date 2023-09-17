@@ -26,7 +26,12 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 			data->map.file[i][x] = '0';
 			data->map.num_player++;
 		}
-		if (!ft_strchr("0 1NSWE", line[x]))
+		if (line[x] == 'C')
+		{
+			data->map.enemy.x = x;
+			data->map.enemy.y = y;
+		}
+		if (!ft_strchr("0 1NSWEC", line[x]))
 			ft_error("Error invalid character", data, 1);
 		x++;
 	}

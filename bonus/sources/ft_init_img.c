@@ -83,4 +83,5 @@ void	init_textures(t_data *data)
 	data->textures[SOUTH] = xpm_to_img(data, data->map.south);
 	data->textures[EAST] = xpm_to_img(data, data->map.east);
 	data->textures[WEST] = xpm_to_img(data, data->map.west);
+	//data->textures[COIN] = xpm_to_img(data, PCOIN);
 }

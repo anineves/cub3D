@@ -98,5 +98,6 @@ void	init_data(t_data *data)
 	init_img_clean(&data->south_img);
 	init_img_clean(&data->east_img);
 	init_img_clean(&data->west_img);
+	init_img_clean(&data->coin_img);
 	init_menu(&data->menu);
 }

@@ -80,7 +80,7 @@ int	parsing_file(t_data *data, char *line, int row)
 		return (1);
 	else if (ft_strncmp(line + i, "C ", 2) == 0 && data->map.f_c == 0)
 	{
-		validate_color(data, line, i + 2, 1);
+		validate_color(data, line, i + 2, 2);
 		data->map.f_c++;
 		return (1);
 	}

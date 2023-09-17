@@ -28,6 +28,8 @@ void	ft_destroy_images(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->menu.button_q.img);
 	if (data->menu.background.img)
 		mlx_destroy_image(data->mlx_ptr, data->menu.background.img);
+	if (data->coin_img.img)
+		mlx_destroy_image(data->mlx_ptr, data->coin_img.img);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 }
