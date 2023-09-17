@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/17 19:44:18 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/17 16:06:57 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static int	key_press_handler(int key, t_data *data)
 		data->player.move_ad = 1;
 	if (key == SPACE)
 		data->player.opendoor = 1;
-	/*if (key == 1)
-		data->clickmouse = 1;*/
 	return (0);
 }
 
@@ -53,8 +51,6 @@ static int	key_release_handler(int key, t_data *data)
 		data->player.rotate = 0;
 	if (key == SPACE && data->player.opendoor == 1)
 		data->player.opendoor = 0;
-	/*if (key == 1)
-		data->clickmouse = 0;*/
 	return (0);
 }
 
@@ -87,31 +83,11 @@ int	rotate_mouse(int x, int y, t_data *data)
 	return (0);
 }
 
-int	mouse_input_release(int keycode, int x, int y, t_data *data)
-{
-	(void)x;
-	(void)y;
-	if (keycode == 1)
-		data->clickmouse = 0;
-	return (0);
-}
-
-int	mouse_input(int keycode, int x, int y, t_data *data)
-{
-	(void)x;
-	(void)y;
-	if (keycode == 1)
-		data->clickmouse = 1;
-	return (0);
-}
-
 void	events(t_data *data)
 {
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, \
 				key_release_handler, data);
-	mlx_hook(data->win_ptr, 04, 1L << 2, mouse_input, &data);
-	mlx_hook(data->win_ptr, 05, 1L << 3, mouse_input_release, &data);
 	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, \
 				mouse_menu_game, data);
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);

@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 19:28:35 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/17 18:53:03 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 #include <X11/keysym.h>
 
 #define TRANSPARENCY 0x00980088
-#define WINDOW_WIDTH 1024
-#define WINDOW_HEIGHT 768
+#define WINDOW_WIDTH 1900
+#define WINDOW_HEIGHT 1000
 #define MLX_ERROR 1
 #define RED_PIXEL 0x9ADB91
 #define GREEN_PIXEL 0x964B00
@@ -45,13 +45,13 @@
 #define ESC 65307
 #define SPACE 32
 
-#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
-#define BUTTON1_XPM "./assets/play_h.xpm"
+#define BUTTON1_SELECTED_XPM "./assets/play2.xpm"
+#define BUTTON1_XPM "./assets/play1.xpm"
 
-#define BUTTON2_SELECTED_XPM "./assets/quit_selected.xpm"
-#define BUTTON2_XPM "./assets/quit.xpm"
+#define BUTTON2_SELECTED_XPM "./assets/quit2.xpm"
+#define BUTTON2_XPM "./assets/quit1.xpm"
 
-#define BACKGROUND "./assets/menu_back.xpm"
+#define BACKGROUND "./assets/CUB3D.xpm"
 
 /*#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
 #define BUTTON1_XPM "./assets/PlayButton.xpm"
@@ -174,7 +174,6 @@ typedef struct s_data
 	void		*win_ptr;
 	int			**texture_pixels;
 	int			**textures;
-	int			clickmouse;
 	t_map		map;
 	t_player	player;
 	t_ray		ray;

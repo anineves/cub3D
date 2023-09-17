@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_clean.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:13:04 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 20:06:02 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/16 17:58:50 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@ void	ft_destroy_images(t_data *data)
 		mlx_destroy_image(data->mlx_ptr, data->west_img.img);
 	if (data->east_img.img)
 		mlx_destroy_image(data->mlx_ptr, data->east_img.img);
-	if (data->menu.button_p.img)
-		mlx_destroy_image(data->mlx_ptr, data->menu.button_p.img);
-	if (data->menu.button_q.img)
-		mlx_destroy_image(data->mlx_ptr, data->menu.button_q.img);
-	if (data->menu.background.img)
-		mlx_destroy_image(data->mlx_ptr, data->menu.background.img);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 }

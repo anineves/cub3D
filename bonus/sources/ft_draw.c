@@ -6,7 +6,7 @@
 /*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 20:02:25 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/17 17:11:27 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,6 @@ int	render(t_data *data)
 		menu(data);
 	else
 	{
-		mlx_destroy_image(data->mlx_ptr, data->menu.button_p.img);
-		mlx_destroy_image(data->mlx_ptr, data->menu.button_q.img);
-		mlx_destroy_image(data->mlx_ptr, data->menu.background.img);
 		render_images(data);
 		draw_map2d(data);
 		buttons(data);
