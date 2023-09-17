@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 18:55:37 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/17 09:07:38 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,13 +199,6 @@ void	validate_map(t_data *data);
 void	dda(t_ray *ray, t_player *player);
 void	apply_dda(t_data *data, t_ray *ray);
 
-/*ft_draw*/
-void	draw_line(t_data *data, t_pos begin, t_pos end, int color);
-int		render_rect(t_data *data, t_rect rect);
-void	draw_player(t_data *data);
-int		draw_map2d(t_data *data);
-int		render(t_data *data);
-
 /*raycasting*/
 void	init_raycasting(int x, t_ray *ray, t_player *player);
 int		raycasting(t_data *data);
@@ -223,6 +216,7 @@ void	rotate_right(t_data *data);
 /*ft_move_buttons*/
 void	rotate_left(t_data *data);
 int		buttons(t_data *data);
+int		render(t_data *data);
 
 /*events*/
 void	events(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 19:11:23 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:56:22 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ void	validate_color(t_data *data, char *line, int i, int type)
 	int		r;
 	int		g;
 	int		b;
-	int		j;
 	char	**colors;
 
 	r = -1;
 	g = -1;
 	b = -1;
-	j = -1;
 	if (validate_color_2(data, line, i) == 0)
 	{
 		colors = ft_split(line, ',');

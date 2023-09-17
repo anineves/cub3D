@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_buttons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 18:48:41 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/17 08:59:15 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,12 @@ int	buttons(t_data *data)
 		rotate_right(data);
 	if (data->player.rotate == -1)
 		rotate_left(data);
+	return (0);
+}
+
+int	render(t_data *data)
+{
+	buttons(data);
+	render_images(data);
 	return (0);
 }

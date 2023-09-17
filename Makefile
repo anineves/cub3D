@@ -7,7 +7,7 @@ NAME = cub3d
 BONUS = cub3d_bonus
 
 SRCS 	=./mandatory/sources/ft_move_buttons.c 			./mandatory/sources/ft_utils.c 			\
-			./mandatory/sources/ft_draw.c 				./mandatory/sources/get_file.c 			\
+			 				./mandatory/sources/get_file.c 			\
 			./mandatory/sources/ft_init_player.c 		./mandatory/sources/parsing_file_1.c 	\
 			./mandatory/sources/ft_init.c 				./mandatory/sources/raycasting.c		\
 			./mandatory/sources/ft_clean.c				./mandatory/sources/dda.c				\
