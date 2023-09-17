@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	init_player_direction(&data);
 	init_mlx(&data);
 	init_textures(&data);
-	render_images(&data);
+	render(&data);
 	events(&data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_loop(data.mlx_ptr);

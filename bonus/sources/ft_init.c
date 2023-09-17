@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 20:42:54 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:16:00 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	init_player(t_player *player)
 	player->move_ad = 0;
 	player->move_ws = 0;
 	player->rotate = 0;
+	player->opendoor = 0;
 }
 
 void	init_img_clean(t_img *img)
@@ -96,4 +97,5 @@ void	init_data(t_data *data)
 	init_img_clean(&data->south_img);
 	init_img_clean(&data->east_img);
 	init_img_clean(&data->west_img);
+	init_menu(&data->menu);
 }

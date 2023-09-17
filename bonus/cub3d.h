@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 18:55:37 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/17 18:53:03 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@
 #include <X11/X.h>
 #include <X11/keysym.h>
 
-#define WINDOW_WIDTH 1280
-#define WINDOW_HEIGHT 920
+#define TRANSPARENCY 0x00980088
+#define WINDOW_WIDTH 1024
+#define WINDOW_HEIGHT 768
 #define MLX_ERROR 1
 #define RED_PIXEL 0x9ADB91
 #define GREEN_PIXEL 0x964B00
@@ -42,6 +43,23 @@
 #define LEFT 65361
 #define RIGHT 65363
 #define ESC 65307
+#define SPACE 32
+
+#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
+#define BUTTON1_XPM "./assets/play_h.xpm"
+
+#define BUTTON2_SELECTED_XPM "./assets/quit_selected.xpm"
+#define BUTTON2_XPM "./assets/quit.xpm"
+
+#define BACKGROUND "./assets/menu_back.xpm"
+
+/*#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
+#define BUTTON1_XPM "./assets/PlayButton.xpm"
+
+#define BUTTON2_SELECTED_XPM "./assets/quit_selected.xpm"
+#define BUTTON2_XPM "./assets/ExitButton.xpm"
+
+#define BACKGROUND "./assets/Menu.xpm"*/
 
 enum e_texture_index
 {
@@ -71,6 +89,7 @@ typedef struct s_player
 	int		move_ad;
 	int		has_moved;
 	int		rotate;
+	int		opendoor;
 }	t_player;
 
 typedef struct s_img
@@ -80,6 +99,7 @@ typedef struct s_img
 	int		pixel_bits;
 	int		size_line;
 	int		endian;
+	t_pos	size;
 }	t_img;
 
 typedef struct s_map
@@ -137,6 +157,17 @@ typedef struct s_ray
 	double	step;
 }	t_ray;
 
+typedef struct s_menu
+{
+	int			start_play;
+	int			is_button_quit;
+	int			is_button_play;
+	t_img		button_p;
+	t_img		button_q;
+	t_img		menu;
+	t_img		background;
+}	t_menu;
+
 typedef struct s_data
 {
 	void		*mlx_ptr;
@@ -150,6 +181,7 @@ typedef struct s_data
 	t_img		south_img;
 	t_img		west_img;
 	t_img		east_img;
+	t_menu		menu;
 }	t_data;
 
 typedef struct s_rect
@@ -172,10 +204,10 @@ void	init_player_direction(t_data *data);
 int		init_mlx(t_data *data);
 
 /*ft_init_img*/
-void	init_img(t_data *data, t_img *image, int width, int height);
-t_img	ft_init_img(t_data *data);
-int		init_texture_img(t_data *data, t_img *image, char *path);
-void	init_textures(t_data *data);
+void		init_img(t_data *data, t_img *image, int width, int height);
+t_img		ft_init_img(t_data *data);
+int			init_texture_img(t_data *data, t_img *image, char *path);
+void		init_textures(t_data *data);
 
 /*get_file*/
 void	ft_read_file(t_data *data, char *map_file);
@@ -225,7 +257,11 @@ void	rotate_left(t_data *data);
 int		buttons(t_data *data);
 
 /*events*/
+int		rotate_mouse(int x, int y, t_data *data);
 void	events(t_data *data);
+
+/*events_mouse*/
+int	mouse_menu_game(int x, int y, t_data *data);
 
 /*ft_utils*/
 char	*ft_strjoin_free(char *s1, char *s2);
@@ -237,3 +273,10 @@ void	ft_free_textures(t_data *data);
 void	ft_destroy_images(t_data *data);
 void	ft_error(char *msg, t_data *data, int code);
 int		ft_close(t_data *data);
+
+/*ft_init_bonus*/
+void    init_menu(t_menu *menu);
+
+/*menu*/
+void    	menu(t_data *data);
+

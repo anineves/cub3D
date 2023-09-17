@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_buttons.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 18:48:41 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:47:27 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	rotate_left(t_data *data)
 	data->player.has_moved = 1;
 }
 
+void	opendoor(t_data *data)
+{
+	(void)data;
+}
+
 int	buttons(t_data *data)
 {
 	data->player.has_moved = 0;
@@ -45,5 +50,7 @@ int	buttons(t_data *data)
 		rotate_right(data);
 	if (data->player.rotate == -1)
 		rotate_left(data);
+	if (data->player.opendoor == 1)
+		opendoor(data);
 	return (0);
 }

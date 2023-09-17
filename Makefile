@@ -1,6 +1,6 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -O3 -g 
-MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lbsd -no-pie #-fsanitize=address
+MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lbsd -no-pie -fsanitize=address
 LIBFT = ./libft/libft.a
 RM = rm -rf
 NAME = cub3d
@@ -24,6 +24,8 @@ SRCS_BONUS 	=./bonus/sources/ft_move_buttons.c 			./bonus/sources/ft_utils.c 			
 			./bonus/sources/ft_move_buttons_1.c			./bonus/sources/parsing_file.c 			\
 			./bonus/sources/render.c					./bonus/sources/events.c 				\
 			./bonus/sources/ft_init_img.c				./bonus/sources/validate_map.c			\
+			./bonus/sources/menu.c						./bonus/sources/ft_init_bonus.c			\
+			./bonus/sources/events_mouse.c	\
 			./bonus/main.c
 			
 OBJS = $(SRCS:.c=.o)

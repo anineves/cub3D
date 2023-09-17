@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/16 18:01:25 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/17 16:06:57 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static int	key_press_handler(int key, t_data *data)
 		data->player.move_ad = -1;
 	if (key == D)
 		data->player.move_ad = 1;
+	if (key == SPACE)
+		data->player.opendoor = 1;
 	return (0);
 }
 
@@ -47,6 +49,8 @@ static int	key_release_handler(int key, t_data *data)
 		data->player.rotate = 0;
 	if (key == RIGHT && data->player.rotate >= -1)
 		data->player.rotate = 0;
+	if (key == SPACE && data->player.opendoor == 1)
+		data->player.opendoor = 0;
 	return (0);
 }
 
@@ -85,6 +89,6 @@ void	events(t_data *data)
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, \
 				key_release_handler, data);
 	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, \
-				rotate_mouse, data);
+				mouse_menu_game, data);
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 18:49:17 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/17 17:11:27 by andreia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,13 @@ int	draw_map2d(t_data *data)
 
 int	render(t_data *data)
 {
-	buttons(data);
-	render_images(data);
-	draw_map2d(data);
+	if (data->menu.start_play == 0)
+		menu(data);
+	else
+	{
+		render_images(data);
+		draw_map2d(data);
+		buttons(data);
+	}
 	return (0);
 }
