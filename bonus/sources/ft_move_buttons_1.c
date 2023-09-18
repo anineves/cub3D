@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move_buttons_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/03 11:05:50 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 18:51:46 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/18 22:30:29 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	move_a(t_data *data)
 		data->player.py = new_y;
 		data->player.has_moved = 1;
 	}
+	if (data->map.full[(int)new_y][(int)new_x] == 'C')
+		data->map.full[(int)new_y][(int)new_x] = '0';
 }
 
 void	move_d(t_data *data)
@@ -40,6 +42,8 @@ void	move_d(t_data *data)
 		data->player.py = new_y;
 		data->player.has_moved = 1;
 	}
+	if (data->map.full[(int)new_y][(int)new_x] == 'C')
+		data->map.full[(int)new_y][(int)new_x] = '0';
 }
 
 void	move_w(t_data *data)
@@ -55,6 +59,8 @@ void	move_w(t_data *data)
 		data->player.py = new_y;
 		data->player.has_moved = 1;
 	}
+	if (data->map.full[(int)new_y][(int)new_x] == 'C')
+		data->map.full[(int)new_y][(int)new_x] = '0';
 }
 
 void	move_s(t_data *data)
@@ -70,6 +76,8 @@ void	move_s(t_data *data)
 		data->player.py = new_y;
 		data->player.has_moved = 1;
 	}
+	if (data->map.full[(int)new_y][(int)new_x] == 'C')
+		data->map.full[(int)new_y][(int)new_x] = '0';
 }
 
 void	rotate_right(t_data *data)

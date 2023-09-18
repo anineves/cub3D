@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:44:39 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 16:33:25 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/18 22:33:32 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	apply_dda(t_data *data, t_ray *ray)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (data->map.full[ray->map_y][ray->map_x] == '1')
+		if (data->map.full[ray->map_y][ray->map_x] != '0')
 			hit = 1;
 	}
 }
