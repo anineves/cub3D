@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/17 22:19:44 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/18 23:36:43 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static int	key_press_handler(int key, t_data *data)
 		data->player.move_ad = 1;
 	if (key == SPACE)
 		data->player.opendoor = 1;
-	/*if (key == 1)
-		data->clickmouse = 1;*/
 	return (0);
 }
 
@@ -53,8 +51,6 @@ static int	key_release_handler(int key, t_data *data)
 		data->player.rotate = 0;
 	if (key == SPACE && data->player.opendoor == 1)
 		data->player.opendoor = 0;
-	/*if (key == 1)
-		data->clickmouse = 0;*/
 	return (0);
 }
 

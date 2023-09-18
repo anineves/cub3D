@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 09:14:29 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/18 23:23:42 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 			data->map.enemy.x = x;
 			data->map.enemy.y = y;
 		}
-		if (!ft_strchr("0 1NSWEC", line[x]))
+		if (!ft_strchr("0 1NSWECD", line[x]))
 			ft_error("Error invalid character", data, 1);
 		x++;
 	}

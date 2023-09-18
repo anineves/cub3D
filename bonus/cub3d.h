@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 22:16:33 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/18 23:22:36 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 
 #define BACKGROUND "./assets/CUB3D.xpm"
 #define PCOIN "./assets/coin.xpm"
+#define PDOOR "./assets/coin.xpm"
 /*#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
 #define BUTTON1_XPM "./assets/PlayButton.xpm"
 
@@ -67,7 +68,8 @@ enum e_texture_index
 	SOUTH = 1,
 	EAST = 2,
 	WEST = 3,
-	COIN = 4
+	COIN = 4,
+	DOOR = 5
 };
 
 typedef struct s_pos

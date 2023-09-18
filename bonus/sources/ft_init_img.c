@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_img.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/18 22:28:23 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/18 23:22:14 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,11 @@ static void	init_menu_textures(t_data *data)
 void	init_textures(t_data *data)
 {
 	init_menu_textures(data);
-	data->textures = ft_calloc(5, sizeof * data->textures);
+	data->textures = ft_calloc(6, sizeof * data->textures);
 	data->textures[NORTH] = xpm_to_img(data, data->map.north);
 	data->textures[SOUTH] = xpm_to_img(data, data->map.south);
 	data->textures[EAST] = xpm_to_img(data, data->map.east);
 	data->textures[WEST] = xpm_to_img(data, data->map.west);
 	data->textures[COIN] = xpm_to_img(data, PCOIN);
+	data->textures[DOOR] = xpm_to_img(data, PDOOR);
 }

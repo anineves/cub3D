@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/18 23:04:42 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/18 23:20:28 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ parede vertical ou horizontal (ray->side) e também verifica a direção do raio
 (ray->dir_x e ray->dir_y) para determinar qual textura deve ser aplicada.*/
 static void	get_texture_index(t_data *data, t_ray *ray)
 {
-	printf("posicap x %d, posicao y %d , char %c \n" , data->ray.map_x, data->ray.map_y, data->map.full[12][1]);
+	printf("posicao x %d, posicao y %d , char %c \n" , data->ray.map_x, data->ray.map_y, data->map.full[12][1]);
 	if(data->map.full[data->ray.map_y][data->ray.map_x] == '1')
 	{
 		if (ray->side == 0 )
@@ -75,6 +75,8 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 	}
 	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'C')
 		data->map.tex_index = COIN;
+	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'D')
+		data->map.tex_index = DOOR;
 }
 
 /* atualiza o array data->texture_pixels.
