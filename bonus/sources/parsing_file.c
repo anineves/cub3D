@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/18 23:23:42 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 23:08:37 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 {
 	int	x;
 
-	x = 0;
-	while (line[x] != '\0')
+	x = -1;
+	while (line[++x] != '\0')
 	{
 		if (line[x] == 'N' || line[x] == 'S' \
 			|| line[x] == 'E' || line[x] == 'W')
@@ -39,7 +39,6 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 		}
 		if (!ft_strchr("0 1NSWECD", line[x]))
 			ft_error("Error invalid character", data, 1);
-		x++;
 	}
 }
 

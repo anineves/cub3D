@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 18:21:10 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 23:12:10 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,6 +274,8 @@ void	events(t_data *data);
 
 /*events_mouse*/
 int	mouse_menu_game(int x, int y, t_data *data);
+int	mouse_menu(int x, int y, t_data *data);
+
 
 /*ft_utils*/
 char	*ft_strjoin_free(char *s1, char *s2);
@@ -290,6 +292,9 @@ int		ft_close(t_data *data);
 void    init_menu(t_menu *menu);
 
 /*menu*/
+void		is_button_play(t_data *data, int x, int y);
+void		is_button_quit(t_data *data, int x, int y);
+int			init_menu_img(t_data *data, t_img *image, char *path);
 void    	menu(t_data *data);
 
 

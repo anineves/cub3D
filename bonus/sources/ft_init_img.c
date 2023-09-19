@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 18:22:00 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 23:07:57 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,26 +56,32 @@ static int	*xpm_to_img(t_data *data, char *path)
 	mlx_destroy_image(data->mlx_ptr, tmp.img);
 	return (buffer);
 }
+
 static void	init_menu_textures(t_data *data)
 {
 	data->menu.background.img = mlx_xpm_file_to_image(data->mlx_ptr, \
 	BACKGROUND, &data->menu.background.size.x, &data->menu.background.size.y);
 	data->menu.background2.img = mlx_xpm_file_to_image(data->mlx_ptr, \
-	BACKGROUND2, &data->menu.background2.size.x, &data->menu.background2.size.y);
+	BACKGROUND2, &data->menu.background2.size.x, \
+	&data->menu.background2.size.y);
 	data->menu.button_p.img = mlx_xpm_file_to_image(data->mlx_ptr, \
 	BUTTON1_XPM, &data->menu.button_p.size.x, &data->menu.button_p.size.y);
 	data->menu.button_q.img = mlx_xpm_file_to_image(data->mlx_ptr, \
 	BUTTON2_XPM, &data->menu.button_q.size.x, &data->menu.button_q.size.y);
-	data->menu.background.addr = (int *)mlx_get_data_addr(data->menu.background.img, \
+	data->menu.background.addr = (int *) \
+	mlx_get_data_addr(data->menu.background.img, \
 	&data->menu.background.pixel_bits, &data->menu.background.size_line, \
 	&data->menu.background.endian);
-	data->menu.background2.addr = (int *)mlx_get_data_addr(data->menu.background2.img, \
+	data->menu.background2.addr = (int *) \
+	mlx_get_data_addr(data->menu.background2.img, \
 	&data->menu.background2.pixel_bits, &data->menu.background2.size_line, \
 	&data->menu.background2.endian);
-	data->menu.button_p.addr = (int *)mlx_get_data_addr(data->menu.button_p.img, \
+	data->menu.button_p.addr = (int *) \
+	mlx_get_data_addr(data->menu.button_p.img, \
 	&data->menu.button_p.pixel_bits, &data->menu.button_p.size_line, \
 	&data->menu.button_p.endian);
-	data->menu.button_q.addr = (int *)mlx_get_data_addr(data->menu.button_q.img, \
+	data->menu.button_q.addr = (int *) \
+	mlx_get_data_addr(data->menu.button_q.img, \
 	&data->menu.button_q.pixel_bits, &data->menu.button_q.size_line, \
 	&data->menu.button_q.endian);
 }
@@ -91,18 +97,4 @@ void	init_textures(t_data *data)
 	data->textures[COIN] = xpm_to_img(data, PCOIN);
 	data->textures[COIN1] = xpm_to_img(data, PCOIN1);
 	data->textures[DOOR] = xpm_to_img(data, PDOOR);
-	//data->textures[SWORD] = xpm_to_img(data, SWORD1);
 }
-
-/*void	init_textures(t_data *data)
-{
-	init_menu_textures(data);
-	data->textures = ft_calloc(7, sizeof * data->textures);
-	data->textures[NORTH] = xpm_to_img(data, data->map.north);
-	data->textures[SOUTH] = xpm_to_img(data, data->map.south);
-	data->textures[EAST] = xpm_to_img(data, data->map.east);
-	data->textures[WEST] = xpm_to_img(data, data->map.west);
-	data->textures[COIN] = xpm_to_img(data, PCOIN);
-	data->textures[DOOR] = xpm_to_img(data, PDOOR);
-	data->textures[SWORD] = xpm_to_img(data, SWORD1);
-}*/

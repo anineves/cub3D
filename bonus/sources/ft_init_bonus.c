@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 10:39:44 by andreia           #+#    #+#             */
-/*   Updated: 2023/09/17 18:58:26 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/19 23:04:32 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void    init_menu(t_menu *menu)
+void	init_menu(t_menu *menu)
 {
 	menu->start_play = 0;
-    menu->is_button_play = 0;
-    menu->is_button_quit = 0;
+	menu->is_button_play = 0;
+	menu->is_button_quit = 0;
 }
 
 /*cria uma nova imagem vazia com as dimensões fornecidas usando mlx_new_image 

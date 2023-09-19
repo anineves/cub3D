@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/02 16:03:51 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/18 23:20:28 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 23:20:08 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 {
 	//printf("posicao x %d, posicao y %d , char %c \n" , data->ray.map_x, data->ray.map_y, data->map.full[12][1]);
 	printf(" teste %d\n", (int)data->player.px % 2);
-	if(data->map.full[data->ray.map_y][data->ray.map_x] == '1')
+	if (data->map.full[data->ray.map_y][data->ray.map_x] == '1')
 	{
-		if (ray->side == 0 )
+		if (ray->side == 0)
 		{
 			if (ray->dir_x < 0)
 				data->map.tex_index = WEST;
@@ -68,19 +68,19 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 		}
 		else
 		{
-			if (ray->dir_y > 0 )
+			if (ray->dir_y > 0)
 				data->map.tex_index = SOUTH;
 			else
 				data->map.tex_index = NORTH;
 		}
 	}
-	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'C' && (int)data->player.py % 2 == 0)
-	{
+	else if (data->map.full[data->ray.map_y][data->ray.map_x] == 'C' && \
+				(int)data->player.py % 2 == 0)
 		data->map.tex_index = COIN;
-	}
-	else if ( data->map.full[data->ray.map_y][data->ray.map_x] == 'C' && (int)data->player.py % 2 != 0)
+	else if (data->map.full[data->ray.map_y][data->ray.map_x] == 'C' && \
+				(int)data->player.py % 2 != 0)
 		data->map.tex_index = COIN1;
-	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'D')
+	else if (data->map.full[data->ray.map_y][data->ray.map_x] == 'D')
 		data->map.tex_index = DOOR;
 }
 

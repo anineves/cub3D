@@ -6,57 +6,51 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 09:36:41 by andreia           #+#    #+#             */
-/*   Updated: 2023/09/19 18:39:34 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 23:01:37 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
 
-void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
+void	is_button_play(t_data *data, int x, int y)
 {
-	int	*dst;
-
-	if (color == (int)TRANSPARENCY)
-		return ;
-	dst = img->addr + (y * img->size_line + x * (img->pixel_bits / 8));
-	*(unsigned int *)dst = color;
+	if (x > 900 && y > 400 && y < 400 + data->menu.button_p.size.y \
+		&& x < 900 + data ->menu.button_p.size.x)
+		data->menu.is_button_play = 1;
+	else
+		data->menu.is_button_play = 0;
 }
 
-int	get_pixel_img(t_img img, int x, int y)
+void	is_button_quit(t_data *data, int x, int y)
 {
-	return (*(unsigned int *)((img.addr
-			+ (y * img.size_line) + (x * img.pixel_bits / 8))));
+	if (x > 900 && y > 550 && y < 550 + data->menu.button_q.size.y \
+		&& x < 900 + data ->menu.button_q.size.x)
+		data->menu.is_button_quit = 1;
+	else
+		data->menu.is_button_quit = 0;
 }
 
-void	render_rect_g(t_img *dst, t_img src, int x, int y)
+int	init_menu_img(t_data *data, t_img *image, char *path)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < src.size.y)
-	{
-		j = 0;
-		while (j < src.size.x)
-		{
-			my_mlx_pixel_put(dst, x + i, y + j, get_pixel_img(src, i, j));
-			j++;
-		}
-		i++;
-	}
+	init_img_clean(image);
+	image->img = mlx_xpm_file_to_image(data->mlx_ptr, path, \
+		&image->size.x, &image->size.y);
+	image->addr = (int *)mlx_get_data_addr(image->img, &image->pixel_bits,
+			&image->size_line, &image->endian);
+	return (1);
 }
 
-void    menu(t_data *data)
+void	menu(t_data *data)
 {
-    	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.background.img, 0, 0);
-   		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_p.img, 900, 400);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_q.img, 900, 550);
-    if (data->clickmouse == 1 && data->menu.is_button_play && data->menu.start_play == 0)
-    {
-        data->menu.start_play = 1;
-    }
-    else if (data->clickmouse == 1 && data->menu.is_button_quit)
-    {
-        ft_close(data);
-    } 
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+								data->menu.background.img, 0, 0);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+								data->menu.button_p.img, 900, 400);
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, \
+								data->menu.button_q.img, 900, 550);
+	if (data->clickmouse == 1 && data->menu.is_button_play && \
+			data->menu.start_play == 0)
+		data->menu.start_play = 1;
+	else if (data->clickmouse == 1 && data->menu.is_button_quit)
+		ft_close(data);
 }
