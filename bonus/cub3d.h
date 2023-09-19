@@ -52,7 +52,8 @@
 #define BUTTON2_XPM "./assets/quit1.xpm"
 
 #define BACKGROUND "./assets/CUB3D.xpm"
-#define PCOIN "./assets/coin.xpm"
+#define PCOIN "./assets/coin3.xpm"
+#define PCOIN1 "./assets/coin1.xpm"
 #define PDOOR "./assets/door.xpm"
 /*#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
 #define BUTTON1_XPM "./assets/PlayButton.xpm"
@@ -69,7 +70,8 @@ enum e_texture_index
 	EAST = 2,
 	WEST = 3,
 	COIN = 4,
-	DOOR = 5
+	DOOR = 5,
+	COIN1 = 6
 };
 
 typedef struct s_pos

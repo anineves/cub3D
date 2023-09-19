@@ -74,7 +74,9 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 		}
 	}
 	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'C')
+	{
 		data->map.tex_index = COIN;
+	}
 	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'D')
 		data->map.tex_index = DOOR;
 }

@@ -91,29 +91,34 @@ void opendoor(t_data *data)
 	if (data->player.dir_y < 0 && data->map.full[y- 1][x] == 'D')
 	{
 			data->map.full[(int)data->player.py - 1][(int)data->player.px] = '0';
+			data->map.door.x = x;
+			data->map.door.y = y - 1;
 	}
 	if (data->player.dir_y > 0 && data->map.full[y + 1][x] == 'D')
 	{
 			data->map.full[(int)data->player.py + 1][(int)data->player.px] = '0';
+			data->map.door.x = x;
+			data->map.door.y = y + 1;
 	}
 	if (data->player.dir_y < 0 && data->map.full[y][x-1] == 'D')
 	{
 			data->map.full[(int)data->player.py][(int)data->player.px - 1] = '0';
+			data->map.door.x = x - 1;
+			data->map.door.y = y;
 	}
 	if (data->player.dir_y > 0 && data->map.full[y][x + 1] == 'D')
 	{
+			data->map.door.x = x + 1;
+			data->map.door.y = y;
 			data->map.full[(int)data->player.py][(int)data->player.px+1] = '0';
 	}
 }
+
 void	close_door(t_data *data)
 {
 	printf("close playe x %d, player y %d, door x %d, door y %d \n\n", (int)data->player.px , (int)data->player.py, data->map.door.x , data->map.door.y );
 	if((int)data->player.px != data->map.door.x \
-		&& (int)data->player.px != data->map.door.x + 1 \
-		&&  (int)data->player.px != data->map.door.x - 1 \
-		&& (int)data->player.py != data->map.door.y \
-		&& (int)data->player.py != data->map.door.y + 1 \
-		&&  (int)data->player.py != data->map.door.y - 1 )
+		&& (int)data->player.py != data->map.door.y )
 		{
 			data->map.full[data->map.door.y][data->map.door.x] = 'D';
 		}
@@ -123,6 +128,7 @@ void	close_door(t_data *data)
 int	buttons(t_data *data)
 {
 	data->player.has_moved = 0;
+	close_door(data);
 	if (data->player.move_ad == -1)
 		move_a(data);
 	if (data->player.move_ad == 1) 
@@ -137,6 +143,5 @@ int	buttons(t_data *data)
 		rotate_left(data);
 	if (data->player.opendoor == 1)
 		opendoor(data);
-	//close_door(data);
 	return (0);
 }
