@@ -46,7 +46,7 @@
 #define SPACE 32
 
 #define PCOIN "./assets/coin3.xpm"
-#define PCOIN1 "./assets/coin1.xpm"
+#define PCOIN1 "./assets/coin.xpm"
 
 #define BUTTON1_SELECTED_XPM "./assets/play2.xpm"
 #define BUTTON1_XPM "./assets/play1.xpm"

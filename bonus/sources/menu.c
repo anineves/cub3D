@@ -48,21 +48,11 @@ void	render_rect_g(t_img *dst, t_img src, int x, int y)
 
 void    menu(t_data *data)
 {
-	if(data->menu.start_play == 0 &&  data->clickmouse == 0)
-	{
-		printf("%d\n", data->clickmouse);
     	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.background.img, 0, 0);
    		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_p.img, 900, 400);
 		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_q.img, 900, 550);
-	}
     if (data->clickmouse == 1 && data->menu.is_button_play && data->menu.start_play == 0)
     {
-		if (data->menu.button_p.img)
-			mlx_destroy_image(data->mlx_ptr, data->menu.button_p.img);
-		if (data->menu.button_q.img)
-			mlx_destroy_image(data->mlx_ptr, data->menu.button_q.img);
-		if (data->menu.background.img)
-			mlx_destroy_image(data->mlx_ptr, data->menu.background.img);
         data->menu.start_play = 1;
     }
     else if (data->clickmouse == 1 && data->menu.is_button_quit)

@@ -56,6 +56,7 @@ parede vertical ou horizontal (ray->side) e também verifica a direção do raio
 static void	get_texture_index(t_data *data, t_ray *ray)
 {
 	//printf("posicao x %d, posicao y %d , char %c \n" , data->ray.map_x, data->ray.map_y, data->map.full[12][1]);
+	printf(" teste %d\n", (int)data->player.px % 2);
 	if(data->map.full[data->ray.map_y][data->ray.map_x] == '1')
 	{
 		if (ray->side == 0 )
@@ -73,10 +74,12 @@ static void	get_texture_index(t_data *data, t_ray *ray)
 				data->map.tex_index = NORTH;
 		}
 	}
-	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'C')
+	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'C' && (int)data->player.py % 2 == 0)
 	{
 		data->map.tex_index = COIN;
 	}
+	else if ( data->map.full[data->ray.map_y][data->ray.map_x] == 'C' && (int)data->player.py % 2 != 0)
+		data->map.tex_index = COIN1;
 	else if(data->map.full[data->ray.map_y][data->ray.map_x] == 'D')
 		data->map.tex_index = DOOR;
 }
