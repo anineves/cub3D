@@ -80,7 +80,7 @@ static void	init_menu_textures(t_data *data)
 	&data->menu.button_q.endian);
 }
 
-void	init_textures(t_data *data)
+/*void	init_textures(t_data *data)
 {
 	init_menu_textures(data);
 	data->textures = ft_calloc(7, sizeof * data->textures);
@@ -91,4 +91,17 @@ void	init_textures(t_data *data)
 	data->textures[COIN] = xpm_to_img(data, PCOIN);
 	data->textures[COIN1] = xpm_to_img(data, PCOIN1);
 	data->textures[DOOR] = xpm_to_img(data, PDOOR);
+}*/
+
+void	init_textures(t_data *data)
+{
+	init_menu_textures(data);
+	data->textures = ft_calloc(7, sizeof * data->textures);
+	data->textures[NORTH] = xpm_to_img(data, data->map.north);
+	data->textures[SOUTH] = xpm_to_img(data, data->map.south);
+	data->textures[EAST] = xpm_to_img(data, data->map.east);
+	data->textures[WEST] = xpm_to_img(data, data->map.west);
+	data->textures[COIN] = xpm_to_img(data, PCOIN);
+	data->textures[DOOR] = xpm_to_img(data, PDOOR);
+	data->textures[SWORD] = xpm_to_img(data, SWORD1);
 }
