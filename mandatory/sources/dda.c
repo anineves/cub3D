@@ -12,6 +12,12 @@
 
 #include "../cub3d.h"
 
+/* A função dda é usada para calcular os valores iniciais 
+necessários para traçar  de raio. 
+o algoritmo calcula a direção do raio (dir_x e dir_y), 
+determina a direção do passo (step_x e step_y), 
+e calcula as distâncias laterais para o próximo lado (sidedist_x e sidedist_y)
+ com base na posição do jogador e na direção do raio.*/
 void	dda(t_ray *ray, t_player *player)
 {
 	if (ray->dir_x < 0)
@@ -35,7 +41,17 @@ void	dda(t_ray *ray, t_player *player)
 		ray->sidedist_y = (ray->map_y + 1.0f - player->py) * ray->deltadist_y;
 	}
 }
-
+ /*
+ Aplica o algoritmo DDA 
+ para determinar as coordenadas onde o raio atinge um objeto no mapa.
+ algoritmo DDA é aplicado em um loop enquanto hit for igual 0 
+ O loop continua até que o raio atinja uma parede no mapa. Durante cada iteração do loop, 
+ o algoritmo verifica se a próxima célula no mapa (ray->map_x e ray->map_y) é uma parede
+ Se for uma parede, o loop termina indicando que o raio atingiu algo.
+ O algoritmo escolhe qual direção (horizontal ou vertical) verificar primeiro com base nas distâncias laterais 
+ (ray->sidedist_x e ray->sidedist_y).
+ Atualiza as coordenadas do mapa e a lateral (ray->side) à medida que se move ao longo do raio.
+*/
 void	apply_dda(t_data *data, t_ray *ray)
 {
 	int	hit;
