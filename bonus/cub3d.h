@@ -53,7 +53,7 @@
 
 #define BACKGROUND "./assets/CUB3D.xpm"
 #define PCOIN "./assets/coin.xpm"
-#define PDOOR "./assets/coin.xpm"
+#define PDOOR "./assets/door.xpm"
 /*#define BUTTON1_SELECTED_XPM "./assets/play_h_selected.xpm"
 #define BUTTON1_XPM "./assets/PlayButton.xpm"
 
@@ -132,6 +132,7 @@ typedef struct s_map
 	double		pos;
 	double		step;
 	int			size_tex;
+	t_pos		door;
 	t_pos		enemy;
 	t_player	p_player;
 }	t_map;

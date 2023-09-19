@@ -31,6 +31,11 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 			data->map.enemy.x = x;
 			data->map.enemy.y = y;
 		}
+		if (line[x] == 'D')
+		{
+			data->map.door.x = x;
+			data->map.door.y = y;
+		}
 		if (!ft_strchr("0 1NSWECD", line[x]))
 			ft_error("Error invalid character", data, 1);
 		x++;
