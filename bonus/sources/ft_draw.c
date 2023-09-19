@@ -106,9 +106,6 @@ int	render(t_data *data)
 {
 	if (data->menu.start_play == 0)
 	{
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.background.img, 0, 0);
-    	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_p.img, 900, 400);
-		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_q.img, 900, 550);
 		menu(data);
 	}
 	else

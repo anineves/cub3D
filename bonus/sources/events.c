@@ -98,6 +98,7 @@ int	mouse_input(int keycode, int x, int y, t_data *data)
 	(void)y;
 	if (keycode == 1)
 		data->clickmouse = 1;
+	printf("entrei\n");
 	return (0);
 }
 
@@ -106,8 +107,8 @@ void	events(t_data *data)
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, \
 				key_release_handler, data);
-	mlx_hook(data->win_ptr, 04, 1L << 2, mouse_input, &data);
-	mlx_hook(data->win_ptr, 05, 1L << 3, mouse_input_release, &data);
+	mlx_hook(data->win_ptr, 04, 1L << 2, mouse_input, data);
+	mlx_hook(data->win_ptr, 05, 1L << 3, mouse_input_release, data);
 	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, \
 				mouse_menu_game, data);
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
