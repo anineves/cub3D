@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/07 22:45:28 by asousa-n          #+#    #+#             */
-/*   Updated: 2023/09/18 23:36:43 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:23:41 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	mouse_input(int keycode, int x, int y, t_data *data)
 	return (0);
 }
 
-/*void	events(t_data *data)
+void	events(t_data *data)
 {
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, \
@@ -111,9 +111,9 @@ int	mouse_input(int keycode, int x, int y, t_data *data)
 	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, \
 				mouse_menu_game, data);
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
-}*/
+}
 
-void	events(t_data *data)
+/*void	events(t_data *data)
 {
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, key_press_handler, data);
 	mlx_hook(data->win_ptr, KeyRelease, KeyReleaseMask, \
@@ -121,4 +121,4 @@ void	events(t_data *data)
 	mlx_hook(data->win_ptr, MotionNotify, PointerMotionMask, \
 				mouse_menu_game, data);
 	mlx_hook(data->win_ptr, ClientMessage, NoEventMask, ft_close, data);
-}
+}*/

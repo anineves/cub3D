@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_draw.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 22:19:03 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/19 18:46:27 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,17 @@ int	draw_map2d(t_data *data)
 int	render(t_data *data)
 {
 	if (data->menu.start_play == 0)
+	{
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.background.img, 0, 0);
+    	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_p.img, 900, 400);
+		mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_q.img, 900, 550);
 		menu(data);
+	}
 	else
 	{
-		/*mlx_destroy_image(data->mlx_ptr, data->menu.button_p.img);
+/* 		mlx_destroy_image(data->mlx_ptr, data->menu.button_p.img);
 		mlx_destroy_image(data->mlx_ptr, data->menu.button_q.img);
-		mlx_destroy_image(data->mlx_ptr, data->menu.background.img);*/
+		mlx_destroy_image(data->mlx_ptr, data->menu.background.img); */
 		render_images(data);
 		draw_map2d(data);
 		buttons(data);

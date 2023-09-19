@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 00:13:32 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:13:16 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,8 @@ void	close_door(t_data *data)
 int	buttons(t_data *data)
 {
 	data->player.has_moved = 0;
-	if(data->map.is_door)
-		close_door(data);
+	/*if(data->map.is_door)
+		close_door(data);*/
 	if (data->player.move_ad == -1)
 		move_a(data);
 	if (data->player.move_ad == 1) 
@@ -142,10 +142,10 @@ int	buttons(t_data *data)
 		rotate_right(data);
 	if (data->player.rotate == -1)
 		rotate_left(data);
-	if(data->map.is_door)
+	/*if(data->map.is_door)
 	{
 		if (data->player.opendoor == 1)
 			opendoor(data);
-	}
+	}*/
 	return (0);
 }

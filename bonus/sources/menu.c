@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   menu.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 09:36:41 by andreia           #+#    #+#             */
-/*   Updated: 2023/09/17 22:27:07 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/19 18:39:34 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	render_rect_g(t_img *dst, t_img src, int x, int y)
 
 void    menu(t_data *data)
 {
-    mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.background.img, 0, 0);
+    /*mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.background.img, 0, 0);
     mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_p.img, 900, 400);
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_q.img, 900, 550);
-    if (/*data->clickmouse == 1 &&*/ data->menu.is_button_play)
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->menu.button_q.img, 900, 550);*/
+    if (data->clickmouse == 1 && data->menu.is_button_play && data->menu.start_play == 0)
     {
         data->menu.start_play = 1;
     }
-    else if (/*data->clickmouse == 1 &&*/ data->menu.is_button_quit)
+    else if (data->clickmouse == 1 && data->menu.is_button_quit)
     {
         ft_close(data);
     } 

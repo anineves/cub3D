@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/18 23:22:14 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:22:00 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	init_menu_textures(t_data *data)
 	&data->menu.button_q.endian);
 }
 
-/*void	init_textures(t_data *data)
+void	init_textures(t_data *data)
 {
 	init_menu_textures(data);
 	data->textures = ft_calloc(7, sizeof * data->textures);
@@ -91,9 +91,10 @@ static void	init_menu_textures(t_data *data)
 	data->textures[COIN] = xpm_to_img(data, PCOIN);
 	data->textures[COIN1] = xpm_to_img(data, PCOIN1);
 	data->textures[DOOR] = xpm_to_img(data, PDOOR);
-}*/
+	//data->textures[SWORD] = xpm_to_img(data, SWORD1);
+}
 
-void	init_textures(t_data *data)
+/*void	init_textures(t_data *data)
 {
 	init_menu_textures(data);
 	data->textures = ft_calloc(7, sizeof * data->textures);
@@ -104,4 +105,4 @@ void	init_textures(t_data *data)
 	data->textures[COIN] = xpm_to_img(data, PCOIN);
 	data->textures[DOOR] = xpm_to_img(data, PDOOR);
 	data->textures[SWORD] = xpm_to_img(data, SWORD1);
-}
+}*/

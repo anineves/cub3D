@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 13:07:58 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/19 18:21:10 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,9 @@
 #define ESC 65307
 #define SPACE 32
 
+#define PCOIN "./assets/coin3.xpm"
+#define PCOIN1 "./assets/coin1.xpm"
+
 #define BUTTON1_SELECTED_XPM "./assets/play2.xpm"
 #define BUTTON1_XPM "./assets/play1.xpm"
 
@@ -52,7 +55,8 @@
 #define BUTTON2_XPM "./assets/quit1.xpm"
 
 #define BACKGROUND "./assets/CUB3D.xpm"
-#define PCOIN "./assets/coin.xpm"
+#define	BACKGROUND2 "./assets/background2.xpm"
+//#define PCOIN "./assets/coin.xpm"
 #define PDOOR "./assets/door.xpm"
 #define SWORD1 "./assets/icon2.xpm"
 #define SWORD2 "./assets/icon3.xpm"
@@ -66,7 +70,8 @@ enum e_texture_index
 	WEST = 3,
 	COIN = 4,
 	DOOR = 5,
-	SWORD = 6
+	COIN1 = 6,
+	SWORD = 7
 };
 
 typedef struct s_pos
@@ -129,8 +134,9 @@ typedef struct s_map
 	int			tex_index;
 	double		pos;
 	double		step;
-	int			size_tex;
 	t_pos		door;
+	int			size_tex;
+	int			is_door;
 	t_pos		enemy;
 	t_player	p_player;
 }	t_map;
@@ -169,6 +175,7 @@ typedef struct s_menu
 	t_img		button_q;
 	t_img		menu;
 	t_img		background;
+	t_img		background2;
 }	t_menu;
 
 typedef struct s_data

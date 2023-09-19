@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 16:35:00 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/19 18:22:24 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	init_player_direction(t_data *data)
 	init_player_ew(&data->player);
 }
 
-void	init_images_player(t_data *data)
+/*void	init_images_player(t_data *data)
 {
 	data->player.img_player= ft_calloc(3, sizeof * data->player.img_player);
 	//data->player.img_player = malloc(3 * sizeof(t_img *));
@@ -80,7 +80,7 @@ void	init_images_player(t_data *data)
 			&(data->player.img_player[1]->size.x), &(data->player.img_player[1]->size.y));
 	data->player.img_player[2] = mlx_xpm_file_to_image(data->mlx_ptr, SWORD3,
 			&(data->player.img_player[2]->size.x), &(data->player.img_player[2]->size.y));
-}
+}*/
 
 int	init_mlx(t_data *data)
 {
