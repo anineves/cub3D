@@ -1,9 +1,9 @@
                                                         F 150,70,50
 
-NO assets/simonkraft/respawn_anchor_side0.xpm
-EA assets/simonkraft/respawn_anchor_side2.xpm
-SO assets/simonkraft/respawn_anchor_side4.xpm
-WE assets/simonkraft/respawn_anchor_side3.xpm
+NO assets/mario2.xpm
+EA assets/mario1.xpm
+SO assets/mario2.xpm
+WE assets/mario4.xpm
        C          65,105,225
 
 
@@ -12,7 +12,7 @@ WE assets/simonkraft/respawn_anchor_side3.xpm
 
 
 1111111111
-   1100001
+   11C0001
  110000011
 1000001111
 100000111

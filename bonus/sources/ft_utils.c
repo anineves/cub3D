@@ -58,7 +58,7 @@ void	ft_free_textures3(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 7)
 	{
 		if (data->textures[i] != NULL)
 		{

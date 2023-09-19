@@ -46,18 +46,26 @@ int	mouse_menu(int x,int y, t_data *data)
 	is_button_quit(data, x, y);
 	if (data->menu.is_button_play)
     {
+        if (data->menu.button_p.img)
+		    mlx_destroy_image(data->mlx_ptr, data->menu.button_p.img);
         init_menu_img(data, &data->menu.button_p, BUTTON1_SELECTED_XPM);
     }
 	else
     {
+         if (data->menu.button_p.img)
+		    mlx_destroy_image(data->mlx_ptr, data->menu.button_p.img);
         init_menu_img(data, &data->menu.button_p, BUTTON1_XPM);
     }
 	if (data->menu.is_button_quit)
     {
+         if (data->menu.button_q.img)
+		    mlx_destroy_image(data->mlx_ptr, data->menu.button_q.img);
         init_menu_img(data, &data->menu.button_q, BUTTON2_SELECTED_XPM);
 	}
     else
     {
+         if (data->menu.button_q.img)
+		    mlx_destroy_image(data->mlx_ptr, data->menu.button_q.img);
         init_menu_img(data, &data->menu.button_q, BUTTON2_XPM);
 	}
     return (0);

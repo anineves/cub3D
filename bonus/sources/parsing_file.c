@@ -35,6 +35,7 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 		{
 			data->map.door.x = x;
 			data->map.door.y = y;
+			data->map.is_door = 1;
 		}
 		if (!ft_strchr("0 1NSWECD", line[x]))
 			ft_error("Error invalid character", data, 1);

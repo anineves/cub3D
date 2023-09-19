@@ -57,6 +57,7 @@ void	init_map(t_map *map)
 	map->pos = 0;
 	map->step = 0;
 	map->size_tex = 64;
+	map->is_door = 0;
 }
 
 void	init_player(t_player *player)

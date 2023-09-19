@@ -55,7 +55,7 @@ parede vertical ou horizontal (ray->side) e também verifica a direção do raio
 (ray->dir_x e ray->dir_y) para determinar qual textura deve ser aplicada.*/
 static void	get_texture_index(t_data *data, t_ray *ray)
 {
-	printf("posicao x %d, posicao y %d , char %c \n" , data->ray.map_x, data->ray.map_y, data->map.full[12][1]);
+	//printf("posicao x %d, posicao y %d , char %c \n" , data->ray.map_x, data->ray.map_y, data->map.full[12][1]);
 	if(data->map.full[data->ray.map_y][data->ray.map_x] == '1')
 	{
 		if (ray->side == 0 )

@@ -31,9 +31,9 @@ static void	fill_image(t_data *data, t_img *image, int x, int y)
 	if (data->texture_pixels[y][x] != 0)
 		fill_pixel(image, x, y, data->texture_pixels[y][x]);
 	else if (y < WINDOW_HEIGHT / 2)
-		fill_pixel(image, x, y, data->map.c);
-	else if (y < WINDOW_HEIGHT -1)
 		fill_pixel(image, x, y, data->map.f);
+	else if (y < WINDOW_HEIGHT -1)
+		fill_pixel(image, x, y, data->map.c);
 }
 
 /*cria uma imagem do tamanho W_W e W_H e preenche os pixels com a funcao 
