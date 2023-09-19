@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 23:12:10 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 00:06:10 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,8 +134,9 @@ typedef struct s_map
 	int			tex_index;
 	double		pos;
 	double		step;
-	t_pos		door;
 	int			size_tex;
+	int			nb_doors;
+	t_pos		*door;
 	int			is_door;
 	t_pos		enemy;
 	t_player	p_player;
@@ -298,3 +299,4 @@ int			init_menu_img(t_data *data, t_img *image, char *path);
 void    	menu(t_data *data);
 
 
+void	fill_doors_positions(t_data *data);

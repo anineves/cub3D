@@ -37,6 +37,7 @@ int	main(int argc, char **argv)
 	init_data(&data);
 	get_file(&data, argv[1]);
 	init_player_direction(&data);
+	fill_doors_positions(&data);
 	init_mlx(&data);
 	init_textures(&data);
 	render_images(&data);

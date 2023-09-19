@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 18:13:51 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/19 23:44:08 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init_map(t_map *map)
 	map->step = 0;
 	map->size_tex = 64;
 	map->is_door = 0;
+	map->nb_doors = 0;
 }
 
 void	init_player(t_player *player)

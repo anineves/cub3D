@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 23:19:15 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 00:15:23 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,35 @@ void	opendoor(t_data *data)
 	}
 }*/
 
+void	fill_doors_positions(t_data *data)
+{
+	int	i;
+	int j;
+	int k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	data->map.door = ft_calloc(data->map.nb_doors, sizeof *data->map.door);
+	printf("Numero de portas: %d\n", data->map.nb_doors);
+	while (i < data->map.rows_full)
+	{
+		printf("andreia\n");
+		while (j < data->map.len)
+		{
+			if (data->map.full[i][j] == 'D')
+			{
+				data->map.door[k].x = j;
+				data->map.door[k].y = i;
+				printf("Posicao x door: %d\n Posicao y door: %d\n",data->map.door[k].x, data->map.door[k].y);
+				printf("Posicao x door: %d\n Posicao y door: %d\n",j, i);
+				k++;
+			}
+			j++;
+		}
+		i++;
+	}
+}
 void	opendoor(t_data *data)
 {
 	int	x;
@@ -87,33 +116,34 @@ void	opendoor(t_data *data)
 
 	y = data->player.py;
 	x = data->player.px;
+	//fill_doors_positions(data);
 	if (data->player.dir_y < 0 && data->map.full[y - 1][x] == 'D')
 	{
 		data->map.full[(int)data->player.py - 1][(int)data->player.px] = '0';
-		data->map.door.x = x;
-		data->map.door.y = y - 1;
+		//data->map.door.x = x;
+		//data->map.door.y = y - 1;
 	}
 	if (data->player.dir_y > 0 && data->map.full[y + 1][x] == 'D')
 	{
 		data->map.full[(int)data->player.py + 1][(int)data->player.px] = '0';
-		data->map.door.x = x;
-		data->map.door.y = y + 1;
+		//data->map.door.x = x;
+		//data->map.door.y = y + 1;
 	}
 	if (data->player.dir_y < 0 && data->map.full[y][x - 1] == 'D')
 	{
 		data->map.full[(int)data->player.py][(int)data->player.px - 1] = '0';
-		data->map.door.x = x - 1;
-		data->map.door.y = y;
+		//data->map.door.x = x - 1;
+		//data->map.door.y = y;
 	}
 	if (data->player.dir_y > 0 && data->map.full[y][x + 1] == 'D')
 	{
-		data->map.door.x = x + 1;
-		data->map.door.y = y;
+		//data->map.door.x = x + 1;
+		//data->map.door.y = y;
 		data->map.full[(int)data->player.py][(int)data->player.px + 1] = '0';
 	}
 }
 
-void	close_door(t_data *data)
+/*void	close_door(t_data *data)
 {
 	printf("close playe x %d, player y %d, door x %d, door y %d \n\n", \
 			(int)data->player.px, (int)data->player.py, data->map.door.x, \
@@ -121,13 +151,13 @@ void	close_door(t_data *data)
 	if ((int)data->player.px != data->map.door.x \
 		&& (int)data->player.py != data->map.door.y)
 		data->map.full[data->map.door.y][data->map.door.x] = 'D';
-}
+}*/
 
 int	buttons(t_data *data)
 {
 	data->player.has_moved = 0;
-	if (data->map.is_door)
-		close_door(data);
+	/*if (data->map.is_door)
+		close_door(data);*/
 	if (data->player.move_ad == -1)
 		move_a(data);
 	if (data->player.move_ad == 1) 
@@ -140,10 +170,10 @@ int	buttons(t_data *data)
 		rotate_right(data);
 	if (data->player.rotate == -1)
 		rotate_left(data);
-	if (data->map.is_door)
+	/*if (data->map.is_door)
 	{
 		if (data->player.opendoor == 1)
 			opendoor(data);
-	}
+	}*/
 	return (0);
 }
