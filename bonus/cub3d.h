@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 17:03:49 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:24:06 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,6 @@ typedef struct s_player
 	t_img	**img_player;
 }	t_player;
 
-typedef struct s_door
-{
-	t_pos		pos;
-	int			is_open;
-} t_door;
-
 typedef struct s_map
 {
 	char		**file;
@@ -141,11 +135,11 @@ typedef struct s_map
 	double		pos;
 	double		step;
 	int			size_tex;
-	int			is_door;
 	int			nb_doors;
+	t_pos		door;
+	int			is_door;
 	t_pos		enemy;
 	t_player	p_player;
-	t_door		**door;
 }	t_map;
 
 typedef struct s_ray

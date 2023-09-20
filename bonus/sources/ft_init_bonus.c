@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 10:39:44 by andreia           #+#    #+#             */
-/*   Updated: 2023/09/20 17:04:17 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:24:39 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	init_menu(t_menu *menu)
 	menu->is_button_quit = 0;
 }
 
-void	init_doors(t_door *door)
+/*void	init_doors(t_door *door)
 {
 	door->is_open = 0;
-}
+}*/
 
 /*cria uma nova imagem vazia com as dimensões fornecidas usando mlx_new_image 
 e obtém informações sobre a imagem usando mlx_get_data*/

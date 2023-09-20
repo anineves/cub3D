@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 00:02:02 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:28:26 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 		}
 		if (line[x] == 'D')
 		{
-			data->map.nb_doors++; //primeiro devemos saber quantas portas temos, 
+			//data->map.nb_doors++; //primeiro devemos saber quantas portas temos, 
 			//depois percorremos o mapa para guardar as posicoes das portas num array;
-			/*data->map.door.x = x;
+			data->map.door.x = x;
 			data->map.door.y = y;
-			data->map.is_door = 1;*/
+			data->map.is_door = 1;
 		}
 		if (!ft_strchr("0 1NSWECD", line[x]))
 			ft_error("Error invalid character", data, 1);
