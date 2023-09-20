@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 17:49:30 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 22:29:31 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	validate_color(t_data *data, char *line, int i, int type)
 	r = -1;
 	g = -1;
 	b = -1;
-	if (validate_color_2(data, line, i) == 0)
+	if (validate_color_2(data, &line[i], 0) == 0)
 	{
 		colors = ft_split(line, ',');
 		r = ft_atoi(colors[0]);

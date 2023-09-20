@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:19:21 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 00:07:16 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 22:30:34 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,13 +80,13 @@ int	parsing_file(t_data *data, char *line, int row)
 		return (1);
 	else if (ft_strncmp(line + i, "C ", 2) == 0 && data->map.f_c == 0)
 	{
-		validate_color(data, line, i + 2, 2);
+		validate_color(data, &line[i + 2], 0, 1);
 		data->map.f_c++;
 		return (1);
 	}
 	else if (ft_strncmp(line + i, "F ", 2) == 0 && data->map.f_f == 0)
 	{
-		validate_color(data, line, i + 2, 1);
+		validate_color(data, &line[i + 2], 0, 2);
 		data->map.f_f++;
 		return (1);
 	}
