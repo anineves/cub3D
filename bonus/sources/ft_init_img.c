@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 23:07:57 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:54:50 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ static void	init_menu_textures(t_data *data)
 {
 	data->menu.background.img = mlx_xpm_file_to_image(data->mlx_ptr, \
 	BACKGROUND, &data->menu.background.size.x, &data->menu.background.size.y);
-	data->menu.background2.img = mlx_xpm_file_to_image(data->mlx_ptr, \
-	BACKGROUND2, &data->menu.background2.size.x, \
-	&data->menu.background2.size.y);
 	data->menu.button_p.img = mlx_xpm_file_to_image(data->mlx_ptr, \
 	BUTTON1_XPM, &data->menu.button_p.size.x, &data->menu.button_p.size.y);
 	data->menu.button_q.img = mlx_xpm_file_to_image(data->mlx_ptr, \
@@ -72,10 +69,6 @@ static void	init_menu_textures(t_data *data)
 	mlx_get_data_addr(data->menu.background.img, \
 	&data->menu.background.pixel_bits, &data->menu.background.size_line, \
 	&data->menu.background.endian);
-	data->menu.background2.addr = (int *) \
-	mlx_get_data_addr(data->menu.background2.img, \
-	&data->menu.background2.pixel_bits, &data->menu.background2.size_line, \
-	&data->menu.background2.endian);
 	data->menu.button_p.addr = (int *) \
 	mlx_get_data_addr(data->menu.button_p.img, \
 	&data->menu.button_p.pixel_bits, &data->menu.button_p.size_line, \

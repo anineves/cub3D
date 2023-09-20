@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 17:47:25 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:57:51 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@
 #define BUTTON2_XPM "./assets/quit1.xpm"
 
 #define BACKGROUND "./assets/CUB3D.xpm"
-#define BACKGROUND2 "./assets/background2.xpm"
 #define PDOOR "./assets/door.xpm"
 
 enum e_texture_index
@@ -101,7 +100,6 @@ typedef struct s_player
 	int		has_moved;
 	int		rotate;
 	int		opendoor;
-	t_img	**img_player;
 }	t_player;
 
 typedef struct s_map
@@ -172,7 +170,6 @@ typedef struct s_menu
 	t_img		button_q;
 	t_img		menu;
 	t_img		background;
-	t_img		background2;
 }	t_menu;
 
 typedef struct s_data

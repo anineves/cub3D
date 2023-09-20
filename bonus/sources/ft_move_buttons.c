@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 17:51:51 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 18:35:59 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ void	rotate_left(t_data *data)
 
 void	opendoor_1(t_data *data)
 {
+	int	x;
+	int	y;
+
+	y = data->player.py;
+	x = data->player.px;
 	if (data->player.dir_y >= 0 && data->map.full[y][x - 1] == 'D')
 	{
 		data->map.full[(int)data->player.py][(int)data->player.px - 1] = '0';

@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 18:22:24 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 19:03:45 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,19 +68,6 @@ void	init_player_direction(t_data *data)
 	init_player_sn(&data->player);
 	init_player_ew(&data->player);
 }
-
-/*void	init_images_player(t_data *data)
-{
-	data->player.img_player= ft_calloc(3, sizeof * data->player.img_player);
-	//data->player.img_player = malloc(3 * sizeof(t_img *));
-	//data->img.size_player = 5;
-	data->player.img_player[0] = mlx_xpm_file_to_image(data->mlx_ptr, SWORD1,
-			&(data->player.img_player[0]->size.x), &(data->player.img_player[0]->size.y));
-	data->player.img_player[1] = mlx_xpm_file_to_image(data->mlx_ptr, SWORD2,
-			&(data->player.img_player[1]->size.x), &(data->player.img_player[1]->size.y));
-	data->player.img_player[2] = mlx_xpm_file_to_image(data->mlx_ptr, SWORD3,
-			&(data->player.img_player[2]->size.x), &(data->player.img_player[2]->size.y));
-}*/
 
 int	init_mlx(t_data *data)
 {

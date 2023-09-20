@@ -1,10 +1,10 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -O3 -g 
-MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lbsd -no-pie -fsanitize=address
+MLXFLAGS = -L ./minilibx-linux -lmlx -Ilmlx -lXext -lX11 -lbsd -no-pie #-fsanitize=address
 LIBFT = ./libft/libft.a
 RM = rm -rf
-NAME = cub3d
-BONUS = cub3d_bonus
+NAME = cub
+BONUS = cub3d
 
 SRCS 	=./mandatory/sources/ft_move_buttons.c 			./mandatory/sources/ft_utils.c 			\
 			 				./mandatory/sources/get_file.c 			\
