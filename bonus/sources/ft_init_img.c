@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:53:59 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 18:54:50 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:03:39 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,12 @@ int	init_texture_img(t_data *data, t_img *image, char *path)
 	return (1);
 }
 
+void	finish(t_data *data)
+{
+	printf("Error\nWrong size\n");
+	ft_close(data);
+}
+
 /*carrega a textura XPM em uma estrutrura t_img, retorna o bffer que representa 
 os pixels da textura*/
 static int	*xpm_to_img(t_data *data, char *path)
@@ -42,7 +48,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 	{
 		mlx_destroy_image(data->mlx_ptr, tmp.img);
 		free(buffer);
-		ft_error("size", data, 1);
+		finish(data);
 	}
 	while (++y < MAPS)
 	{

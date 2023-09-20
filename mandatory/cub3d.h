@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andreia <andreia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/17 09:07:38 by andreia          ###   ########.fr       */
+/*   Updated: 2023/09/20 20:09:01 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,10 +146,6 @@ typedef struct s_data
 	t_map		map;
 	t_player	player;
 	t_ray		ray;
-	t_img		north_img;
-	t_img		south_img;
-	t_img		west_img;
-	t_img		east_img;
 }	t_data;
 
 typedef struct s_rect

@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 21:24:44 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 23:44:08 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:05:41 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,10 +96,5 @@ void	init_data(t_data *data)
 	init_map(&data->map);
 	init_player(&data->player);
 	init_ray(&data->ray);
-	init_img_clean(&data->north_img);
-	init_img_clean(&data->south_img);
-	init_img_clean(&data->east_img);
-	init_img_clean(&data->west_img);
-	init_img_clean(&data->coin_img);
 	init_menu(&data->menu);
 }

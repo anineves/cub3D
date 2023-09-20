@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:49:27 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/19 23:05:05 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:01:54 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,29 @@ void	draw_player(t_data *data)
 				data->player.dir_y * 8}, 0xFF8C00);
 }
 
+void	draw_map3(t_data *data, int x, int y)
+{
+	int	xo;
+	int	yo;
+
+	xo = x * MAPM;
+	yo = y * MAPM;
+	if (data->map.full[y][x] == '1')
+		render_rect(data, (t_rect){xo, yo, MAPM, MAPM, GREEN_PIXEL});
+	else if (data->map.full[y][x] == '0')
+		render_rect(data, (t_rect){xo, yo, MAPM, MAPM, RED_PIXEL});
+	else if (data->map.full[y][x] == 'D')
+		render_rect(data, (t_rect){xo, yo, MAPM, MAPM, 0x964B00});
+	else if (data->map.full[y][x] == 'C')
+		render_rect(data, (t_rect){xo, yo, MAPM, MAPM, 0XEEAD2D});
+	else
+		render_rect(data, (t_rect){xo, yo, MAPM, MAPM, 0x000000});
+}
+
 int	draw_map2d(t_data *data)
 {
 	int	x;
 	int	y;
-	int	xo;
-	int	yo;
 
 	y = 0;
 	while (y < data->map.rows_full)
@@ -87,30 +104,10 @@ int	draw_map2d(t_data *data)
 		x = -1;
 		while (++x < data->map.len)
 		{
-			xo = x * MAPM;
-			yo = y * MAPM;
-			if (data->map.full[y][x] == '1')
-				render_rect(data, (t_rect){xo, yo, MAPM, MAPM, GREEN_PIXEL});
-			else if (data->map.full[y][x] == '0')
-				render_rect(data, (t_rect){xo, yo, MAPM, MAPM, RED_PIXEL});
-			else
-				render_rect(data, (t_rect){xo, yo, MAPM, MAPM, 0x000000});
+			draw_map3(data, x, y);
 			draw_player(data);
 		}
 		y++;
-	}
-	return (0);
-}
-
-int	render(t_data *data)
-{
-	if (data->menu.start_play == 0)
-		menu(data);
-	else
-	{
-		render_images(data);
-		draw_map2d(data);
-		buttons(data);
 	}
 	return (0);
 }

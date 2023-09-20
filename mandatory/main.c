@@ -43,5 +43,6 @@ int	main(int argc, char **argv)
 	events(&data);
 	mlx_loop_hook(data.mlx_ptr, &render, &data);
 	mlx_loop(data.mlx_ptr);
-	ft_destroy_images(&data);
+	mlx_destroy_display(data.mlx_ptr);
+	free(data.mlx_ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 09:36:41 by andreia           #+#    #+#             */
-/*   Updated: 2023/09/19 23:01:37 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:02:16 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,17 @@ void	menu(t_data *data)
 		data->menu.start_play = 1;
 	else if (data->clickmouse == 1 && data->menu.is_button_quit)
 		ft_close(data);
+}
+
+int	render(t_data *data)
+{
+	if (data->menu.start_play == 0)
+		menu(data);
+	else
+	{
+		render_images(data);
+		draw_map2d(data);
+		buttons(data);
+	}
+	return (0);
 }

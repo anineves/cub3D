@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 18:57:51 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:04:20 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,17 @@
 
 #define TRANSPARENCY 0x00980088
 #define WINDOW_WIDTH 1900
-#define WINDOW_HEIGHT 1000
+#define WINDOW_HEIGHT 980
 #define MLX_ERROR 1
-#define RED_PIXEL 0x9ADB91
-#define GREEN_PIXEL 0x964B00
+#define RED_PIXEL 0xFFFFF9
+#define GREEN_PIXEL 0x696969
 #define PI 3.14159265358979323846
 #define MAPX  8      //map width
 #define MAPY  8      //map height
 #define MAPS 64
 #define MOVESPEED 0.08
 #define ROTSPEED 0.05
-#define MAPM 16
+#define MAPM 8
 
 #define W 119
 #define A 97
@@ -182,11 +182,6 @@ typedef struct s_data
 	t_map		map;
 	t_player	player;
 	t_ray		ray;
-	t_img		north_img;
-	t_img		south_img;
-	t_img		west_img;
-	t_img		east_img;
-	t_img		coin_img;
 	t_menu		menu;
 }	t_data;
 

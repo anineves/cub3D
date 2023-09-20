@@ -6,25 +6,11 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 17:13:04 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 17:58:50 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 20:08:23 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cub3d.h"
-
-void	ft_destroy_images(t_data *data)
-{
-	if (data->north_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->north_img.img);
-	if (data->south_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->south_img.img);
-	if (data->west_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->west_img.img);
-	if (data->east_img.img)
-		mlx_destroy_image(data->mlx_ptr, data->east_img.img);
-	mlx_destroy_display(data->mlx_ptr);
-	free(data->mlx_ptr);
-}
 
 void	ft_error(char *msg, t_data *data, int code)
 {
