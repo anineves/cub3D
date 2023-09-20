@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:51:22 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 00:15:23 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:14:01 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,21 +87,22 @@ void	fill_doors_positions(t_data *data)
 	int k;
 
 	i = 0;
-	j = 0;
 	k = 0;
-	data->map.door = ft_calloc(data->map.nb_doors, sizeof *data->map.door);
+	data->map.door = ft_calloc(data->map.nb_doors, sizeof(t_door));
 	printf("Numero de portas: %d\n", data->map.nb_doors);
 	while (i < data->map.rows_full)
 	{
-		printf("andreia\n");
+		//printf("andreia\n");
+		//printf("linha do mapa index %d valor: %s\n", i, data->map.full[i]);
+		j = 0;
 		while (j < data->map.len)
 		{
 			if (data->map.full[i][j] == 'D')
 			{
-				data->map.door[k].x = j;
-				data->map.door[k].y = i;
-				printf("Posicao x door: %d\n Posicao y door: %d\n",data->map.door[k].x, data->map.door[k].y);
-				printf("Posicao x door: %d\n Posicao y door: %d\n",j, i);
+				data->map.door[k]->pos.x = j;
+				data->map.door[k]->pos.y = i;
+				printf("Posicao x door: %d\n Posicao y door: %d\n",data->map.door[k]->pos.x, data->map.door[k]->pos.y);
+				//printf("Posicao x door: %d\n Posicao y door: %d\n",j, i);
 				k++;
 			}
 			j++;
