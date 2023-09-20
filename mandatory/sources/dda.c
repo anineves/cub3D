@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 22:44:39 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 16:33:25 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:57:48 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,17 @@ void	dda(t_ray *ray, t_player *player)
 		ray->sidedist_y = (ray->map_y + 1.0f - player->py) * ray->deltadist_y;
 	}
 }
- /*
- Aplica o algoritmo DDA 
- para determinar as coordenadas onde o raio atinge um objeto no mapa.
- algoritmo DDA é aplicado em um loop enquanto hit for igual 0 
- O loop continua até que o raio atinja uma parede no mapa. Durante cada iteração do loop, 
- o algoritmo verifica se a próxima célula no mapa (ray->map_x e ray->map_y) é uma parede
- Se for uma parede, o loop termina indicando que o raio atingiu algo.
- O algoritmo escolhe qual direção (horizontal ou vertical) verificar primeiro com base nas distâncias laterais 
- (ray->sidedist_x e ray->sidedist_y).
- Atualiza as coordenadas do mapa e a lateral (ray->side) à medida que se move ao longo do raio.
-*/
+
+/*Aplica o algoritmo DDA para determinar as coordenadas onde o 
+raio atinge um objeto no mapa.algoritmo DDA é aplicado em um loop 
+enquanto hit for igual 0. O loop continua até que o raio atinja uma
+parede no mapa. Durante cada iteração do loop, o algoritmo verifica
+se a próxima célula no mapa (ray->map_x e ray->map_y) é uma parede*/
+/*Se for uma parede, o loop termina indicando que o raio atingiu algo.
+O algoritmo escolhe qual direção (horizontal ou vertical) verificar 
+primeiro com base nas distâncias laterais (ray->sidedist_x e ray->sidedist_y).
+Atualiza as coordenadas do mapa e a lateral (ray->side) à medida 
+que se move ao longo do raio.*/
 void	apply_dda(t_data *data, t_ray *ray)
 {
 	int	hit;

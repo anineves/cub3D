@@ -6,7 +6,7 @@
 /*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:29:08 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 17:28:26 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/20 17:49:30 by anaraujo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,11 @@ void	ft_check_line(char *line, t_data *data, int y, int i)
 			data->map.num_player++;
 		}
 		if (line[x] == 'C')
-		{
 			data->map.enemy.x = x;
+		if (line[x] == 'C')
 			data->map.enemy.y = y;
-		}
 		if (line[x] == 'D')
 		{
-			//data->map.nb_doors++; //primeiro devemos saber quantas portas temos, 
-			//depois percorremos o mapa para guardar as posicoes das portas num array;
 			data->map.door.x = x;
 			data->map.door.y = y;
 			data->map.is_door = 1;
