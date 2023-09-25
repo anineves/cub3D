@@ -44,13 +44,17 @@ int	validate_color_2(t_data *data, char *line, int i)
 	while (line[len] != '\0')
 	{
 		if (!ft_strchr("0123456789 ,", line[len]))
-			ft_error("Error invalid character in color", data, 1);
+			ft_error("Invalid character in color", data, 1);
 		if (line[len] == ',' && line[len + 1])
+		{
+			if (line[len + 1] == ',')
+				ft_error("Duplicate comma", data, 1);
 			comma++;
+		}
 		len++;
 	}
 	if (comma != 2)
-		ft_error(" missing One color\n", data, 1);
+		ft_error("Missing a color\n", data, 1);
 	return (0);
 }
 
@@ -66,13 +70,12 @@ void	validate_color(t_data *data, char *line, int i, int type)
 	b = -1;
 	if (validate_color_2(data, &line[i], 0) == 0)
 	{
-		printf("linha %s", line);
 		colors = ft_split(line, ',');
 		r = ft_atoi(colors[0]);
 		g = ft_atoi(colors[1]);
 		b = ft_atoi(colors[2]);
 		if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-			ft_error("One color\n", data, 1);
+			ft_error("Wrong value\n", data, 1);
 		if (type == 1)
 			data->map.c = ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
 		if (type == 2)
@@ -90,7 +93,7 @@ void	validate_texture1(t_data *data, char *textura)
 	if (!ft_strnstr(&textura[len - 4], ".xpm", 4))
 	{
 		free(textura);
-		ft_error("incorrect texture's path", data, 1);
+		ft_error("Incorrect texture's path", data, 1);
 	}
 	fd = open(textura, O_RDONLY);
 	if (fd == -1)

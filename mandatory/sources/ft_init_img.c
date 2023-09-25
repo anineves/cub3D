@@ -64,7 +64,7 @@ static int	*xpm_to_img(t_data *data, char *path)
 	{
 		mlx_destroy_image(data->mlx_ptr, tmp.img);
 		free(buffer);
-		ft_error("size", data, 1);
+		ft_error("size of texture", data, 1);
 	}
 	while (++y < MAPS)
 	{

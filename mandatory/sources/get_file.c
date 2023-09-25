@@ -26,7 +26,7 @@ void	ft_read_file(t_data *data, char *map_file)
 		j = -1;
 		line = get_next_line(read);
 		if (line == NULL && i == 0)
-			ft_error("empty", data, 1);
+			ft_error("Empty file", data, 1);
 		else if (line == NULL )
 			break ;
 		data->map.file[i] = ft_calloc(ft_strlen(line) + 1, sizeof(char));
@@ -65,7 +65,7 @@ void	create_map(t_data *data, int i)
 		i++;
 	}
 	if (data->map.num_player != 1)
-		ft_error("number of player must be one\n", data, 1);
+		ft_error("Number of player must be one\n", data, 1);
 }
 
 void	get_big_line(t_data *data, int i)
@@ -102,12 +102,12 @@ void	get_file(t_data *data, char *map_file)
 		i++;
 	}
 	if (!all_params(data))
-		ft_error("incomplete file\n", data, 1);
+		ft_error("Incomplete file\n", data, 1);
 	get_big_line(data, i);
 	data->map.full = ft_calloc((data->map.rows_full) + 1, \
 								sizeof(char *));
 	create_map(data, i);
 	if (data->map.num_player != 1)
-		ft_error("number of player must be one\n", data, 1);
+		ft_error("Number of player must be one\n", data, 1);
 	validate_map(data);
 }

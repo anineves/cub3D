@@ -36,7 +36,7 @@ int	all_params(t_data *data)
 	if (data->map.n != 1 || data->map.s != 1 || data->map.w != 1 \
 			|| data->map.e != 1 || data->map.f_c != 1 \
 			|| data->map.f_f != 1 || data->map.first_line == 0)
-		ft_error("param", data, 1); 
+		ft_error("Incorrect elements in file\n", data, 1); 
 	return (1);
 }
 

@@ -55,7 +55,11 @@ int	validate_color_2(t_data *data, char *line, int i)
 		if (!ft_strchr("0123456789 ,", line[len]))
 			ft_error("Error invalid character in color", data, 1);
 		if (line[len] == ',' && line[len + 1])
+		{
+			if (line[len + 1] == ',')
+				ft_error("Duplicate comma", data, 1);
 			comma++;
+		}
 		len++;
 	}
 	if (comma != 2)
