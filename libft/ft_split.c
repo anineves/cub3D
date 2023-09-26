@@ -89,7 +89,7 @@ char	**ft_split(char const *s, char c)
 		while (*s)
 		{
 			while (*s && *s == c)
-					s++;
+				s++;
 			strlen = strsize(s, c);
 			arr[i++] = copyword(s, c, strlen);
 			s = s + strlen;
