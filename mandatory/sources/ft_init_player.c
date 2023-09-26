@@ -6,7 +6,7 @@
 /*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/01 22:29:13 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/14 16:35:00 by asousa-n         ###   ########.fr       */
+/*   Updated: 2023/09/26 17:48:16 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	init_player_sn(t_player *player)
 		player->dir_y = 1.0f;
 		player->plane_x = -0.66;
 		player->plane_y = 0;
-		player->ang = 270;
 	}
 	else if (player->dir == 'N')
 	{
@@ -35,7 +34,6 @@ void	init_player_sn(t_player *player)
 		player->dir_y = -1.0f;
 		player->plane_x = 0.66;
 		player->plane_y = 0;
-		player->ang = 90;
 	}
 	else
 		return ;
@@ -49,7 +47,6 @@ static void	init_player_ew(t_player *player)
 		player->dir_y = 0;
 		player->plane_x = 0;
 		player->plane_y = -0.66;
-		player->ang = 180;
 	}
 	else if (player->dir == 'E')
 	{
@@ -57,7 +54,6 @@ static void	init_player_ew(t_player *player)
 		player->dir_y = 0;
 		player->plane_x = 0;
 		player->plane_y = 0.66;
-		player->ang = 0;
 	}
 	else
 		return ;

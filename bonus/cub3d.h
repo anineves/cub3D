@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/16 18:20:14 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/20 20:04:20 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:27:40 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,7 @@ char		*ft_strjoin_free(char *s1, char *s2);
 void		ft_free_map(char **map);
 void		ft_free_textures3(t_data *data);
 void		ft_free_textures(t_data *data);
+void		ft_color_empty(char **colors, t_data *data);
 
 /*ft_clean*/
 void		ft_destroy_images(t_data *data);

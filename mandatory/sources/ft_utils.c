@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anaraujo <anaraujo@student.42.fr>          +#+  +:+       +#+        */
+/*   By: asousa-n <asousa-n@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 21:43:58 by anaraujo          #+#    #+#             */
-/*   Updated: 2023/09/16 17:13:10 by anaraujo         ###   ########.fr       */
+/*   Updated: 2023/09/26 18:26:49 by asousa-n         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,27 @@ void	ft_free_textures(t_data *data)
 		free(data->map.east);
 	if (data->map.west)
 		free(data->map.west);
+}
+
+void	ft_color_empty(char **colors, t_data *data)
+{
+	int	i;
+	int	j;
+	int	k;
+
+	i = 0;
+	while (i < 3)
+	{
+		k = 0;
+		j = 0;
+		while (colors[i][j] != '\0')
+		{
+			if (colors[i][j] != 32 && colors[i][j] != '\t')
+				k++;
+			j++;
+		}
+		if (k == 0)
+			ft_error("empty color", data, 0);
+		i++;
+	}
 }
